@@ -16,7 +16,6 @@ package
 		
 		public function Startup()
 		{
-			trace("starling framework initialized?");
 			myStarling = new Starling(Game, stage);
 			myStarling.antiAliasing = 1;
 			myStarling.start();

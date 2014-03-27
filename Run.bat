@@ -40,7 +40,7 @@ goto ios-package
 :ios-test
 echo.
 echo Packaging application for testing on iOS %INTERPRETER%
-if "%INTERPRETER%" == "" echo (this will take a while)
+if "%INTERPRETwdER%" == "" echo (this will take a while)
 echo.
 set TARGET=-test%INTERPRETER%
 set OPTIONS=

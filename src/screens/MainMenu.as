@@ -1,18 +1,19 @@
-package
+package screens
 {
 	/**
 	 * ...
 	 * @author Stefan
 	 */
-	import screens.Welcome;
+	
+	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
-	public class Game extends Sprite
+	public class MainMenu extends Sprite
 	{
-		private var screenWelcome:Welcome;
+		private var bg:Image;
 		
-		public function Game()
+		public function MainMenu()
 		{
 			super();
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
@@ -20,8 +21,13 @@ package
 		
 		private function onAddedToStage(event:Event):void
 		{
-			screenWelcome = new Welcome();
-			this.addChild(screenWelcome);
+			drawScreen();
+		}
+		
+		private function drawScreen():void
+		{
+			bg = new Image(Assets.getTexture("MainMenu"));
+			this.addChild(bg);
 		}
 	}
 }

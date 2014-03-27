@@ -4,17 +4,21 @@ package screens
 	 * ...
 	 * @author ...
 	 */
+	import screens.MainMenu;
 	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
 	
 	public class Welcome extends Sprite
 	{
 		private var bg:Image;
 		
 		private var playBtn:Button;
+		
+		private var mainMenu:MainMenu;
 		
 		public function Welcome()
 		{
@@ -29,14 +33,22 @@ package screens
 		
 		private function drawScreen():void
 		{
-			bg = new Image(Assets.getTexture("Mushroom"));
+			bg = new Image(Assets.getTexture("Background"));
 			this.addChild(bg);
 			
-			playBtn = new Button(Assets.getTexture("PlayBtn"));
-			playBtn.x = 100;
+			playBtn = new Button(Assets.getTexture("StartBtn"));
+			playBtn.x = 177;
 			playBtn.y = 100;
+			playBtn.addEventListener(TouchEvent.TOUCH, this.onStartButtonClicked);
 			this.addChild(playBtn);
-			
+		}
+		
+		private function onStartButtonClicked(e:TouchEvent):void
+		{
+			trace("got here");
+			this.removeChildren();
+			mainMenu = new MainMenu();
+			this.addChild(mainMenu);
 		}
 	
 	}

@@ -8,11 +8,26 @@ package
 	
 	public class Assets
 	{
-		[Embed(source='../img/mushroom.jpg')]
+		[Embed(source='../img/Background.jpg')]
 		public static const Mushroom:Class;
 		
-		[Embed(source='../img/playButton.png')]
-		public static const PlayBtn:Class;
+		[Embed(source='../img/MainMenu.png')]
+		public static const MainMenu:Class;
+		
+		[Embed(source='../img/StartButton.png')]
+		public static const StartBtn:Class;
+		
+		[Embed(source='../img/game01.png')]
+		public static const Game01:Class;
+		
+		[Embed(source='../img/game02.png')]
+		public static const Game02:Class;
+		
+		[Embed(source='../img/game03.png')]
+		public static const Game03:Class;
+		
+		[Embed(source='../img/game04.png')]
+		public static const Game04:Class;
 		
 		private static var gameTextures:Dictionary = new Dictionary();
 		
