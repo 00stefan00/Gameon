@@ -9,7 +9,7 @@ package
 	public class Assets
 	{
 		[Embed(source='../img/Background.jpg')]
-		public static const Mushroom:Class;
+		public static const Background:Class;
 		
 		[Embed(source='../img/MainMenu.png')]
 		public static const MainMenu:Class;
