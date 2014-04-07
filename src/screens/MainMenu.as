@@ -6,6 +6,7 @@ package screens
 	 */
 	
 	import flash.utils.Dictionary;
+	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -14,9 +15,10 @@ package screens
 	public class MainMenu extends Sprite
 	{
 		private var bg:Image;
-		var game:Image;
-		var firstGameToDisplay:Number = 0;
-		var gameDict:Dictionary = new Dictionary();
+		private var character:Image;
+		private var firstGameToDisplay:Number = 0;
+		private var miniGame:Image;
+		private var gameDict:Dictionary = new Dictionary();
 		
 		public function MainMenu()
 		{
@@ -50,41 +52,64 @@ package screens
 			putGame(2, gameDict[2]);
 			
 			putGame(3, gameDict[3]);
+			
+			character = new Image(Assets.getTexture("Character"));
+			character.x = 350
+			character.y = 130
+			this.addChild(character);
 		}
 		
-		private function putGame(number:Number, game:Image)
+		private function putGame(number:Number, miniGame:Image):void
 		{
 			if (number == 0)
 			{
-				game.x = 30;
-				game.y = 30;
+				miniGame.x = 30;
+				miniGame.y = 30;
 			}
 			else if (number == 1)
 			{
-				game.x = 190;
-				game.y = 30;
+				miniGame.x = 190;
+				miniGame.y = 30;
 			}
 			else if (number == 2)
 			{
-				game.x = 30;
-				game.y = 190;
+				miniGame.x = 30;
+				miniGame.y = 190;
 			}
 			else if (number == 3)
 			{
-				game.x = 190;
-				game.y = 190;
+				miniGame.x = 190;
+				miniGame.y = 190;
 			}
 			
-			game.addEventListener(TouchEvent.TOUCH, onGamePressed(number));
-			addChild(game);
+			miniGame.addEventListener(TouchEvent.TOUCH, onGamePressed(number));
+			addChild(miniGame);
 		}
 		
-		private function onGamePressed(number:Number):Function {
-			return function(e:TouchEvent):void {
+		private function onGamePressed(number:Number):Function
+		{
+			return function(e:TouchEvent):void
+			{
 				var gameNumber:Number = number + firstGameToDisplay;
 				removeChildren();
 				addChild(gameDict[gameNumber]);
+				
+				addChild(getLevelByNumber(gameNumber));
 			}
+		}
+		
+		private function getLevelByNumber(gameNumber:Number):DisplayObject
+		{
+			if (gameNumber == 0)
+				return new level_00();
+			else if (gameNumber == 1)
+				return new level_01();
+			else if (gameNumber == 2)
+				return new level_02();
+			else if (gameNumber == 3)
+				return new level_03();
+			
+			return null
 		}
 	}
 }

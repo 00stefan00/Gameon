@@ -13,7 +13,7 @@ package screens
 	import starling.events.TouchEvent;
 	
 	public class Welcome extends Sprite
-	{
+	{ 
 		private var bg:Image;
 		
 		private var playBtn:Button;
@@ -45,7 +45,6 @@ package screens
 		
 		private function onStartButtonClicked(e:TouchEvent):void
 		{
-			trace("got here");
 			this.removeChildren();
 			mainMenu = new MainMenu();
 			this.addChild(mainMenu);
