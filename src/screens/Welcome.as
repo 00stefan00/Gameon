@@ -4,7 +4,7 @@ package screens
 	 * ...
 	 * @author ...
 	 */
-	import screens.MainMenu;
+	import screens.HomeScreen;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -18,7 +18,7 @@ package screens
 		
 		private var playBtn:Button;
 		
-		private var mainMenu:MainMenu;
+		private var mainMenu:HomeScreen;
 		
 		public function Welcome()
 		{
@@ -46,7 +46,7 @@ package screens
 		private function onStartButtonClicked(e:TouchEvent):void
 		{
 			this.removeChildren();
-			mainMenu = new MainMenu();
+			mainMenu = new HomeScreen();
 			this.addChild(mainMenu);
 		}
 	

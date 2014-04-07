@@ -13,6 +13,7 @@ package screens
 	public class level_base extends Sprite
 	{
 		private var menuButton:Image;
+		private var currentGame:Number;
 		
 		public function level_base()
 		{
@@ -24,8 +25,18 @@ package screens
 			menuButton = new Image(Assets.getTexture("MenuIconGrey"));
 			menuButton.x = 05;
 			menuButton.y = 05;
+			menuButton.addEventListener(TouchEvent.TOUCH, openMenu(currentGame))
 			addChild(menuButton);
 		}
+		
+		private function openMenu(currentGame:Number): Function
+		{
+			return function(e:TouchEvent):void
+			{
+				var menu:Menu = new Menu(currentGame);
+				addChild(menu);
+				menu.setIndex(getChildIndex(menu));
+			}
+		}
 	}
-
 }

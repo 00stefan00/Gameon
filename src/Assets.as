@@ -8,6 +8,15 @@ package
 	
 	public class Assets
 	{
+		[Embed(source='../img/home.png')]
+		public static const Home:Class;
+		
+		[Embed(source='../img/back.jpg')]
+		public static const Back:Class;
+		
+		[Embed(source='../img/BgYellow.png')]
+		public static const BgYellow:Class;
+		
 		[Embed(source='../img/menu-icon_grey.png')]
 		public static const MenuIconGrey:Class;
 		
