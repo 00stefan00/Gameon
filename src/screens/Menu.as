@@ -28,27 +28,34 @@ package screens
 		
 		private function initialize():void
 		{
+			// create a yellow background for the popup menu
 			bg = new Image(Assets.getTexture("BgYellow"));
 			
 			setToCoords(bg, 50, 50);
 			
 			addButtons();
 		}
-		
+	
+		/**
+		 * Increases value of the var that knows which game is the first one to display on the mainmenu
+		 */
 		private function addButtons():void
 		{
+			// Loads images from Assets
 			redoBtn = new Image(Assets.getTexture("RedoIcon"));
 			homeBtn = new Image(Assets.getTexture("HomeIcon"));
 			muteBtn = new Image(Assets.getTexture("MuteIcon"));
 			closeBtn = new Image(Assets.getTexture("CloseIcon"));
 			nextBtn = new Image(Assets.getTexture("NextIcon"));
 			
+			// Puts images as buttons to coords
 			setToCoords(redoBtn, 80, 210);
 			setToCoords(homeBtn, 180, 210);
 			setToCoords(muteBtn, 280, 210);
 			setToCoords(nextBtn, 380, 210);
 			setToCoords(closeBtn, bg.width + 35, 50)
 			
+			// Adds eventlisteners to the buttons
 			redoBtn.addEventListener(TouchEvent.TOUCH, redo);
 			homeBtn.addEventListener(TouchEvent.TOUCH, goHome);
 			muteBtn.addEventListener(TouchEvent.TOUCH, mute);
@@ -56,6 +63,9 @@ package screens
 			nextBtn.addEventListener(TouchEvent.TOUCH, startNext);
 		}
 		
+		/**
+		 * Places image on coordinates X and Y
+		 */
 		private function setToCoords(img:Image, x:Number, y:Number):void
 		{
 			img.x = x;
@@ -64,31 +74,50 @@ package screens
 			addChild(img);
 		}
 		
+		
+		/**
+		 * returns to main menu
+		 */
 		private function goHome(e:TouchEvent):void
 		{
 			main.loadScreen("homescreen");
 		}
 		
+		/**
+		 * returns to where you came from, closes the menu
+		 */
 		private function goBack(e:TouchEvent):void
 		{
 			closeMenu()
 		}
 		
+		/**
+		 * Will restart the level that is running
+		 */
 		private function redo(e:TouchEvent):void
 		{
-		
+			// not implemented yet
 		}
 		
+		/**
+		 * Continues to next level after completion
+		 */
 		private function startNext(e:TouchEvent):void
 		{
-		
+			// not implemented yet
 		}
 		
+		/**
+		 * mutes the sound
+		 */
 		private function mute(e:TouchEvent):void
 		{
-		
+			// not implemented yet
 		}
 		
+		/**
+		 * Removes menu from the screen
+		 */
 		private function closeMenu():void
 		{
 			this.removeChild(redoBtn);

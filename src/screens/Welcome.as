@@ -27,6 +27,9 @@ package screens
 			drawScreen();
 		}
 		
+		/**
+		 * draws all images to welcome screen
+		 */
 		private function drawScreen():void
 		{
 			bg = new Image(Assets.getTexture("Background"));

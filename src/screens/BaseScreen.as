@@ -9,7 +9,6 @@ package screens
 	public class BaseScreen extends Sprite 
 	{
 		protected var main:GameScreen;
-		private var logo:Image;
 		
 		/**
 		 * Constructor of the BaseScreen
@@ -19,15 +18,6 @@ package screens
 		{
 			super();
 			this.main = main;
-		}
-		
-		/**
-		 * Disposes current screen and removes the logo, if present
-		 */
-		public function disposeScreen():void {
-			if (getChildIndex(logo) != -1) {
-				removeChild(logo);
-			}
 		}
 	}
 

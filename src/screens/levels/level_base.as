@@ -28,15 +28,9 @@ package screens.levels
 		
 		}
 		
-		private function openMenu(currentGame:Number):Function
-		{
-			return function(e:TouchEvent):void
-			{
-				var menu:Menu = new Menu(main);
-				addChild(menu);
-			}
-		}
-		
+		/**
+		 * Adds a button that will open a menu when clicked
+		 */
 		public function addMenuButton():void
 		{
 			menuButton = new Image(Assets.getTexture("MenuIcon"));
@@ -44,6 +38,18 @@ package screens.levels
 			menuButton.y = 05;
 			menuButton.addEventListener(TouchEvent.TOUCH, openMenu(currentGame))
 			addChild(menuButton);
+		}
+		
+		/**
+		 * opens the Menu
+		 */
+		private function openMenu(currentGame:Number):Function
+		{
+			return function(e:TouchEvent):void
+			{
+				var menu:Menu = new Menu(main);
+				addChild(menu);
+			}
 		}
 	
 	}

@@ -8,6 +8,7 @@ package
 	
 	public class Assets
 	{
+		// All assets listed and put into variables
 		[Embed(source='../img/arrow_left.png')]
 		public static const ArrowLeft:Class;
 		
@@ -58,6 +59,7 @@ package
 		
 		private static var gameTextures:Dictionary = new Dictionary();
 		
+		// if image exists returns the image as a Texture.
 		public static function getTexture(name:String):Texture
 		{
 			if (gameTextures[name] == undefined)

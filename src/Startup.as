@@ -16,6 +16,7 @@ package
 		
 		public function Startup()
 		{
+			// initialize Starling
 			myStarling = new Starling(GameScreen, stage);
 			myStarling.antiAliasing = 1;
 			myStarling.start();

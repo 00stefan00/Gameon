@@ -31,6 +31,7 @@ package screens
 		
 		private function initGameButtons():void
 		{
+			// Put all gameIcons in a dict
 			gameDict[0] = new Image(Assets.getTexture("Game01"));
 			gameDict[1] = new Image(Assets.getTexture("Game02"));
 			gameDict[2] = new Image(Assets.getTexture("Game03"));
@@ -43,7 +44,7 @@ package screens
 		}
 		
 		private function drawScreen():void
-		{
+		{	//place background on screen
 			bg = new Image(Assets.getTexture("Background"));
 			this.addChild(bg);
 			
@@ -51,6 +52,7 @@ package screens
 			
 			placeArrows()
 			
+			//place character on screen
 			character = new Image(Assets.getTexture("Character"));
 			character.x = 370
 			character.y = 130
@@ -59,6 +61,7 @@ package screens
 		
 		private function placeArrows():void
 		{
+			// checks if there are more levels that can be scrolled to with arrow buttons. If there are place arrow to the right.
 			if (firstGameToDisplay < 8)
 			{
 				arrow = new Image(Assets.getTexture("ArrowRight"));
@@ -67,6 +70,7 @@ package screens
 				this.addChild(arrow);
 				arrow.addEventListener(TouchEvent.TOUCH, onArrowRight)
 			}
+			// checks if there are previous levels that can be scrolled to with arrow buttons. If there are place arrow to the left.
 			if (firstGameToDisplay > 3)
 			{
 				arrow = new Image(Assets.getTexture("ArrowLeft"));
@@ -78,17 +82,25 @@ package screens
 		
 		}
 		
+		/**
+		 * Increases value of the var that knows which game is the first one to display on the mainmenu
+		 */
 		private function onArrowRight(e:TouchEvent):void
 		{
-			firstGameToDisplay += 4;
+			//firstGameToDisplay += 4;
 		}
 		
+		/**
+		 * Decreases value of the var that knows which game is the first one to display on the mainmenu
+		 */
 		private function onArrowLeft(e:TouchEvent):void
 		{
-			firstGameToDisplay -= 4;
+			//firstGameToDisplay -= 4;
 		}
 		
-		
+		/**
+		 * Puts all gameIcons on the screen
+		 */
 		private function putGames():void
 		{
 			putGame(0, gameDict[0 + firstGameToDisplay]);
@@ -97,6 +109,13 @@ package screens
 			putGame(3, gameDict[3 + firstGameToDisplay]);
 		}
 		
+		/**
+		 * puts a icon on the selected position on the screen.
+		 * There are 4 positions numbering from 0 tot 3.
+		 * 
+		 *  0 1 
+		 *  2 3 
+		 */
 		private function putGame(number:Number, miniGame:Image):void
 		{
 			if (number == 0)
@@ -124,6 +143,10 @@ package screens
 			addChild(miniGame);
 		}
 		
+		/**
+		 * Launches the gamescreen that is associated with the icon clicked. 
+		 * The dict is used to retrieve it.
+		 */
 		private function onGamePressed(number:Number):Function
 		{
 			return function(e:TouchEvent):void
@@ -136,17 +159,15 @@ package screens
 			}
 		}
 		
+		/**
+		 * Loads a lvl by the number given
+		 */
 		private function getLevelByNumber(gameNumber:Number):void
 		{
 			if (gameNumber < 10)
 				main.loadScreen("level_0" + gameNumber);
 			else
 				main.loadScreen("level_" + gameNumber);
-		}
-		
-		public function removeGame(level:DisplayObjectContainer):void
-		{
-			removeChild(level);
 		}
 	}
 }

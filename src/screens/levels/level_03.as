@@ -18,6 +18,9 @@ package screens.levels
 			addMenuButton();
 		}
 	
+		/**
+		 * Initializes the game by loading the background and the game
+		 */
 		private function initialize():void
 		{
 			bg = new Image(Assets.getTexture("Background"));
