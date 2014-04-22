@@ -37,7 +37,13 @@ package screens
 		
 		private function onAddedToStage(event:Event):void
 		{
+			clearScreen();
 			drawScreen();
+		}
+		
+		private function clearScreen():void
+		{
+			removeChildren();
 		}
 		
 		private function drawScreen():void

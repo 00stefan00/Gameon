@@ -22,7 +22,7 @@ package screens
 		
 		private function initialize():void
 		{
-			menuButton = new Image(Assets.getTexture("MenuIconGrey"));
+			menuButton = new Image(Assets.getTexture("MenuIcon"));
 			menuButton.x = 05;
 			menuButton.y = 05;
 			menuButton.addEventListener(TouchEvent.TOUCH, openMenu(currentGame))
@@ -35,7 +35,6 @@ package screens
 			{
 				var menu:Menu = new Menu(currentGame);
 				addChild(menu);
-				menu.setIndex(getChildIndex(menu));
 			}
 		}
 	}

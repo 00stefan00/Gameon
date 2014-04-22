@@ -1,5 +1,6 @@
 package screens
 {
+	import starling.display.DisplayObjectContainer;
 	import starling.display.Sprite;
 	import starling.display.Image;
 	
@@ -11,48 +12,60 @@ package screens
 	{
 		
 		private var bg:Image;
-		private var index:Array;
+		
 		private var homeBtn:Image;
-		private var backBtn:Image;
+		private var redoBtn:Image;
+		private var muteBtn:Image;
+		private var closeBtn:Image;
+		private var nextBtn:Image;
+		
+		private var imgArray:Array;
+		
 		private var mainMenu:HomeScreen;
 		import starling.events.TouchEvent;
 		
 		public function Menu(gameNumber:Number)
 		{
-			initialize();
-			index = new Array();
+			initialize();			
 		}
 		
 		private function initialize():void
 		{
+			imgArray = new Array();
+			
 			bg = new Image(Assets.getTexture("BgYellow"));
-			bg.x = 50;
-			bg.y = 50;
-			addChild(bg);
+						
+			setToCoords(bg, 50, 50);
 			
 			addButtons();
 		}
 		
 		private function addButtons():void
 		{
-			backBtn = new Image(Assets.getTexture("Back"));
-			homeBtn = new Image(Assets.getTexture("Home"));
+			redoBtn = new Image(Assets.getTexture("RedoIcon"));
+			homeBtn = new Image(Assets.getTexture("HomeIcon"));
+			muteBtn = new Image(Assets.getTexture("MuteIcon"));
+			closeBtn = new Image(Assets.getTexture("CloseIcon"));
+			nextBtn = new Image(Assets.getTexture("NextIcon"));
+						
+			setToCoords(redoBtn, 80, 210);
+			setToCoords(homeBtn, 180, 210);
+			setToCoords(muteBtn, 280, 210);
+			setToCoords(nextBtn, 380, 210);
+			setToCoords(closeBtn, bg.width + 35, 50)
 			
-			
-			setCoords(backBtn, 80, 210);
-			setCoords(homeBtn, 180, 210);
-			backBtn.addEventListener(TouchEvent.TOUCH, goBack)
-			backBtn.addEventListener(TouchEvent.TOUCH, goHome)
-			
-			addChild(homeBtn);
-			addChild(backBtn);
+			closeBtn.addEventListener(TouchEvent.TOUCH, goBack)
+			homeBtn.addEventListener(TouchEvent.TOUCH, goHome)
 		}
 		
-		private function setCoords(img:Image, x:Number, y:Number): void
+		private function setToCoords(img:Image, x:Number, y:Number): void
 		{
 			img.x = x;
-			img.y = y;
+			img.y = y;		
 			
+			addChild(img);
+			
+			imgArray.push(img);
 		}
 		
 		private function goHome(e:TouchEvent):void
@@ -64,15 +77,11 @@ package screens
 		
 		private function goBack(e:TouchEvent):void
 		{
-			for each (var value:Number in index)
+			while(imgArray.length > 0)
 			{
-				this.removeChildAt(value);
+				this.removeChild(imgArray.pop());	
 			}
-		}
-		
-		public function setIndex(index:Number):void
-		{
-			this.index.push(index);
+			
 		}
 	}
 

@@ -8,28 +8,34 @@ package
 	
 	public class Assets
 	{
-		[Embed(source='../img/home.png')]
-		public static const Home:Class;
-		
-		[Embed(source='../img/back.jpg')]
-		public static const Back:Class;
-		
 		[Embed(source='../img/BgYellow.png')]
 		public static const BgYellow:Class;
 		
-		[Embed(source='../img/menu-icon_grey.png')]
-		public static const MenuIconGrey:Class;
+		[Embed(source='../img/home-icon.png')]
+		public static const HomeIcon:Class;
+		
+		[Embed(source='../img/close-icon.png')]
+		public static const CloseIcon:Class;		
+		
+		[Embed(source='../img/next-icon.png')]
+		public static const NextIcon:Class;
+		
+		[Embed(source='../img/mute-icon.png')]
+		public static const MuteIcon:Class;		
+		
+		[Embed(source='../img/redo-icon.png')]
+		public static const RedoIcon:Class;		
+		
+		[Embed(source='../img/menu-icon.png')]
+		public static const MenuIcon:Class;
 		
 		[Embed(source='../img/character.png')]
 		public static const Character:Class;
 		
-		[Embed(source='../img/Background.jpg')]
+		[Embed(source='../img/Background.png')]
 		public static const Background:Class;
 		
-		[Embed(source='../img/MainMenu.png')]
-		public static const MainMenu:Class;
-		
-		[Embed(source='../img/StartButton.png')]
+		[Embed(source='../img/play-button.png')]
 		public static const StartBtn:Class;
 		
 		[Embed(source='../img/game01.png')]
