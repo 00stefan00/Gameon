@@ -4,7 +4,7 @@ package screens
 	 * ...
 	 * @author Stefan
 	 */
-	
+	import screens.levels.*;
 	import flash.utils.Dictionary;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -14,7 +14,8 @@ package screens
 	import starling.display.DisplayObjectContainer;
 	
 	public class HomeScreen extends BaseScreen
-	{		
+	{
+		private var arrow:Image;
 		private var bg:Image;
 		private var character:Image;
 		private var firstGameToDisplay:Number = 0;
@@ -46,40 +47,76 @@ package screens
 			bg = new Image(Assets.getTexture("Background"));
 			this.addChild(bg);
 			
-			putGame(0, gameDict[0]);
+			putGames();
 			
-			putGame(1, gameDict[1]);
-			
-			putGame(2, gameDict[2]);
-			
-			putGame(3, gameDict[3]);
+			placeArrows()
 			
 			character = new Image(Assets.getTexture("Character"));
-			character.x = 350
+			character.x = 370
 			character.y = 130
 			this.addChild(character);
+		}
+		
+		private function placeArrows():void
+		{
+			if (firstGameToDisplay < 8)
+			{
+				arrow = new Image(Assets.getTexture("ArrowRight"));
+				arrow.x = 315;
+				arrow.y = 105;
+				this.addChild(arrow);
+				arrow.addEventListener(TouchEvent.TOUCH, onArrowRight)
+			}
+			if (firstGameToDisplay > 3)
+			{
+				arrow = new Image(Assets.getTexture("ArrowLeft"));
+				arrow.x = 1;
+				arrow.y = 105;
+				this.addChild(arrow);
+				arrow.addEventListener(TouchEvent.TOUCH, onArrowLeft)
+			}
+		
+		}
+		
+		private function onArrowRight(e:TouchEvent):void
+		{
+			firstGameToDisplay += 4;
+		}
+		
+		private function onArrowLeft(e:TouchEvent):void
+		{
+			firstGameToDisplay -= 4;
+		}
+		
+		
+		private function putGames():void
+		{
+			putGame(0, gameDict[0 + firstGameToDisplay]);
+			putGame(1, gameDict[1 + firstGameToDisplay]);
+			putGame(2, gameDict[2 + firstGameToDisplay]);
+			putGame(3, gameDict[3 + firstGameToDisplay]);
 		}
 		
 		private function putGame(number:Number, miniGame:Image):void
 		{
 			if (number == 0)
 			{
-				miniGame.x = 30;
+				miniGame.x = 50;
 				miniGame.y = 30;
 			}
 			else if (number == 1)
 			{
-				miniGame.x = 190;
+				miniGame.x = 210;
 				miniGame.y = 30;
 			}
 			else if (number == 2)
 			{
-				miniGame.x = 30;
+				miniGame.x = 50;
 				miniGame.y = 190;
 			}
 			else if (number == 3)
 			{
-				miniGame.x = 190;
+				miniGame.x = 210;
 				miniGame.y = 190;
 			}
 			
@@ -95,22 +132,16 @@ package screens
 				removeChildren();
 				addChild(gameDict[gameNumber]);
 				
-				addChild(getLevelByNumber(gameNumber));
+				getLevelByNumber(gameNumber);
 			}
 		}
 		
-		private function getLevelByNumber(gameNumber:Number):DisplayObject
+		private function getLevelByNumber(gameNumber:Number):void
 		{
-			if (gameNumber == 0)
-				return new level_00(main);
-			else if (gameNumber == 1)
-				return new level_01(main);
-			else if (gameNumber == 2)
-				return new level_02(main);
-			else if (gameNumber == 3)
-				return new level_03(main);
-			
-			return null
+			if (gameNumber < 10)
+				main.loadScreen("level_0" + gameNumber);
+			else
+				main.loadScreen("level_" + gameNumber);
 		}
 		
 		public function removeGame(level:DisplayObjectContainer):void

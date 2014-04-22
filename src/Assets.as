@@ -8,6 +8,12 @@ package
 	
 	public class Assets
 	{
+		[Embed(source='../img/arrow_left.png')]
+		public static const ArrowLeft:Class;
+		
+		[Embed(source='../img/arrow_right.png')]
+		public static const ArrowRight:Class;
+		
 		[Embed(source='../img/BgYellow.png')]
 		public static const BgYellow:Class;
 		

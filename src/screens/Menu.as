@@ -1,6 +1,5 @@
 package screens
 {
-	import starling.display.DisplayObjectContainer;
 	import starling.display.Sprite;
 	import starling.display.Image;
 	

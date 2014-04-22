@@ -5,6 +5,10 @@ package
 	 * @author Stefan
 	 */
 	import screens.BaseScreen;
+	import screens.levels.level_00;
+	import screens.levels.level_01;
+	import screens.levels.level_02;
+	import screens.levels.level_03;
 	import screens.Welcome;
 	import screens.HomeScreen;
 	import starling.display.Sprite;
@@ -41,7 +45,16 @@ package
 				currentScreen = new Welcome(this);
 			} else if (screenName == "homescreen") {
 				currentScreen = new HomeScreen(this);
+			} else if (screenName == "level_00") {
+				currentScreen = new level_00(this);
+			} else if (screenName == "level_01") {
+				currentScreen = new level_01(this);
+			} else if (screenName == "level_02") {
+				currentScreen = new level_02(this);
+			} else if (screenName == "level_03") {
+				currentScreen = new level_03(this);
 			}
+			
 			
 			addChild(currentScreen);
 		}
