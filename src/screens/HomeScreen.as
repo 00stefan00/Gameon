@@ -11,18 +11,19 @@ package screens
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
+	import starling.display.DisplayObjectContainer;
 	
-	public class HomeScreen extends Sprite
-	{
+	public class HomeScreen extends BaseScreen
+	{		
 		private var bg:Image;
 		private var character:Image;
 		private var firstGameToDisplay:Number = 0;
 		private var miniGame:Image;
 		private var gameDict:Dictionary = new Dictionary();
 		
-		public function HomeScreen()
+		public function HomeScreen(main:GameScreen)
 		{
-			super();
+			super(main);
 			initGameButtons();
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
@@ -101,15 +102,20 @@ package screens
 		private function getLevelByNumber(gameNumber:Number):DisplayObject
 		{
 			if (gameNumber == 0)
-				return new level_00();
+				return new level_00(main);
 			else if (gameNumber == 1)
-				return new level_01();
+				return new level_01(main);
 			else if (gameNumber == 2)
-				return new level_02();
+				return new level_02(main);
 			else if (gameNumber == 3)
-				return new level_03();
+				return new level_03(main);
 			
 			return null
+		}
+		
+		public function removeGame(level:DisplayObjectContainer):void
+		{
+			removeChild(level);
 		}
 	}
 }

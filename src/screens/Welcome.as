@@ -4,7 +4,6 @@ package screens
 	 * ...
 	 * @author ...
 	 */
-	import screens.HomeScreen;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -12,17 +11,14 @@ package screens
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	
-	public class Welcome extends Sprite
-	{ 
-		private var bg:Image;
-		
+	public class Welcome extends BaseScreen
+	{	
+		private var bg:Image;		
 		private var playBtn:Button;
 		
-		private var mainMenu:HomeScreen;
-		
-		public function Welcome()
+		public function Welcome(main:GameScreen)
 		{
-			super();
+			super(main);
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
@@ -45,9 +41,7 @@ package screens
 		
 		private function onStartButtonClicked(e:TouchEvent):void
 		{
-			this.removeChildren();
-			mainMenu = new HomeScreen();
-			this.addChild(mainMenu);
+			main.loadScreen("homescreen");
 		}
 	
 	}

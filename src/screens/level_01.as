@@ -10,9 +10,9 @@ package screens
 	public class level_01 extends level_base
 	{
 		
-		public function level_01()
+		public function level_01(main:GameScreen)
 		{
-			super();
+			super(main);
 		}
 	
 	}

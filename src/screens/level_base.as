@@ -5,18 +5,22 @@ package screens
 	 * @author ...
 	 */
 	
+	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	
-	public class level_base extends Sprite
+	public class level_base extends BaseScreen
 	{
+		private var homeScreen:DisplayObjectContainer;
 		private var menuButton:Image;
 		private var currentGame:Number;
 		
-		public function level_base()
+		public function level_base(main:GameScreen)
 		{
+			super(main);
+			homeScreen = this.parent;
 			initialize();
 		}
 		
@@ -33,9 +37,15 @@ package screens
 		{
 			return function(e:TouchEvent):void
 			{
-				var menu:Menu = new Menu(currentGame);
+				var menu:Menu = new Menu(main);
 				addChild(menu);
 			}
 		}
+		
+		public function getHomescreen():DisplayObjectContainer
+		{
+			return homeScreen;
+		}
+		
 	}
 }
