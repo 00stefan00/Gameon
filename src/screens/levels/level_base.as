@@ -51,6 +51,25 @@ package screens.levels
 				addChild(menu);
 			}
 		}
+		
+		/**
+		 * Places image on coordinates X and Y
+		 */
+		public function setToCoords(img:Image, x:Number, y:Number):void
+		{
+			img.x = x;
+			img.y = y;
+			
+			addChild(img);
+		}
+		
+		public function makeResizedImg(img:Image, width:Number, height:Number):Image
+		{
+			img.width = width;
+			img.height = height;
+			
+			return img;
+		}
 	
 	}
 }

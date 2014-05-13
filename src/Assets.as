@@ -8,6 +8,25 @@ package
 	
 	public class Assets
 	{
+		// Level_00
+		[Embed(source='../img/level_00/face1.png')]
+		public static const Face1:Class;
+		
+		[Embed(source='../img/level_00/face2.png')]
+		public static const Face2:Class;
+		
+		[Embed(source='../img/level_00/face3.png')]
+		public static const Face3:Class;
+		
+		[Embed(source='../img/level_00/face4.png')]
+		public static const Face4:Class;		
+		
+		[Embed(source='../img/level_00/thermo.png')]
+		public static const Thermometer:Class;	
+		
+		[Embed(source='../img/level_00/gradientBG.png')]
+		public static const GradientBG:Class;	
+		
 		// All assets listed and put into variables
 		[Embed(source='../img/arrow_left.png')]
 		public static const ArrowLeft:Class;

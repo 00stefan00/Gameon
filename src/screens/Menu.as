@@ -49,10 +49,10 @@ package screens
 			nextBtn = new Image(Assets.getTexture("NextIcon"));
 			
 			// Puts images as buttons to coords
-			setToCoords(redoBtn, 80, 210);
-			setToCoords(homeBtn, 180, 210);
-			setToCoords(muteBtn, 280, 210);
-			setToCoords(nextBtn, 380, 210);
+			setToCoords(redoBtn, 70, 210);
+			setToCoords(homeBtn, 170, 210);
+			setToCoords(muteBtn, 270, 210);
+			setToCoords(nextBtn, 370, 210);
 			setToCoords(closeBtn, bg.width + 35, 50)
 			
 			// Adds eventlisteners to the buttons
