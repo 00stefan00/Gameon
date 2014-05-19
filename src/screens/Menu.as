@@ -1,5 +1,7 @@
 package screens
 {
+	import flash.utils.Timer;
+	import screens.levels.level_base;
 	import starling.display.Sprite;
 	import starling.display.Image;
 	
@@ -19,10 +21,12 @@ package screens
 		private var nextBtn:Image;
 		
 		private var mainMenu:HomeScreen;
+		private var myTimer:Timer;
 		
-		public function Menu(main:GameScreen)
+		public function Menu(main:GameScreen, myTimer:Timer)
 		{
 			super(main);
+			this.myTimer = myTimer;
 			initialize();
 		}
 		
@@ -126,6 +130,8 @@ package screens
 			this.removeChild(closeBtn);
 			this.removeChild(nextBtn);
 			this.removeChild(bg);
+			
+			myTimer.start();
 		}
 	}
 

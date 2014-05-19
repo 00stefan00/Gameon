@@ -20,11 +20,13 @@ package screens.levels
 		private var char3:Image;
 		private var char4:Image;
 		private var thermometer:Image;
+		private var firstTouched:Boolean = false;
 		
 		public function level_00(main:GameScreen)
 		{
 			super(main);
 			initialize();
+			addGauge();
 			addMenuButton();
 		}
 		
@@ -53,7 +55,10 @@ package screens.levels
 		}
 		
 		private function moveThermometer(e:TouchEvent):void
-		{
+		{			
+			if (!firstTouched) {
+				startGauge();
+			}
 			var touch:Touch = e.getTouch(this);
 			var target:Image = e.target as Image;
 			if (touch != null) {
@@ -61,12 +66,19 @@ package screens.levels
 					moveImageByTouch(touch, target);
 				}
 			}
+			checkHitBoxes();
 		}
 		
 		public function moveImageByTouch(touch:Touch, target:Image):void {
 			var point:Point = touch.getMovement(this);
 			target.x += point.x;
 			target.y += point.y;
+		}
+		
+		public function checkHitBoxes(): void {
+			if (thermometer.x) {
+				
+			}
 		}
 	
 		

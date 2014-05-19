@@ -4,28 +4,82 @@ package screens.levels
 	 * ...
 	 * @author ...
 	 */
+	import Gauge;
 	import screens.BaseScreen;
 	import screens.Menu;
+	
+	import flash.utils.Timer;
+	import flash.events.TimerEvent;
+	
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
+	import starling.textures.Texture;
 	
 	public class level_base extends BaseScreen
 	{
 		private var menuButton:Image;
 		private var currentGame:Number;
+		public var gauge:Gauge
+		private var myTimer:Timer
+		private var gaugeRatio:Number = 0.0025;
 		
 		public function level_base(main:GameScreen)
 		{
 			super(main);
 			initialize();
+			myTimer = new Timer(50, 6000);
+			myTimer.addEventListener(TimerEvent.TIMER, timerListener);
 		}
 		
 		private function initialize():void
 		{
 		
+		}
+		
+		public function pauseTimer():void
+		{
+			myTimer.stop();
+		}
+		
+		public function continueTimer():void
+		{
+			myTimer.start();
+		}
+		
+		public function addTicks(ticks:Number):void
+		{
+			gauge.ratio += (gaugeRatio * ticks);
+		}
+		
+		public function removeTicks(ticks:Number):void
+		{
+			gauge.ratio -= (gaugeRatio * ticks);
+		}
+		
+		private function timerListener(event:TimerEvent):void
+		{
+			if (gauge != null)
+			{
+				gauge.ratio -= gaugeRatio;
+			}
+		}
+		
+		public function addGauge():void
+		{
+			gauge = new Gauge(Assets.getTexture("Gauge"));
+			gauge.ratio = 1;
+			addChild(gauge);
+		}
+		
+		public function startGauge():void
+		{
+			if (myTimer != null)
+			{
+				myTimer.start();
+			}
 		}
 		
 		/**
@@ -47,7 +101,14 @@ package screens.levels
 		{
 			return function(e:TouchEvent):void
 			{
-				var menu:Menu = new Menu(main);
+				if (gauge != null)
+				{
+					if (gauge.ratio > gaugeRatio)
+					{
+						pauseTimer();
+					}
+				}
+				var menu:Menu = new Menu(main, myTimer);
 				addChild(menu);
 			}
 		}

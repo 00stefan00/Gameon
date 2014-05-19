@@ -8,6 +8,10 @@ package
 	
 	public class Assets
 	{
+		// level_base
+		[Embed(source='../img/gauge.png')]
+		public static const Gauge:Class;
+		
 		// Level_00
 		[Embed(source='../img/level_00/face1.png')]
 		public static const Face1:Class;
