@@ -41,12 +41,18 @@ package screens.levels
 		
 		public function pauseTimer():void
 		{
-			myTimer.stop();
+			if (myTimer.running)
+			{
+				myTimer.stop();
+			}
 		}
 		
 		public function continueTimer():void
 		{
-			myTimer.start();
+			if (!myTimer.running)
+			{
+				myTimer.start();
+			}
 		}
 		
 		public function addTicks(ticks:Number):void

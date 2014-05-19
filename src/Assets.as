@@ -8,11 +8,15 @@ package
 	
 	public class Assets
 	{
-		// level_base
+		// ############################
+		// ######### Level_base #######
+		// ############################
 		[Embed(source='../img/gauge.png')]
 		public static const Gauge:Class;
 		
-		// Level_00
+		// ############################
+		// ######### Level_00 #########
+		// ############################
 		[Embed(source='../img/level_00/face1.png')]
 		public static const Face1:Class;
 		
@@ -23,13 +27,16 @@ package
 		public static const Face3:Class;
 		
 		[Embed(source='../img/level_00/face4.png')]
-		public static const Face4:Class;		
+		public static const Face4:Class;
 		
 		[Embed(source='../img/level_00/thermo.png')]
-		public static const Thermometer:Class;	
+		public static const Thermometer:Class;
 		
 		[Embed(source='../img/level_00/gradientBG.png')]
-		public static const GradientBG:Class;	
+		public static const GradientBG:Class;
+		
+		[Embed(source='../img/level_00/markedDone.png')]
+		public static const Done:Class;
 		
 		// All assets listed and put into variables
 		[Embed(source='../img/arrow_left.png')]
@@ -45,16 +52,16 @@ package
 		public static const HomeIcon:Class;
 		
 		[Embed(source='../img/close-icon.png')]
-		public static const CloseIcon:Class;		
+		public static const CloseIcon:Class;
 		
 		[Embed(source='../img/next-icon.png')]
 		public static const NextIcon:Class;
 		
 		[Embed(source='../img/mute-icon.png')]
-		public static const MuteIcon:Class;		
+		public static const MuteIcon:Class;
 		
 		[Embed(source='../img/redo-icon.png')]
-		public static const RedoIcon:Class;		
+		public static const RedoIcon:Class;
 		
 		[Embed(source='../img/menu-icon.png')]
 		public static const MenuIcon:Class;
