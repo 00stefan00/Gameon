@@ -39,6 +39,11 @@ package screens.levels
 		
 		}
 		
+		public function getCurrentGame(): Number
+		{
+			return currentGame;
+		}
+		
 		public function pauseTimer():void
 		{
 			if (myTimer.running)
@@ -88,6 +93,11 @@ package screens.levels
 			}
 		}
 		
+		public function getGaugeRatio():Number
+		{
+			return gauge.ratio;
+		}
+		
 		/**
 		 * Adds a button that will open a menu when clicked
 		 */
@@ -96,14 +106,14 @@ package screens.levels
 			menuButton = new Image(Assets.getTexture("MenuIcon"));
 			menuButton.x = 05;
 			menuButton.y = 05;
-			menuButton.addEventListener(TouchEvent.TOUCH, openMenu(currentGame))
+			menuButton.addEventListener(TouchEvent.TOUCH, openMenu())
 			addChild(menuButton);
 		}
 		
 		/**
 		 * opens the Menu
 		 */
-		private function openMenu(currentGame:Number):Function
+		public function openMenu():Function
 		{
 			return function(e:TouchEvent):void
 			{

@@ -24,8 +24,13 @@ package screens.levels
 		private var char4:Image;
 		private var thermometer:Image;
 		private var firstTouched:Boolean = false;
-		private var myTimer:Timer;
+		private var collisionTimer:Timer;
 		private var charDict:Dictionary = new Dictionary();
+		private var locked:Boolean = false;
+		private var char1Count:Number = 0;
+		private var char2Count:Number = 0;
+		private var char3Count:Number = 0;
+		private var char4Count:Number = 0;
 		
 		public function level_00(main:GameScreen)
 		{
@@ -57,14 +62,14 @@ package screens.levels
 			setToCoords(makeResizedImg(char3, 80, 80), 256, 110);
 			setToCoords(makeResizedImg(char4, 80, 80), 368, 110);
 			
-			setToCoords(makeResizedImg(thermometer, 30, 85), 30, 180);
+			setToCoords(makeResizedImg(thermometer, 30, 85), 10, 230);
 			
 			this.addEventListener(Event.ENTER_FRAME, handleCollision)
-			myTimer = new Timer(1000, 5);
+			collisionTimer = new Timer(1000, 5);
 			
 			for (var i:Number = 0; i < 4; i++)
 			{
-				charDict[i] = true;
+				charDict[i] = false;
 			}
 		}
 		
@@ -94,72 +99,52 @@ package screens.levels
 		}
 		
 		private function handleCollision(e:Event):void
-		{			
-			if (firstTouched && !myTimer.running)
-			{				
+		{
+			
+			if (firstTouched)
+			{
 				if (detectCollision(thermometer, char1))
-				{						
-					myTimer.start();
-					while (detectCollision(thermometer, char1) && charDict[1])
-					{
-						if (myTimer.currentCount == myTimer.repeatCount)
-						{
-							setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 32, 75)
-							charDict[1] = false;
-							myTimer.reset();
-							break;
-						}
-					}
-					
+				{
+					char1Count += 1;
+					if (char1Count > (30 * 4)) {
+						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 32, 75);
+						charDict[1] = true;
+					}					
 				}
 				else if (detectCollision(thermometer, char2))
 				{
-					myTimer.start();
-					while (detectCollision(thermometer, char2) && charDict[2])
-					{
-						if (myTimer.currentCount == myTimer.repeatCount)
-						{
-							setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 144, 75)
-							charDict[2] = false;
-							myTimer.reset();
-							break;
-						}
-					}
-					myTimer.reset();
+					char2Count += 1;
+					if (char2Count > (30 * 4)) {
+						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 144, 75);
+						charDict[2] = true;
+					}					
 				}
 				else if (detectCollision(thermometer, char3))
 				{
-					myTimer.start();
-					while (detectCollision(thermometer, char3) && charDict[3])
-					{
-						if (myTimer.currentCount == myTimer.repeatCount)
-						{
-							setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 256, 75)
-							charDict[3] = false;
-							myTimer.reset();
-							break;
-						}
-					}
-					myTimer.reset();
+					char3Count += 1;
+					if (char3Count > (30 * 4)) {
+						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 256, 75);
+						charDict[3] = true;
+					}					
 				}
 				else if (detectCollision(thermometer, char4))
 				{
-					myTimer.start();
-					while (detectCollision(thermometer, char4) && charDict[4])
-					{
-						if (myTimer.currentCount == myTimer.repeatCount)
-						{
-							setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 368, 75)
-							charDict[4] = false;
-							myTimer.reset();
-							break;
-						}
-					}
-					myTimer.reset();
+					char4Count += 1;
+					if (char4Count > (30 * 4)) {
+						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 368, 75);
+						charDict[4] = true;
+					}					
 				}
 				else
 				{
-					continueTimer();
+					char1Count = 0;
+					char2Count = 0;
+					char3Count = 0;
+					char4Count = 0;
+				}
+				
+				if (charDict[1] && charDict[2] && charDict[3] && charDict[4]) {
+					pauseTimer();
 				}
 			}
 		}

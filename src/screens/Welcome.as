@@ -10,6 +10,10 @@ package screens
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
+	import flash.events.ProgressEvent;
+	import flash.display.Loader;
+	import flash.net.URLRequest;
+	
 	
 	public class Welcome extends BaseScreen
 	{	
@@ -45,7 +49,7 @@ package screens
 		private function onStartButtonClicked(e:TouchEvent):void
 		{
 			main.loadScreen("homescreen");
-		}
+		}		
 	
 	}
 
