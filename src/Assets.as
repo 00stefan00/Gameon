@@ -39,6 +39,15 @@ package
 		[Embed(source='../img/level_00/markedDone.png')]
 		public static const Done:Class;
 		
+		// ############################
+		// ######### Level_02 #########
+		// ############################
+		[Embed(source='../img/level_02/healthyface.png')]
+		public static const HealthyFace:Class;
+		
+		[Embed(source='../img/level_02/sickface.png')]
+		public static const SickFace:Class;
+		
 		// All assets listed and put into variables
 		[Embed(source='../img/arrow_left.png')]
 		public static const ArrowLeft:Class;
