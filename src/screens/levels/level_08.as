@@ -7,18 +7,18 @@ package screens.levels
 	import starling.display.Image;
 	import screens.levels.level_base
 	
-	public class level_03 extends level_base
+	public class level_08 extends level_base
 	{
 		private var bg:Image;
-
-		public function level_03(main:GameScreen)
-		{			
+		
+		public function level_08(main:GameScreen)
+		{
 			super(main);
 			initialize();
 			addMenuButton();
-			setLevelName("level_03");
+			setLevelName("level_08");
 		}
-	
+		
 		/**
 		 * Initializes the game by loading the background and the game
 		 */

@@ -82,15 +82,12 @@ package screens
 			var numberOfHearts:Number = score / 5;
 			removeChild(closeBtn);
 			
-			
-			
 			for (var i:Number = 80; (i < 230 && numberOfHearts > 0); i += 30)
 			{
 				setToCoords(new Image(Assets.getTexture("TinyHeart")), i, 140);
 				numberOfHearts--;
 			}
-			
-			
+		
 		}
 		
 		/**
@@ -125,7 +122,7 @@ package screens
 		 */
 		private function redo(e:TouchEvent):void
 		{
-			// not implemented yet
+			main.loadScreen(name);
 		}
 		
 		/**
@@ -149,17 +146,19 @@ package screens
 		 */
 		private function closeMenu():void
 		{
-			if (gameState != "Victory"){
-			
-			this.removeChild(redoBtn);
-			this.removeChild(homeBtn);
-			this.removeChild(muteBtn);
-			this.removeChild(closeBtn);
-			this.removeChild(nextBtn);
-			this.removeChild(bg);
-			
-			myTimer.start();
+			if (gameState != "Victory")
+			{
+				
+				this.removeChild(redoBtn);
+				this.removeChild(homeBtn);
+				this.removeChild(muteBtn);
+				this.removeChild(closeBtn);
+				this.removeChild(nextBtn);
+				this.removeChild(bg);
+				
+				myTimer.start();
+			}
 		}
+	
 	}
-
 }

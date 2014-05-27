@@ -37,6 +37,25 @@ package
 		
 		[Embed(source='../img/level_00/markedDone.png')]
 		public static const Done:Class;
+			
+		// ############################
+		// ######### Level_01 #########
+		// ############################
+
+		[Embed(source='../img/level_01/bed1.png')]
+		public static const Bed1:Class;
+		
+		[Embed(source='../img/level_01/bed2.png')]
+		public static const Bed2:Class;
+		
+		[Embed(source='../img/level_01/bed3.png')]
+		public static const Bed3:Class;
+		
+		[Embed(source='../img/level_01/bed4.png')]
+		public static const Bed4:Class;
+		
+		[Embed(source='../img/level_01/bed5.png')]
+		public static const Bed5:Class;
 		
 		// ############################
 		// ######### Level_02 #########

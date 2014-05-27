@@ -66,6 +66,28 @@ package
 			{
 				currentScreen = new level_03(this);
 			}
+			else if (screenName == "level_04")
+			{
+				currentScreen = new level_04(this);
+			}
+			else if (screenName == "level_05")
+			{
+				currentScreen = new level_05(this);
+			}
+			else if (screenName == "level_06")
+			{
+				currentScreen = new level_06(this);
+			}
+			else if (screenName == "level_07")
+			{
+				currentScreen = new level_07(this);
+			}
+			else if (screenName == "level_08")
+			{
+				currentScreen = new level_08(this);
+			}
+			
+
 			
 			addChild(currentScreen);
 		}

@@ -14,7 +14,7 @@
 		private var bg:Image;
 		private var faces:Array;
 		private var collisionTimer:Timer;
-		
+
 		/**
 		 * This is the constructor. Executed once when the program starts
 		 *
@@ -26,6 +26,7 @@
 			addGauge();
 			addMenuButton();
 			startGauge();
+			setLevelName("level_02");
 		}
 		
 		/**

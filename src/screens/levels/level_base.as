@@ -26,6 +26,7 @@ package screens.levels
 		public var gauge:Gauge
 		private var myTimer:Timer
 		private var gaugeRatio:Number = 0.0025;
+		private var levelName:String;
 		
 		public function level_base(main:GameScreen)
 		{
@@ -38,6 +39,11 @@ package screens.levels
 		private function initialize():void
 		{
 		
+		}
+		
+		public function setLevelName(name:String):void
+		{
+			levelName = name;
 		}
 		
 		public function getTimer():Timer

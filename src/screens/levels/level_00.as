@@ -39,6 +39,7 @@ package screens.levels
 			initialize();
 			addGauge();
 			addMenuButton();
+			setLevelName("level_00");
 		}
 		
 		/**
