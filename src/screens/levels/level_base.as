@@ -162,11 +162,10 @@ package screens.levels
 		public function calculateScore(minimumGaugeNeeded:Number):Number
 		{
 			var gaugeScore:Number = (getGaugeRatio() * 100) + minimumGaugeNeeded;
+			var gaugeDecrease:Number = gaugeScore / 5;
 			for (var i:Number = 0; (i < 5 && gaugeScore > 20); i++) {
-				gaugeScore -= 20;
-				trace(gaugeScore);
+				gaugeScore -= gaugeDecrease;
 			}
-			trace("> " + gaugeScore);
 			return gaugeScore;
 		}
 	}

@@ -55,6 +55,7 @@ package screens
 			muteBtn = new Image(Assets.getTexture("MuteIcon"));
 			closeBtn = new Image(Assets.getTexture("CloseIcon"));
 			nextBtn = new Image(Assets.getTexture("NextIcon"));
+			closeBtn.name = "CloseBtn";
 			
 			// Puts images as buttons to coords
 			setToCoords(redoBtn, 70, 210);
@@ -78,13 +79,18 @@ package screens
 		
 		private function initializeVictory():void
 		{
-			var numberOfHearts:Number = score/5;
+			var numberOfHearts:Number = score / 5;
+			removeChild(closeBtn);
+			
+			
 			
 			for (var i:Number = 80; (i < 230 && numberOfHearts > 0); i += 30)
 			{
 				setToCoords(new Image(Assets.getTexture("TinyHeart")), i, 140);
 				numberOfHearts--;
 			}
+			
+			
 		}
 		
 		/**
@@ -143,6 +149,8 @@ package screens
 		 */
 		private function closeMenu():void
 		{
+			if (gameState != "Victory"){
+			
 			this.removeChild(redoBtn);
 			this.removeChild(homeBtn);
 			this.removeChild(muteBtn);
