@@ -32,10 +32,10 @@ package screens
 		private function initGameButtons():void
 		{
 			// Put all gameIcons in a dict
-			gameDict[0] = new Image(Assets.getTexture("Game01"));
-			gameDict[1] = new Image(Assets.getTexture("Game02"));
-			gameDict[2] = new Image(Assets.getTexture("Game03"));
-			gameDict[3] = new Image(Assets.getTexture("Game04"));
+			gameDict[0] = new Image(Assets.getTexture("LevelPlaceHolder"));
+			gameDict[1] = new Image(Assets.getTexture("LevelPlaceHolder"));
+			gameDict[2] = new Image(Assets.getTexture("LevelPlaceHolder"));
+			gameDict[3] = new Image(Assets.getTexture("LevelPlaceHolder"));
 		}
 		
 		private function onAddedToStage(event:Event):void
@@ -45,7 +45,7 @@ package screens
 		
 		private function drawScreen():void
 		{	//place background on screen
-			bg = new Image(Assets.getTexture("Background"));
+			bg = new Image(Assets.getTexture("MainBackground"));
 			this.addChild(bg);
 			
 			putGames();
@@ -53,9 +53,10 @@ package screens
 			placeArrows()
 			
 			//place character on screen
-			character = new Image(Assets.getTexture("Character"));
-			character.x = 370
-			character.y = 130
+			character = new Image(Assets.getTexture("SickBoy"));
+			character.x = 350
+			character.y = 160
+			
 			this.addChild(character);
 		}
 		
@@ -125,7 +126,7 @@ package screens
 			}
 			else if (number == 1)
 			{
-				miniGame.x = 210;
+				miniGame.x = 190;
 				miniGame.y = 30;
 			}
 			else if (number == 2)
@@ -135,7 +136,7 @@ package screens
 			}
 			else if (number == 3)
 			{
-				miniGame.x = 210;
+				miniGame.x = 190;
 				miniGame.y = 190;
 			}
 			

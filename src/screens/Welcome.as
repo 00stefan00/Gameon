@@ -36,7 +36,7 @@ package screens
 		 */
 		private function drawScreen():void
 		{
-			bg = new Image(Assets.getTexture("Background"));
+			bg = new Image(Assets.getTexture("MainBackground"));
 			this.addChild(bg);
 			
 			playBtn = new Button(Assets.getTexture("StartBtn"));

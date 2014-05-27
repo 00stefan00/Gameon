@@ -47,13 +47,27 @@ package
 		
 		[Embed(source='../img/level_02/sickface.png')]
 		public static const SickFace:Class;
+				
+		// ############################
+		// ######### MAINSCREEN #########
+		// ############################
 		
-		// All assets listed and put into variables
-		[Embed(source='../img/arrow_left.png')]
+		[Embed(source='../img/mainBackground.png')]
+		public static const MainBackground:Class;
+		
+		[Embed(source='../img/mainscreen/arrow_left.png')]
 		public static const ArrowLeft:Class;
 		
-		[Embed(source='../img/arrow_right.png')]
+		[Embed(source='../img/mainscreen/arrow_right.png')]
 		public static const ArrowRight:Class;
+		
+		[Embed(source='../img/mainscreen/levelbox.png')]
+		public static const LevelPlaceHolder:Class;
+		
+		[Embed(source='../img/mainscreen/boy_sick.png')]
+		public static const SickBoy:Class;
+		
+		// All assets listed and put into variables
 		
 		[Embed(source='../img/BgYellow.png')]
 		public static const BgYellow:Class;
