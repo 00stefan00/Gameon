@@ -4,6 +4,7 @@ package screens.levels
 	 * ...
 	 * @author ...
 	 */
+	import adobe.utils.CustomActions;
 	import Gauge;
 	import screens.BaseScreen;
 	import screens.Menu;
@@ -37,6 +38,11 @@ package screens.levels
 		private function initialize():void
 		{
 		
+		}
+		
+		public function getTimer():Timer
+		{
+			return myTimer;
 		}
 		
 		public function getCurrentGame(): Number
@@ -124,9 +130,14 @@ package screens.levels
 						pauseTimer();
 					}
 				}
-				var menu:Menu = new Menu(main, myTimer);
+				var menu:Menu = new Menu(main, myTimer, "playing");
 				addChild(menu);
 			}
+		}
+		
+		public function victoryScreen():void {
+			var menu:Menu = new Menu(main, myTimer, "victory");
+			addChild(menu);
 		}
 		
 		/**
@@ -148,5 +159,15 @@ package screens.levels
 			return img;
 		}
 	
+		public function calculateScore(minimumGaugeNeeded:Number):Number
+		{
+			var gaugeScore:Number = (getGaugeRatio() * 100) + minimumGaugeNeeded;
+			for (var i:Number = 0; (i < 5 && gaugeScore > 20); i++) {
+				gaugeScore -= 20;
+				trace(gaugeScore);
+			}
+			trace("> " + gaugeScore);
+			return gaugeScore;
+		}
 	}
 }

@@ -6,6 +6,7 @@ package screens.levels
 	 */
 	import flash.utils.Timer;
 	import flash.geom.Point;
+	import screens.Menu;
 	import starling.display.Image;
 	import starling.events.Touch;
 	import flash.utils.Dictionary;
@@ -62,7 +63,7 @@ package screens.levels
 			setToCoords(makeResizedImg(char3, 80, 80), 256, 110);
 			setToCoords(makeResizedImg(char4, 80, 80), 368, 110);
 			
-			setToCoords(makeResizedImg(thermometer, 30, 85), 10, 230);
+			setToCoords(makeResizedImg(thermometer, 30, 85), 20, 210);
 			
 			this.addEventListener(Event.ENTER_FRAME, handleCollision)
 			collisionTimer = new Timer(1000, 5);
@@ -100,13 +101,13 @@ package screens.levels
 		
 		private function handleCollision(e:Event):void
 		{
-			
+			var seconds:Number = 1;
 			if (firstTouched)
 			{
 				if (detectCollision(thermometer, char1))
 				{
 					char1Count += 1;
-					if (char1Count > (30 * 4)) {
+					if (char1Count > (30 * seconds)) {
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 32, 75);
 						charDict[1] = true;
 					}					
@@ -114,7 +115,7 @@ package screens.levels
 				else if (detectCollision(thermometer, char2))
 				{
 					char2Count += 1;
-					if (char2Count > (30 * 4)) {
+					if (char2Count > (30 * seconds)) {
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 144, 75);
 						charDict[2] = true;
 					}					
@@ -122,7 +123,7 @@ package screens.levels
 				else if (detectCollision(thermometer, char3))
 				{
 					char3Count += 1;
-					if (char3Count > (30 * 4)) {
+					if (char3Count > (30 * seconds)) {
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 256, 75);
 						charDict[3] = true;
 					}					
@@ -130,7 +131,7 @@ package screens.levels
 				else if (detectCollision(thermometer, char4))
 				{
 					char4Count += 1;
-					if (char4Count > (30 * 4)) {
+					if (char4Count > (30 * seconds)) {
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 368, 75);
 						charDict[4] = true;
 					}					
@@ -145,10 +146,13 @@ package screens.levels
 				
 				if (charDict[1] && charDict[2] && charDict[3] && charDict[4]) {
 					pauseTimer();
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(40));
+					addChild(menu);
+					this.removeEventListener(Event.ENTER_FRAME, handleCollision)
 				}
 			}
 		}
-		
+				
 		private function detectCollision(object1:Image, object2:Image):Boolean
 		{
 			return object1.getBounds(object1.parent).intersects(object2.getBounds(object2.parent))

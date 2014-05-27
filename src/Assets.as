@@ -7,8 +7,7 @@ package
 	import starling.textures.TextureAtlas;
 	
 	public class Assets
-	{	
-		
+	{			
 		// ############################
 		// ######### Level_base #######
 		// ############################
@@ -47,6 +46,13 @@ package
 		
 		[Embed(source='../img/level_02/sickface.png')]
 		public static const SickFace:Class;
+		
+		// ############################
+		// ########### menu ###########
+		// ############################
+		
+		[Embed(source='../img/menu/small_hearts.png')]
+		public static const TinyHeart:Class;
 				
 		// ############################
 		// ######### MAINSCREEN #########

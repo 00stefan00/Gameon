@@ -22,11 +22,15 @@ package screens
 		
 		private var mainMenu:HomeScreen;
 		private var myTimer:Timer;
+		private var gameState:String;
+		private var score:Number;
 		
-		public function Menu(main:GameScreen, myTimer:Timer)
+		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = 0)
 		{
 			super(main);
 			this.myTimer = myTimer;
+			this.gameState = gameState;
+			this.score = score;
 			initialize();
 		}
 		
@@ -39,7 +43,7 @@ package screens
 			
 			addButtons();
 		}
-	
+		
 		/**
 		 * Increases value of the var that knows which game is the first one to display on the mainmenu
 		 */
@@ -65,6 +69,22 @@ package screens
 			muteBtn.addEventListener(TouchEvent.TOUCH, mute);
 			closeBtn.addEventListener(TouchEvent.TOUCH, goBack);
 			nextBtn.addEventListener(TouchEvent.TOUCH, startNext);
+			
+			if (gameState == "Victory")
+			{
+				initializeVictory();
+			}
+		}
+		
+		private function initializeVictory():void
+		{
+			var numberOfHearts:Number = score/5;
+			
+			for (var i:Number = 80; (i < 230 && numberOfHearts > 0); i += 30)
+			{
+				setToCoords(new Image(Assets.getTexture("TinyHeart")), i, 140);
+				numberOfHearts--;
+			}
 		}
 		
 		/**
@@ -77,7 +97,6 @@ package screens
 			
 			addChild(img);
 		}
-		
 		
 		/**
 		 * returns to main menu
