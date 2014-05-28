@@ -13,6 +13,7 @@ package screens
 	import flash.events.ProgressEvent;
 	import flash.display.Loader;
 	import flash.net.URLRequest;
+	import starling.events.TouchPhase;
 	
 	
 	public class Welcome extends BaseScreen
@@ -36,18 +37,19 @@ package screens
 		 */
 		private function drawScreen():void
 		{
-			bg = new Image(Assets.getTexture("MainBackground"));
+			bg = new Image(Assets.getTexture("Background"));
 			this.addChild(bg);
 			
 			playBtn = new Button(Assets.getTexture("StartBtn"));
-			playBtn.x = 177;
-			playBtn.y = 100;
+			playBtn.x = 110;
+			playBtn.y = 215;
 			playBtn.addEventListener(TouchEvent.TOUCH, this.onStartButtonClicked);
 			this.addChild(playBtn);
 		}
 		
 		private function onStartButtonClicked(e:TouchEvent):void
 		{
+			if (e.getTouch(this, TouchPhase.BEGAN))
 			main.loadScreen("homescreen");
 		}		
 	

@@ -48,7 +48,7 @@ package screens
 		
 		private function drawScreen():void
 		{ //place background on screen
-			bg = new Image(Assets.getTexture("MainBackground"));
+			bg = new Image(Assets.getTexture("Background"));
 			this.addChild(bg);
 			
 			putGames();

@@ -37,7 +37,7 @@
 		{
 			faces = new Array();
 			//create the background
-			bg = new Image(Assets.getTexture("MainBackground"));
+			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			//lets create some sick faces
 			for (var i:int = 0; i < sickFaces; i++)
