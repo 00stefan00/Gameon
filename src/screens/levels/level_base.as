@@ -18,6 +18,7 @@ package screens.levels
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.textures.Texture;
+	import starling.events.TouchPhase;
 	
 	public class level_base extends BaseScreen
 	{
@@ -51,7 +52,7 @@ package screens.levels
 			return myTimer;
 		}
 		
-		public function getCurrentGame(): Number
+		public function getCurrentGame():Number
 		{
 			return currentGame;
 		}
@@ -118,16 +119,16 @@ package screens.levels
 			menuButton = new Image(Assets.getTexture("MenuIcon"));
 			menuButton.x = 05;
 			menuButton.y = 05;
-			menuButton.addEventListener(TouchEvent.TOUCH, openMenu())
+			menuButton.addEventListener(TouchEvent.TOUCH, openMenu)
 			addChild(menuButton);
 		}
 		
 		/**
 		 * opens the Menu
 		 */
-		public function openMenu():Function
+		public function openMenu(e:TouchEvent):void
 		{
-			return function(e:TouchEvent):void
+			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
 				if (gauge != null)
 				{
@@ -139,9 +140,11 @@ package screens.levels
 				var menu:Menu = new Menu(main, myTimer, "playing");
 				addChild(menu);
 			}
+		
 		}
 		
-		public function victoryScreen():void {
+		public function victoryScreen():void
+		{
 			var menu:Menu = new Menu(main, myTimer, "victory");
 			addChild(menu);
 		}
@@ -164,12 +167,13 @@ package screens.levels
 			
 			return img;
 		}
-	
+		
 		public function calculateScore(minimumGaugeNeeded:Number):Number
 		{
 			var gaugeScore:Number = (getGaugeRatio() * 100) + minimumGaugeNeeded;
 			var gaugeDecrease:Number = gaugeScore / 5;
-			for (var i:Number = 0; (i < 5 && gaugeScore > 20); i++) {
+			for (var i:Number = 0; (i < 5 && gaugeScore > 20); i++)
+			{
 				gaugeScore -= gaugeDecrease;
 			}
 			return gaugeScore;

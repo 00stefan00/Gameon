@@ -6,12 +6,11 @@ package screens
 	 */
 	import screens.levels.*;
 	import flash.utils.Dictionary;
-	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
-	import starling.display.DisplayObjectContainer;
+	import starling.events.TouchPhase;
 	
 	public class HomeScreen extends BaseScreen
 	{
@@ -21,10 +20,12 @@ package screens
 		private var firstGameToDisplay:Number = 0;
 		private var miniGame:Image;
 		private var gameDict:Dictionary = new Dictionary();
+		private var main:GameScreen;
 		
 		public function HomeScreen(main:GameScreen)
 		{
 			super(main);
+			this.main = main;
 			initGameButtons();
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
@@ -36,6 +37,10 @@ package screens
 			gameDict[1] = new Image(Assets.getTexture("LevelPlaceHolder"));
 			gameDict[2] = new Image(Assets.getTexture("LevelPlaceHolder"));
 			gameDict[3] = new Image(Assets.getTexture("LevelPlaceHolder"));
+			gameDict[4] = new Image(Assets.getTexture("LevelPlaceHolder"));
+			gameDict[5] = new Image(Assets.getTexture("LevelPlaceHolder"));
+			gameDict[6] = new Image(Assets.getTexture("LevelPlaceHolder"));
+			gameDict[7] = new Image(Assets.getTexture("LevelPlaceHolder"));
 		}
 		
 		private function onAddedToStage(event:Event):void
@@ -44,7 +49,7 @@ package screens
 		}
 		
 		private function drawScreen():void
-		{	//place background on screen
+		{ //place background on screen
 			bg = new Image(Assets.getTexture("MainBackground"));
 			this.addChild(bg);
 			
@@ -62,10 +67,13 @@ package screens
 		
 		private function placeArrows():void
 		{
+			removeChild(getChildByName("arrow_right"));
+			removeChild(getChildByName("arrow_left"));
 			// checks if there are more levels that can be scrolled to with arrow buttons. If there are place arrow to the right.
 			if (firstGameToDisplay < 8)
 			{
 				arrow = new Image(Assets.getTexture("ArrowRight"));
+				arrow.name = "arrow_right";
 				arrow.x = 315;
 				arrow.y = 105;
 				this.addChild(arrow);
@@ -75,6 +83,7 @@ package screens
 			if (firstGameToDisplay > 3)
 			{
 				arrow = new Image(Assets.getTexture("ArrowLeft"));
+				arrow.name = "arrow_left"
 				arrow.x = 1;
 				arrow.y = 105;
 				this.addChild(arrow);
@@ -88,7 +97,11 @@ package screens
 		 */
 		private function onArrowRight(e:TouchEvent):void
 		{
-			//firstGameToDisplay += 4;
+			if (e.getTouch(this, TouchPhase.BEGAN))
+			{
+				firstGameToDisplay += 4;
+				placeArrows();
+			}
 		}
 		
 		/**
@@ -96,7 +109,11 @@ package screens
 		 */
 		private function onArrowLeft(e:TouchEvent):void
 		{
-			//firstGameToDisplay -= 4;
+			if (e.getTouch(this, TouchPhase.BEGAN))
+			{
+				firstGameToDisplay -= 4;
+				placeArrows();
+			}
 		}
 		
 		/**
@@ -113,12 +130,15 @@ package screens
 		/**
 		 * puts a icon on the selected position on the screen.
 		 * There are 4 positions numbering from 0 tot 3.
-		 * 
-		 *  0 1 
-		 *  2 3 
+		 *
+		 *  0 1
+		 *  2 3
 		 */
 		private function putGame(number:Number, miniGame:Image):void
 		{
+			if (miniGame == null)
+				return
+				
 			if (number == 0)
 			{
 				miniGame.x = 50;
@@ -145,18 +165,19 @@ package screens
 		}
 		
 		/**
-		 * Launches the gamescreen that is associated with the icon clicked. 
+		 * Launches the gamescreen that is associated with the icon clicked.
 		 * The dict is used to retrieve it.
 		 */
 		private function onGamePressed(number:Number):Function
 		{
 			return function(e:TouchEvent):void
 			{
-				var gameNumber:Number = number + firstGameToDisplay;
-				removeChildren();
-				addChild(gameDict[gameNumber]);
-				
-				getLevelByNumber(gameNumber);
+				if (e.getTouch(e.currentTarget as Image, TouchPhase.BEGAN))
+				{
+					var gameNumber:Number = number + firstGameToDisplay;
+					
+					getLevelByNumber(gameNumber);
+				}
 			}
 		}
 		

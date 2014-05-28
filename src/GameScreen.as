@@ -17,7 +17,9 @@ package
 	{
 		private var currentScreen:BaseScreen;		
 		private var screenWelcome:Welcome;
+		private var currentScreenName:String;
 		private static var mainMenu:HomeScreen;
+		private static var gameCount:Number = 9-1;
 		
 		public function GameScreen()
 		{
@@ -33,11 +35,17 @@ package
 			loadScreen("welcome");
 		}
 		
+		public function getCurrentScreenName():String
+		{
+			return currentScreenName;
+		}
+		
 		/**
 		 * Switches to a new screen by giving a string (screenName)
 		 */
 		public function loadScreen(screenName:String):void
 		{
+			currentScreenName = screenName;
 			if (currentScreen != null)
 			{
 				removeChild(currentScreen);

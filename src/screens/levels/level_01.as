@@ -38,10 +38,10 @@ package screens.levels
 		
 		private function placeBeds():void
 		{
-			setToCoords(getRandomBed(), 32, 150);
-			setToCoords(getRandomBed(), 144, 150);
-			setToCoords(getRandomBed(), 256, 150);
-			setToCoords(getRandomBed(), 368, 150);
+			setToCoords(getRandomBed(), 16, 150);
+			setToCoords(getRandomBed(), 132, 150);
+			setToCoords(getRandomBed(), 248, 150);
+			setToCoords(getRandomBed(), 364, 150);
 		}
 		
 		private function getRandomBed():Image

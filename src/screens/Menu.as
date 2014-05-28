@@ -24,6 +24,7 @@ package screens
 		private var myTimer:Timer;
 		private var gameState:String;
 		private var score:Number;
+		import starling.events.TouchPhase;
 		
 		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = 0)
 		{
@@ -106,7 +107,8 @@ package screens
 		 */
 		private function goHome(e:TouchEvent):void
 		{
-			main.loadScreen("homescreen");
+			if (e.getTouch(this, TouchPhase.BEGAN))
+				main.loadScreen("homescreen");
 		}
 		
 		/**
@@ -114,7 +116,8 @@ package screens
 		 */
 		private function goBack(e:TouchEvent):void
 		{
-			closeMenu()
+			if (e.getTouch(this, TouchPhase.BEGAN))
+				closeMenu()
 		}
 		
 		/**
@@ -122,7 +125,8 @@ package screens
 		 */
 		private function redo(e:TouchEvent):void
 		{
-			main.loadScreen(name);
+			if (e.getTouch(this, TouchPhase.BEGAN))
+				main.loadScreen(main.getCurrentScreenName());
 		}
 		
 		/**
@@ -130,6 +134,9 @@ package screens
 		 */
 		private function startNext(e:TouchEvent):void
 		{
+			if (e.getTouch(this, TouchPhase.BEGAN))
+			{
+			}
 			// not implemented yet
 		}
 		
@@ -138,6 +145,9 @@ package screens
 		 */
 		private function mute(e:TouchEvent):void
 		{
+			if (e.getTouch(this, TouchPhase.BEGAN))
+			{
+			}
 			// not implemented yet
 		}
 		
