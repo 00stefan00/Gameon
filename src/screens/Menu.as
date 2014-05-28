@@ -80,7 +80,7 @@ package screens
 		
 		private function initializeVictory():void
 		{
-			var numberOfHearts:Number = score / 5;
+			var numberOfHearts:Number = score;
 			removeChild(closeBtn);
 			
 			for (var i:Number = 80; (i < 230 && numberOfHearts > 0); i += 30)
@@ -102,9 +102,6 @@ package screens
 			addChild(img);
 		}
 		
-		/**
-		 * returns to main menu
-		 */
 		private function goHome(e:TouchEvent):void
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
@@ -120,35 +117,24 @@ package screens
 				closeMenu()
 		}
 		
-		/**
-		 * Will restart the level that is running
-		 */
 		private function redo(e:TouchEvent):void
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 				main.loadScreen(main.getCurrentScreenName());
 		}
 		
-		/**
-		 * Continues to next level after completion
-		 */
 		private function startNext(e:TouchEvent):void
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
 			}
-			// not implemented yet
 		}
 		
-		/**
-		 * mutes the sound
-		 */
 		private function mute(e:TouchEvent):void
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
 			}
-			// not implemented yet
 		}
 		
 		/**

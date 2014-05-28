@@ -4,22 +4,20 @@
 	import flash.utils.Timer;
 	import screens.levels.level_base;
 	import starling.display.Image;
+	import starling.events.EnterFrameEvent;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import starling.events.Event;
 	
-	/**
-	 * The document class defining the behaviour of the program.
-	 */
 	public class level_06 extends level_base
 	{
 		private var bg:Image;
-		private var faces:Array;
+		private var healthyFacesArray:Array;
+		private var sickFacesArray:Array;
 		private var collisionTimer:Timer;
+		private var victory:Boolean;
+		import screens.Menu;
 		
-		/**
-		 * This is the constructor. Executed once when the program starts
-		 *
-		 */
 		public function level_06(main:GameScreen)
 		{
 			super(main);
@@ -28,38 +26,35 @@
 			addMenuButton();
 			startGauge();
 			setLevelName("level_02");
+			addEventListener(Event.ENTER_FRAME, onNewFrame);
 		}
 		
-		/**
-		 * Initializes the game by loading the background and the game
-		 */
 		private function initialize(sickFaces:Number, healthyFaces:Number):void
 		{
-			faces = new Array();
-			//create the background
+			sickFacesArray = new Array();
+			healthyFacesArray = new Array();
+			
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
-			//lets create some sick faces
+			
 			for (var i:int = 0; i < sickFaces; i++)
 			{
 				var sickFace:SickFace = new SickFace(Assets.getTexture("SickFace"));
 				sickFace.setCorrectness(false);
 				addChild(sickFace);
-				faces.push(sickFace);
+				sickFacesArray.push(sickFace);
 				sickFace.addEventListener(TouchEvent.TOUCH, choose)
 				
-				//Math.random() generates a number between 0 and 1
-				// when multiplied with f.ex. 480 it results in a numrber between 0 and 840
 				sickFace.x = Math.random() * 480;
 				sickFace.y = Math.random() * 320;
 			}
 			
-			//Here we create some healthy faces
 			for (var j:int = 0; j < healthyFaces; j++)
 			{
 				var healthyFace:HealthyFace = new HealthyFace(Assets.getTexture("HealthyFace"));
 				healthyFace.setCorrectness(true);
 				addChild(healthyFace);
+				healthyFacesArray.push(healthyFace);
 				healthyFace.addEventListener(TouchEvent.TOUCH, choose)
 				
 				healthyFace.x = Math.random() * 480;
@@ -68,22 +63,60 @@
 		
 		}
 		
+		private function pauseGame():void
+		{
+			for each (var healthyFace:Object in healthyFacesArray)
+			{
+				healthyFace.pause();
+			}
+			for each (var sickFace:Object in sickFacesArray)
+			{
+				sickFace.pause();
+			}
+		}
+		
+		private function continueGame():void
+		{
+			for each (var healthyFace:Object in healthyFacesArray)
+			{
+				healthyFace.unpause();
+			}
+			for each (var sickFace:Object in sickFacesArray)
+			{
+				sickFace.unpause();
+			}
+		}
+		
+		private function onNewFrame(event:EnterFrameEvent):void
+		{
+			if (healthyFacesArray.length < 1 && !victory)
+			{
+				victory = true;
+				pauseGame();
+				pauseTimer();
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(40));
+				addChild(menu);
+				this.removeEventListener(Event.ENTER_FRAME, onNewFrame)
+			}
+		}
+		
 		private function choose(event:TouchEvent):void
 		{
 			if (event.getTouch(this, TouchPhase.BEGAN))
 			{
-				
-				if (faces.indexOf(event.currentTarget) > -0.1)
+				if (sickFacesArray.indexOf(event.currentTarget) > 0)
 				{
 					removeTicks(25);
 					
 				}
 				else
 				{
+					healthyFacesArray.pop();
 					removeChild(event.currentTarget as Image);
 				}
 			}
 		}
 	
 	}
+
 }

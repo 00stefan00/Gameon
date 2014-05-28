@@ -170,13 +170,14 @@ package screens.levels
 		
 		public function calculateScore(minimumGaugeNeeded:Number):Number
 		{
-			var gaugeScore:Number = (getGaugeRatio() * 100) + minimumGaugeNeeded;
-			var gaugeDecrease:Number = gaugeScore / 5;
-			for (var i:Number = 0; (i < 5 && gaugeScore > 20); i++)
+			var gaugeScore:Number = (getGaugeRatio() * 100);
+			var gaugeDecrease:Number = 20;
+			trace("score: "+gaugeScore)
+			for (var i:Number = 0; (i < 5 && gaugeScore + minimumGaugeNeeded > 20); i++)
 			{
 				gaugeScore -= gaugeDecrease;
 			}
-			return gaugeScore;
+			return i;
 		}
 	}
 }
