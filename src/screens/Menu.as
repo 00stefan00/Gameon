@@ -38,9 +38,9 @@ package screens
 		private function initialize():void
 		{
 			// create a yellow background for the popup menu
-			bg = new Image(Assets.getTexture("BgYellow"));
+			bg = new Image(Assets.getTexture("InfoBg"));
 			
-			setToCoords(bg, 50, 50);
+			setToCoords(bg, 15, 15);
 			
 			addButtons();
 		}
@@ -59,11 +59,11 @@ package screens
 			closeBtn.name = "CloseBtn";
 			
 			// Puts images as buttons to coords
-			setToCoords(redoBtn, 70, 210);
-			setToCoords(homeBtn, 170, 210);
-			setToCoords(muteBtn, 270, 210);
-			setToCoords(nextBtn, 370, 210);
-			setToCoords(closeBtn, bg.width + 35, 50)
+			setToCoords(redoBtn, 55, 225);
+			setToCoords(homeBtn, 160, 225);
+			setToCoords(muteBtn, 265, 225);
+			setToCoords(nextBtn, 370, 225);
+			setToCoords(closeBtn, bg.width - 30, 25)
 			
 			// Adds eventlisteners to the buttons
 			redoBtn.addEventListener(TouchEvent.TOUCH, redo);

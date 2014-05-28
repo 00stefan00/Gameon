@@ -47,7 +47,7 @@ package screens.levels
 		 */
 		private function initialize():void
 		{
-			bg = new Image(Assets.getTexture("GradientBG"));
+			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			
 			char1 = new Image(Assets.getTexture("Face1"));

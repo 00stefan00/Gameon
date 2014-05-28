@@ -19,8 +19,17 @@
 		public function SickFace (tex:Texture) {
 			super(tex);
 			addEventListener(Event.ENTER_FRAME, update);
+			setVxVy();
+					
+		}
+		
+			public function setVxVy():void
+		{
 			vx = Math.random() * 7 - 4;
-			vy = Math.random() * 7 - 4;			
+			vy = Math.random() * 7 - 4;
+			
+			if (vx == 0 || vy == 0)
+				setVxVy();
 		}
 		
 		/**
@@ -31,13 +40,26 @@
 			this.x = this.x + vx;
 			this.y = this.y + vy;
 			if (this.x > 480 + 30)
-				this.x = Math.random() * 480;
+				relocateX();
 			if (this.y > 320 + 30)
-				this.y = Math.random() * 320;
+				relocateY();
 			if (this.x < 0 - 30)
-				this.x = Math.random() * 480;
+				relocateX();
 			if (this.y < 0 - 30)
-				this.y = Math.random() * 320;
+				relocateY();
+		}
+		
+		
+		public function relocateX():void
+		{
+			this.x = Math.random() * 480;
+			setVxVy();
+		}
+		
+		public function relocateY():void
+		{
+			this.y = Math.random() * 320;
+			setVxVy();
 		}
 		
 		public function getCorrectness():Boolean

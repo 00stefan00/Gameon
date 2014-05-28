@@ -20,12 +20,10 @@ package screens
 		private var firstGameToDisplay:Number = 0;
 		private var miniGame:Image;
 		private var gameDict:Dictionary = new Dictionary();
-		private var main:GameScreen;
 		
 		public function HomeScreen(main:GameScreen)
 		{
 			super(main);
-			this.main = main;
 			initGameButtons();
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}

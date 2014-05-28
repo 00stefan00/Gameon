@@ -72,6 +72,9 @@ package
 		
 		[Embed(source='../img/menu/small_hearts.png')]
 		public static const TinyHeart:Class;
+		
+		[Embed(source='../img/InfoBg.png')]
+		public static const InfoBg:Class;
 				
 		// ############################
 		// ######### MAINSCREEN #########
