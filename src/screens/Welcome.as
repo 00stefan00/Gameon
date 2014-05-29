@@ -15,10 +15,10 @@ package screens
 	import flash.net.URLRequest;
 	import starling.events.TouchPhase;
 	
-	
 	public class Welcome extends BaseScreen
-	{	
-		private var bg:Image;		
+	{
+		private var bg:Image;
+		private var logo:Image;
 		private var playBtn:Button;
 		
 		public function Welcome(main:GameScreen)
@@ -32,17 +32,19 @@ package screens
 			drawScreen();
 		}
 		
-		/**
-		 * draws all images to welcome screen
-		 */
 		private function drawScreen():void
 		{
 			bg = new Image(Assets.getTexture("Background"));
 			this.addChild(bg);
 			
+			logo = new Image(Assets.getTexture("Logo"));
+			logo.x = 127;
+			logo.y = 25;
+			this.addChild(logo);
+			
 			playBtn = new Button(Assets.getTexture("StartBtn"));
-			playBtn.x = 110;
-			playBtn.y = 215;
+			playBtn.x = 100;
+			playBtn.y = 255;
 			playBtn.addEventListener(TouchEvent.TOUCH, this.onStartButtonClicked);
 			this.addChild(playBtn);
 		}
@@ -50,8 +52,8 @@ package screens
 		private function onStartButtonClicked(e:TouchEvent):void
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
-			main.loadScreen("homescreen");
-		}		
+				main.loadScreen("homescreen");
+		}
 	
 	}
 

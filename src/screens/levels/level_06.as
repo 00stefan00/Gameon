@@ -16,6 +16,7 @@
 		private var sickFacesArray:Array;
 		private var collisionTimer:Timer;
 		private var victory:Boolean;
+		private var paused:Boolean = false;
 		import screens.Menu;
 		
 		public function level_06(main:GameScreen)
@@ -24,9 +25,9 @@
 			initialize(5, 5);
 			addGauge();
 			addMenuButton();
-			startGauge();
 			setLevelName("level_06");
 			addEventListener(Event.ENTER_FRAME, onNewFrame);
+			afterInit();
 		}
 		
 		private function initialize(sickFaces:Number, healthyFaces:Number):void
@@ -35,6 +36,7 @@
 			healthyFacesArray = new Array();
 			
 			bg = new Image(Assets.getTexture("Background"));
+			bg.addEventListener(TouchEvent.TOUCH, gameStart)
 			addChild(bg);
 			
 			for (var i:int = 0; i < sickFaces; i++)
@@ -60,6 +62,8 @@
 				healthyFace.x = Math.random() * 480;
 				healthyFace.y = Math.random() * 320;
 			}
+			
+			pauseGame();
 		
 		}
 		
@@ -73,10 +77,13 @@
 			{
 				sickFace.pause();
 			}
+			paused = true;
+			pauseTimer();
 		}
 		
 		private function continueGame():void
 		{
+			continueTimer();
 			for each (var healthyFace:Object in healthyFacesArray)
 			{
 				healthyFace.unpause();
@@ -85,6 +92,7 @@
 			{
 				sickFace.unpause();
 			}
+			paused = false;
 		}
 		
 		private function onNewFrame(event:EnterFrameEvent):void
@@ -93,7 +101,6 @@
 			{
 				victory = true;
 				pauseGame();
-				pauseTimer();
 				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(40));
 				addChild(menu);
 				this.removeEventListener(Event.ENTER_FRAME, onNewFrame)
@@ -114,6 +121,14 @@
 					healthyFacesArray.pop();
 					removeChild(event.currentTarget as Image);
 				}
+			}
+		}
+		
+		private function gameStart(event:TouchEvent):void
+		{
+			if (paused) {
+				continueGame();
+				bg.removeEventListeners();
 			}
 		}
 	

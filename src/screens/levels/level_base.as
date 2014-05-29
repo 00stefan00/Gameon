@@ -33,13 +33,22 @@ package screens.levels
 		{
 			super(main);
 			initialize();
-			myTimer = new Timer(50, 6000);
-			myTimer.addEventListener(TimerEvent.TIMER, timerListener);
 		}
 		
 		private function initialize():void
 		{
+			myTimer = new Timer(50, 6000);
+			myTimer.addEventListener(TimerEvent.TIMER, timerListener);
+		}
 		
+		public function afterInit():void {
+			var menu:Menu = new Menu(main, getTimer(), "Start");
+			addChild(menu);
+		}
+				
+		private function gameLost():void {
+			var menu:Menu = new Menu(main, getTimer(), "Lose");
+			addChild(menu);
 		}
 		
 		public function setLevelName(name:String):void
@@ -88,6 +97,11 @@ package screens.levels
 			if (gauge != null)
 			{
 				gauge.ratio -= gaugeRatio;
+			}
+			if (gauge.ratio < 0.001)
+			{
+				pauseTimer();
+				gameLost();
 			}
 		}
 		

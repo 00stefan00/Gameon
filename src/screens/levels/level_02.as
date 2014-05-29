@@ -15,8 +15,10 @@ package screens.levels
 		{			
 			super(main);
 			initialize();
+			addGauge();
 			addMenuButton();
 			setLevelName("level_02");
+			afterInit();
 		}
 	
 		/**

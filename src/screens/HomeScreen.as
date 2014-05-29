@@ -30,15 +30,14 @@ package screens
 		
 		private function initGameButtons():void
 		{
-			// Put all gameIcons in a dict
-			gameDict[0] = new Image(Assets.getTexture("LevelPlaceHolder"));
-			gameDict[1] = new Image(Assets.getTexture("LevelPlaceHolder"));
-			gameDict[2] = new Image(Assets.getTexture("LevelPlaceHolder"));
-			gameDict[3] = new Image(Assets.getTexture("LevelPlaceHolder"));
-			gameDict[4] = new Image(Assets.getTexture("LevelPlaceHolder"));
-			gameDict[5] = new Image(Assets.getTexture("LevelPlaceHolder"));
-			gameDict[6] = new Image(Assets.getTexture("LevelPlaceHolder"));
-			gameDict[7] = new Image(Assets.getTexture("LevelPlaceHolder"));
+			gameDict[0] = new Image(Assets.getTexture("Level00"));
+			gameDict[1] = new Image(Assets.getTexture("Level01"));
+			gameDict[2] = new Image(Assets.getTexture("Level02"));
+			gameDict[3] = new Image(Assets.getTexture("Level03"));
+			gameDict[4] = new Image(Assets.getTexture("Level04"));
+			gameDict[5] = new Image(Assets.getTexture("Level05"));
+			gameDict[6] = new Image(Assets.getTexture("Level06"));
+			gameDict[7] = new Image(Assets.getTexture("Level07"));
 		}
 		
 		private function onAddedToStage(event:Event):void
@@ -97,8 +96,10 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
+				removeGames();
 				firstGameToDisplay += 4;
 				placeArrows();
+				putGames();
 			}
 		}
 		
@@ -109,8 +110,10 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
+				removeGames();
 				firstGameToDisplay -= 4;
-				placeArrows();
+				placeArrows();				
+				putGames();
 			}
 		}
 		
@@ -123,6 +126,14 @@ package screens
 			putGame(1, gameDict[1 + firstGameToDisplay]);
 			putGame(2, gameDict[2 + firstGameToDisplay]);
 			putGame(3, gameDict[3 + firstGameToDisplay]);
+		}
+		
+		private function removeGames():void
+		{
+			removeChild(gameDict[0 + firstGameToDisplay]);
+			removeChild(gameDict[1 + firstGameToDisplay]);
+			removeChild(gameDict[2 + firstGameToDisplay]);
+			removeChild(gameDict[3 + firstGameToDisplay]);
 		}
 		
 		/**

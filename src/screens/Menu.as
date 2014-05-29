@@ -19,6 +19,8 @@ package screens
 		private var muteBtn:Image;
 		private var closeBtn:Image;
 		private var nextBtn:Image;
+		private var confirmBtn:Image;
+		private var menuText:Image;
 		
 		private var mainMenu:HomeScreen;
 		private var myTimer:Timer;
@@ -76,6 +78,16 @@ package screens
 			{
 				initializeVictory();
 			}
+			
+			if (gameState == "Start")
+			{
+				addIntroText();
+			}
+			
+			if (gameState == "Lose")
+			{
+				addLoseText();
+			}
 		}
 		
 		private function initializeVictory():void
@@ -83,13 +95,45 @@ package screens
 			var numberOfHearts:Number = score;
 			removeChild(closeBtn);
 			
-			for (var i:Number = 80; (i < 230 && numberOfHearts > 0); i += 30)
+			for (var i:Number = 60; (i < 390 && numberOfHearts > 0); i += 75)
 			{
-				setToCoords(new Image(Assets.getTexture("TinyHeart")), i, 140);
+				setToCoords(new Image(Assets.getTexture("TinyHeart")), i, 25);
 				numberOfHearts--;
 			}
 		
+			var level:String = main.getCurrentScreenName().split("_")[1];
+			trace(level);
+			menuText = new Image(Assets.getTexture("Text"+level+"e"));
+			setToCoords(menuText, 40, 110)
+			
 		}
+	
+		private function addIntroText():void {
+			var level:String = main.getCurrentScreenName().split("_")[1];
+			trace(level);
+			menuText = new Image(Assets.getTexture("Text"+level+"s"));
+			setToCoords(menuText, 40, 110);
+			
+			redoBtn.dispose();
+			removeChild(redoBtn);
+			closeBtn.dispose();
+			removeChild(closeBtn);
+			
+			confirmBtn = new Image(Assets.getTexture("Confirm"));
+			confirmBtn.addEventListener(TouchEvent.TOUCH, goBack);
+			setToCoords(confirmBtn, 55, 225);			
+		}
+		
+		private function addLoseText():void {
+			menuText = new Image(Assets.getTexture("GameOver"));
+			setToCoords(menuText, 40, 110);
+
+			closeBtn.dispose();
+			removeChild(closeBtn);
+			
+		
+		}
+		
 		
 		/**
 		 * Places image on coordinates X and Y
@@ -153,14 +197,8 @@ package screens
 		{
 			if (gameState != "Victory")
 			{
-				dispose();
-				this.removeChild(redoBtn);
-				this.removeChild(homeBtn);
-				this.removeChild(muteBtn);
-				this.removeChild(closeBtn);
-				this.removeChild(nextBtn);
-				this.removeChild(bg);
-				
+				this.dispose();
+				this.removeChildren();
 				myTimer.start();
 			}
 		}

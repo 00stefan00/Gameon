@@ -23,6 +23,7 @@ package screens.levels
 			addGauge();
 			addMenuButton();
 			setLevelName("level_01");
+			afterInit();
 		}
 		
 		/**

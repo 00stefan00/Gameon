@@ -7,7 +7,7 @@ package
 	import starling.textures.TextureAtlas;
 	
 	public class Assets
-	{			
+	{
 		// ############################
 		// ######### Level_base #######
 		// ############################
@@ -31,14 +31,14 @@ package
 		
 		[Embed(source='../img/level_00/thermo.png')]
 		public static const Thermometer:Class;
-				
+		
 		[Embed(source='../img/level_00/markedDone.png')]
 		public static const Done:Class;
-			
+		
 		// ############################
 		// ######### Level_01 #########
 		// ############################
-
+		
 		[Embed(source='../img/level_01/bed1.png')]
 		public static const Bed1:Class;
 		
@@ -67,7 +67,7 @@ package
 		// ########### menu ###########
 		// ############################
 		
-		[Embed(source='../img/menu/small_hearts.png')]
+		[Embed(source='../img/menu/scaledHeart_victoryScreen.png')]
 		public static const TinyHeart:Class;
 		
 		[Embed(source='../img/menu/InfoBg.png')]
@@ -87,7 +87,71 @@ package
 		
 		[Embed(source='../img/menu/redo-icon.png')]
 		public static const RedoIcon:Class;
-				
+		
+		[Embed(source='../img/menu/confirm.png')]
+		public static const Confirm:Class;
+		
+		// ############################
+		// ########### menu/texts ###########
+		// ############################
+		
+		[Embed(source='../img/menu/texts/level00_end.png')]
+		public static const Text00e:Class;
+		
+		[Embed(source='../img/menu/texts/level00_start.png')]
+		public static const Text00s:Class;
+		
+		[Embed(source='../img/menu/texts/level01_end.png')]
+		public static const Text01e:Class;
+		
+		[Embed(source='../img/menu/texts/level01_start.png')]
+		public static const Text01s:Class;
+		
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
+		public static const Text02e:Class;
+		
+		[Embed(source='../img/menu/texts/level02_start.png')]
+		public static const Text02s:Class;
+		
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
+		public static const Text03e:Class;
+		
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
+		public static const Text03s:Class;
+		
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
+		public static const Text04e:Class;
+		
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
+		public static const Text04s:Class;
+		
+		[Embed(source='../img/menu/texts/level05_end.png')]
+		public static const Text05e:Class;
+		
+		[Embed(source='../img/menu/texts/level05_start.png')]
+		public static const Text05s:Class;
+		
+		[Embed(source='../img/menu/texts/level06_end.png')]
+		public static const Text06e:Class;
+		
+		[Embed(source='../img/menu/texts/level06_start.png')]
+		public static const Text06s:Class;
+		
+		[Embed(source='../img/menu/texts/level07_end.png')]
+		public static const Text07e:Class;
+		
+		[Embed(source='../img/menu/texts/level07_start.png')]
+		public static const Text07s:Class;
+		
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
+		public static const Text08e:Class;
+		
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
+		public static const Text08s:Class;
+		
+		[Embed(source='../img/menu/texts/game_over.png')]
+		public static const GameOver:Class;
+		
 		// ############################
 		// ######### MAINSCREEN #########
 		// ############################
@@ -98,15 +162,40 @@ package
 		[Embed(source='../img/mainscreen/arrow_right.png')]
 		public static const ArrowRight:Class;
 		
-		[Embed(source='../img/mainscreen/levelbox.png')]
-		public static const LevelPlaceHolder:Class;
-		
 		[Embed(source='../img/mainscreen/boy_sick.png')]
 		public static const SickBoy:Class;
 		
-		//[Embed(source='../img/mainscreen/game01.png')]
-		//public static const Game01:Class;
+		// Levels
+				
+		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		public static const LevelPlaceHolder:Class;
 		
+		[Embed(source='../img/mainscreen/levels/level00.png')]
+		public static const Level00:Class;
+		
+		[Embed(source='../img/mainscreen/levels/level01.png')]
+		public static const Level01:Class;
+		
+		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		public static const Level02:Class;
+		
+		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		public static const Level03:Class;
+		
+		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		public static const Level04:Class;
+		
+		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		public static const Level05:Class;
+		
+		[Embed(source='../img/mainscreen/levels/level06.png')]
+		public static const Level06:Class;
+		
+		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		public static const Level07:Class;
+		
+		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		public static const Level08:Class;
 		// All assets listed and put into variables
 		
 		[Embed(source='../img/menu-icon.png')]
@@ -117,6 +206,9 @@ package
 		
 		[Embed(source='../img/play-button.png')]
 		public static const StartBtn:Class;
+		
+		[Embed(source='../img/gamelogo.png')]
+		public static const Logo:Class;
 		
 		private static var gameTextures:Dictionary = new Dictionary();
 		
