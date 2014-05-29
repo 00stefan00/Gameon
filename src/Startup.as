@@ -36,11 +36,10 @@ package
 			
 			with (connection)
 			{
-				//addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+				addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
 				addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
 				connect(null);
 			}
-			onMovieEnd()
 			
 		}
 		
