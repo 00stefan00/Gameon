@@ -103,7 +103,7 @@ package screens.levels
 		
 		private function handleCollision(e:Event):void
 		{
-			var seconds:Number = 1;
+			var seconds:Number = 4;
 			if (firstTouched)
 			{
 				if (detectCollision(thermometer, char1))

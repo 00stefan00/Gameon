@@ -186,7 +186,6 @@ package screens.levels
 		{
 			var gaugeScore:Number = (getGaugeRatio() * 100);
 			var gaugeDecrease:Number = 20;
-			trace("score: "+gaugeScore)
 			for (var i:Number = 0; (i < 5 && gaugeScore + minimumGaugeNeeded > 20); i++)
 			{
 				gaugeScore -= gaugeDecrease;

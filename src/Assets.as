@@ -54,6 +54,30 @@ package
 		[Embed(source='../img/level_01/bed5.png')]
 		public static const Bed5:Class;
 		
+		[Embed(source='../img/level_01/6.png')]
+		public static const nr6:Class;
+		
+		[Embed(source='../img/level_01/9.png')]
+		public static const nr9:Class;
+		
+		[Embed(source='../img/level_01/10.png')]
+		public static const nr10:Class;
+		
+		[Embed(source='../img/level_01/12.png')]
+		public static const nr12:Class;
+		
+		[Embed(source='../img/level_01/20.png')]
+		public static const nr20:Class;
+		
+		[Embed(source='../img/level_01/21.png')]
+		public static const nr21:Class;
+		
+		[Embed(source='../img/level_01/24.png')]
+		public static const nr24:Class;
+		
+		[Embed(source='../img/level_01/27.png')]
+		public static const nr27:Class;
+		
 		// ############################
 		// ######### Level_06 #########
 		// ############################
@@ -110,7 +134,7 @@ package
 		[Embed(source='../img/menu/texts/work_in_progress.png')]
 		public static const Text02e:Class;
 		
-		[Embed(source='../img/menu/texts/level02_start.png')]
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
 		public static const Text02s:Class;
 		
 		[Embed(source='../img/menu/texts/work_in_progress.png')]
@@ -125,10 +149,10 @@ package
 		[Embed(source='../img/menu/texts/work_in_progress.png')]
 		public static const Text04s:Class;
 		
-		[Embed(source='../img/menu/texts/level05_end.png')]
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
 		public static const Text05e:Class;
 		
-		[Embed(source='../img/menu/texts/level05_start.png')]
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
 		public static const Text05s:Class;
 		
 		[Embed(source='../img/menu/texts/level06_end.png')]
@@ -137,10 +161,10 @@ package
 		[Embed(source='../img/menu/texts/level06_start.png')]
 		public static const Text06s:Class;
 		
-		[Embed(source='../img/menu/texts/level07_end.png')]
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
 		public static const Text07e:Class;
 		
-		[Embed(source='../img/menu/texts/level07_start.png')]
+		[Embed(source='../img/menu/texts/work_in_progress.png')]
 		public static const Text07s:Class;
 		
 		[Embed(source='../img/menu/texts/work_in_progress.png')]

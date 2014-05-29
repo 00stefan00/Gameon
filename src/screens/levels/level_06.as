@@ -113,7 +113,7 @@
 			{
 				if (sickFacesArray.indexOf(event.currentTarget) > 0)
 				{
-					removeTicks(25);
+					removeTicks(50);
 					
 				}
 				else

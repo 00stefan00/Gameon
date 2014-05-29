@@ -118,6 +118,8 @@ package screens
 			removeChild(redoBtn);
 			closeBtn.dispose();
 			removeChild(closeBtn);
+			nextBtn.dispose()
+			removeChild(nextBtn);
 			
 			confirmBtn = new Image(Assets.getTexture("Confirm"));
 			confirmBtn.addEventListener(TouchEvent.TOUCH, goBack);
