@@ -103,7 +103,7 @@ package screens.levels
 		
 		private function handleCollision(e:Event):void
 		{
-			var seconds:Number = 4;
+			var seconds:Number = 3;
 			if (firstTouched)
 			{
 				if (detectCollision(thermometer, char1))
@@ -148,7 +148,7 @@ package screens.levels
 				
 				if (charDict[1] && charDict[2] && charDict[3] && charDict[4]) {
 					pauseTimer();
-					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(40));
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30));
 					addChild(menu);
 					this.removeEventListener(Event.ENTER_FRAME, handleCollision)
 				}

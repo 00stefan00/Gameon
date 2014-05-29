@@ -113,7 +113,7 @@ package screens.levels
 				pauseTimer();
 				removeEventListeners();
 				dispose();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50));
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
 				addChild(menu);
 				
 			}

@@ -101,7 +101,7 @@
 			{
 				victory = true;
 				pauseGame();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(40));
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(10));
 				addChild(menu);
 				this.removeEventListener(Event.ENTER_FRAME, onNewFrame)
 			}
