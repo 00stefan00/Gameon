@@ -25,7 +25,7 @@
 			addGauge();
 			addMenuButton();
 			startGauge();
-			setLevelName("level_02");
+			setLevelName("level_06");
 			addEventListener(Event.ENTER_FRAME, onNewFrame);
 		}
 		

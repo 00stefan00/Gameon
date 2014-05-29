@@ -15,11 +15,11 @@ package
 	
 	public class GameScreen extends Sprite
 	{
-		private var currentScreen:BaseScreen;		
+		private var currentScreen:BaseScreen;
 		private var screenWelcome:Welcome;
 		private var currentScreenName:String;
 		private static var mainMenu:HomeScreen;
-		private static var gameCount:Number = 9-1;
+		private static var gameCount:Number = 9 - 1;
 		
 		public function GameScreen()
 		{
@@ -94,9 +94,7 @@ package
 			{
 				currentScreen = new level_08(this);
 			}
-			
-
-			
+			currentScreenName = screenName;
 			addChild(currentScreen);
 		}
 	}

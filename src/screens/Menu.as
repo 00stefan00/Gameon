@@ -127,6 +127,15 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
+				if (main.getCurrentScreenName() != "level_08")
+				{
+					var level:String = main.getCurrentScreenName() as String;
+					var number:Number = Number(level.charAt(7).toString()) as Number;
+					
+					number++;
+					closeMenu();
+					main.loadScreen("level_0" + number);
+				}
 			}
 		}
 		
@@ -144,7 +153,7 @@ package screens
 		{
 			if (gameState != "Victory")
 			{
-				
+				dispose();
 				this.removeChild(redoBtn);
 				this.removeChild(homeBtn);
 				this.removeChild(muteBtn);

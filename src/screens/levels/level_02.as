@@ -16,7 +16,7 @@ package screens.levels
 			super(main);
 			initialize();
 			addMenuButton();
-			setLevelName("level_06");
+			setLevelName("level_02");
 		}
 	
 		/**
