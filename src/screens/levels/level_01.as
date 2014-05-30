@@ -123,13 +123,12 @@ package screens.levels
 		{
 			if (bedCount == 0)
 			{
-				for (var k:Number in bedDict)
+				for (var i:Number = 0; i < 4; i++)
 				{
-					var bed:Image = bedDict[k];
-					var key:Number = k;
+					var bed:Image = bedDict[i];
 					
 					removeChild(bed);
-					removeChild(nrDict[k]);
+					removeChild(nrDict[i]);
 				}
 				placeBeds();
 			}
