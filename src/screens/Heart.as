@@ -36,9 +36,12 @@ package screens
 		public function Heart()
 		{
 			bitmap = new Bitmap(); // null bitmap is displayed
+			bitmap.x = 200;
+			bitmap.y = 200;
 			addChild(bitmap);
 			currentFrameNr = 0;
 			addEventListener(Event.ENTER_FRAME, onFrameLoop);
+			initialize();
 		}
 		
 		private function onFrameLoop(e:Event):void
@@ -53,8 +56,7 @@ package screens
 			currentFrameNr++;
 			if (currentFrameNr >= spriteArray.length)
 				currentFrameNr = 0;
-			bitmap.bitmapData = spriteArray[currentFrame]; // voila. Now this particular Ball
-			// will display the proper BitmapData out of sliced sprite sheet.
+			bitmap.bitmapData = spriteArray[currentFrame];			
 		}
 		
 		private static function onLoadComplete(e:Event):void

@@ -20,6 +20,7 @@ package screens
 		private var firstGameToDisplay:Number = 0;
 		private var miniGame:Image;
 		private var gameDict:Dictionary = new Dictionary();
+		private var heart_sprite:Heart;
 		
 		public function HomeScreen(main:GameScreen)
 		{
@@ -53,6 +54,10 @@ package screens
 			putGames();
 			
 			placeArrows()
+			
+			heart_sprite = new Heart();
+			//heart_sprite.
+			//addChild(heart_sprite);
 			
 			//place character on screen
 			character = new Image(Assets.getTexture("SickBoy"));

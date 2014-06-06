@@ -33,12 +33,12 @@ package
 		
 		public function Startup()
 		{
-			
+			onMovieEnd();
 			with (connection)
 			{
-				addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
-				addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-				connect(null);
+				//addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+				//addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
+				//connect(null);
 			}
 			
 		}

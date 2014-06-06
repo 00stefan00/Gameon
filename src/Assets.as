@@ -79,6 +79,27 @@ package
 		public static const nr27:Class;
 		
 		// ############################
+		// ######### Level_04 #########
+		// ############################
+		[Embed(source='../img/level_04/box_blue.png')]
+		public static const BoxBlue:Class;
+		
+		[Embed(source='../img/level_04/box_red.png')]
+		public static const BoxRed:Class;
+		
+		[Embed(source='../img/level_04/box_green.png')]
+		public static const BoxGreen:Class;
+		
+		[Embed(source='../img/level_04/pill_blue.png')]
+		public static const PillBlue:Class;
+		
+		[Embed(source='../img/level_04/pill_red.png')]
+		public static const PillRed:Class;
+		
+		[Embed(source='../img/level_04/pill_green.png')]
+		public static const PillGreen:Class;
+		
+		// ############################
 		// ######### Level_06 #########
 		// ############################
 		[Embed(source='../img/level_06/healthyface.png')]
@@ -190,7 +211,7 @@ package
 		public static const SickBoy:Class;
 		
 		// Levels
-				
+		
 		[Embed(source='../img/mainscreen/levels/levelbox.png')]
 		public static const LevelPlaceHolder:Class;
 		
