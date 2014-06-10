@@ -77,7 +77,6 @@ package screens
 		private function startBackgroundMusic():void {
 			bgmusic = AudioSources.getSound("BGMusic");
 			bgChannel = bgmusic.play(0, 100);
-			bgChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, onSoundChannelSoundComplete);
 		}
 		
 		

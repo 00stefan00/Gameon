@@ -79,6 +79,12 @@ package
 		public static const nr27:Class;
 		
 		// ############################
+		// ######### Level_03 #########
+		// ############################
+		[Embed(source='../img/level_03/door.png')]
+		public static const Door:Class;
+		
+		// ############################
 		// ######### Level_04 #########
 		// ############################
 		
