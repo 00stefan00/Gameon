@@ -8,10 +8,14 @@ package screens.levels
 	import screens.levels.level_base
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import screens.Menu;
 	
 	public class level_04 extends level_base
 	{
 		private var bg:Image;
+		private var sickFaceArray:Array;
+		private var healthyFaceArray:Array;
+		private var score:Number = 0;
 		
 		public function level_04(main:GameScreen)
 		{
@@ -36,15 +40,30 @@ package screens.levels
 		
 		private function putfaces():void
 		{
+			removeFaces();
 			var firstX:Number = 50;
 			var firstY:Number = 50;
-			
+			sickFaceArray = new Array();
+			healthyFaceArray = new Array();
 			for (var x:Number = 0; (((x * 90) + firstX < 480) && x < 4); x++)
 			{
 				for (var y:Number = 0; (((y * 90) + firstX < 320) && y < 3); y++)
 				{
 					setToCoords(makeResizedImg(createRandomFace(), 80, 80), (firstX + (x * 90)), (firstY + (y * 90)));
 				}
+			}
+		}
+		
+		private function removeFaces():void {
+			for each (var healthyFace:Image in healthyFaceArray)
+			{
+				healthyFace.dispose();
+				removeChild(healthyFace);
+			}
+			for each (var sickFace:Image in sickFaceArray)
+			{
+				sickFace.dispose();
+				removeChild(sickFace);
 			}
 		}
 		
@@ -55,10 +74,12 @@ package screens.levels
 			if (randomValue < 5)
 			{
 				image.name = "Sick"
+				sickFaceArray.push(image);
 			}
 			else
 			{
 				image.name = "Healthy"
+				healthyFaceArray.push(image);
 			}
 			image.addEventListener(TouchEvent.TOUCH, onFaceTouch);
 			return image;
@@ -71,12 +92,24 @@ package screens.levels
 				var face:Image = e.currentTarget as Image;
 				if (face.name == "Sick")
 				{
+					face.dispose();
 					removeChild(face);
+					sickFaceArray.pop();
+					score++;
 				}
 				if (face.name == "Healthy")
 				{
 					removeTicks(50);
 				}
+				if (score == 18) {
+					pauseTimer();
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50));
+					addChild(menu);
+				}
+			}
+			
+			if (sickFaceArray.length < 1) {
+				putfaces();
 			}
 		}
 	}

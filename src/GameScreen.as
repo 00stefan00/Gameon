@@ -10,6 +10,7 @@ package
 	import screens.HomeScreen;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import flash.utils.Dictionary;
 	
 	import screens.HomeScreen;
 	
@@ -21,7 +22,7 @@ package
 		private static var mainMenu:HomeScreen;
 		private static var gameCount:Number = 9 - 1;
 		
-		private var scoreDict = new Dictionary();
+		private var scoreDict:Dictionary = new Dictionary();
 		
 		public function GameScreen()
 		{

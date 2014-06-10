@@ -4,6 +4,7 @@ package screens
 	 * ...
 	 * @author Stefan
 	 */
+	import flash.media.Sound;
 	import screens.levels.*;
 	import flash.utils.Dictionary;
 	import starling.display.Image;
@@ -11,9 +12,11 @@ package screens
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import flash.media.SoundChannel;
 	
 	public class HomeScreen extends BaseScreen
 	{
+		
 		private var arrow:Image;
 		private var bg:Image;
 		private var character:Image;
@@ -21,6 +24,8 @@ package screens
 		private var miniGame:Image;
 		private var gameDict:Dictionary = new Dictionary();
 		private var heart_sprite:Heart;
+		private var bgmusic:Sound;
+		private var bgChannel:SoundChannel; 
 		
 		public function HomeScreen(main:GameScreen)
 		{
@@ -56,16 +61,25 @@ package screens
 			placeArrows()
 			
 			heart_sprite = new Heart();
-			//heart_sprite.
-			//addChild(heart_sprite);
+			heart_sprite.x = 100;
+			heart_sprite.y = 100;
+			heart_sprite.play();
 			
-			//place character on screen
 			character = new Image(Assets.getTexture("SickBoy"));
 			character.x = 350
 			character.y = 160
 			
 			this.addChild(character);
+			
+			startBackgroundMusic();
 		}
+		
+		private function startBackgroundMusic():void {
+			bgmusic = AudioSources.getSound("BGMusic");
+			bgChannel = bgmusic.play(0, 100);
+			bgChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, onSoundChannelSoundComplete);
+		}
+		
 		
 		private function placeArrows():void
 		{
@@ -200,6 +214,7 @@ package screens
 		 */
 		private function getLevelByNumber(gameNumber:Number):void
 		{
+			bgChannel.stop();
 			if (gameNumber < 10)
 				main.loadScreen("level_0" + gameNumber);
 			else
