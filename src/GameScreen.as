@@ -21,6 +21,8 @@ package
 		private static var mainMenu:HomeScreen;
 		private static var gameCount:Number = 9 - 1;
 		
+		private var scoreDict = new Dictionary();
+		
 		public function GameScreen()
 		{
 			super();
@@ -96,6 +98,23 @@ package
 			}
 			currentScreenName = screenName;
 			addChild(currentScreen);
+		}
+		
+		public function getLevelScore(level:Number):Number
+		{
+			if (scoreDict[level] == null)
+			{
+				scoreDict[level] = 0;
+			}
+			return scoreDict[level];
+		}
+		
+		public function setLevelScore(level:Number, score:Number):void
+		{
+			if (scoreDict[level] < score)
+			{
+				scoreDict[level] = score;
+			}
 		}
 	}
 }

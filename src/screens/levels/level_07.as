@@ -19,8 +19,8 @@ package screens.levels
 			addMenuButton();
 			setLevelName("level_07");
 			afterInit();
-		}
 	
+		}
 		/**
 		 * Initializes the game by loading the background and the game
 		 */

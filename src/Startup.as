@@ -5,6 +5,7 @@ package
 	 * @author Stefan
 	 */
 	import flash.display.Sprite;
+	import flash.utils.Dictionary;
 	import starling.events.Event;
 	import starling.core.Starling;
 	import flash.display.Loader;

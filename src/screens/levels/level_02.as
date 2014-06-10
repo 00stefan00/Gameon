@@ -10,9 +10,9 @@ package screens.levels
 	public class level_02 extends level_base
 	{
 		private var bg:Image;
-
+		
 		public function level_02(main:GameScreen)
-		{			
+		{
 			super(main);
 			initialize();
 			addGauge();
@@ -20,7 +20,7 @@ package screens.levels
 			setLevelName("level_02");
 			afterInit();
 		}
-	
+		
 		/**
 		 * Initializes the game by loading the background and the game
 		 */
@@ -29,6 +29,7 @@ package screens.levels
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 		}
+	
 	}
 
 }

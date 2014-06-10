@@ -81,22 +81,43 @@ package
 		// ############################
 		// ######### Level_04 #########
 		// ############################
-		[Embed(source='../img/level_04/box_blue.png')]
+		
+		// Re-Usable sick faces from 1st lvl
+		// public static const Face1:Class;
+		// public static const Face2:Class;
+		// public static const Face3:Class;
+		// public static const Face4:Class;
+		
+		[Embed(source='../img/level_04/hface1.png')]
+		public static const Face5:Class;
+		
+		[Embed(source='../img/level_04/hface2.png')]
+		public static const Face6:Class;
+		
+		[Embed(source='../img/level_04/hface3.png')]
+		public static const Face7:Class;
+		
+		
+		// ############################
+		// ######### Level_05 #########
+		// ############################
+		
+		[Embed(source='../img/level_05/box_blue.png')]
 		public static const BoxBlue:Class;
 		
-		[Embed(source='../img/level_04/box_red.png')]
+		[Embed(source='../img/level_05/box_red.png')]
 		public static const BoxRed:Class;
 		
-		[Embed(source='../img/level_04/box_green.png')]
+		[Embed(source='../img/level_05/box_green.png')]
 		public static const BoxGreen:Class;
 		
-		[Embed(source='../img/level_04/pill_blue.png')]
+		[Embed(source='../img/level_05/pill_blue.png')]
 		public static const PillBlue:Class;
 		
-		[Embed(source='../img/level_04/pill_red.png')]
+		[Embed(source='../img/level_05/pill_red.png')]
 		public static const PillRed:Class;
 		
-		[Embed(source='../img/level_04/pill_green.png')]
+		[Embed(source='../img/level_05/pill_green.png')]
 		public static const PillGreen:Class;
 		
 		// ############################
