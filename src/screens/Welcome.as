@@ -38,12 +38,12 @@ package screens
 			this.addChild(bg);
 			
 			logo = new Image(Assets.getTexture("Logo"));
-			logo.x = 127;
+			logo.x = ((480 / 2) - (logo.width / 2));
 			logo.y = 25;
 			this.addChild(logo);
 			
 			playBtn = new Button(Assets.getTexture("StartBtn"));
-			playBtn.x = 100;
+			playBtn.x = ((480 / 2) - (playBtn.width / 2));
 			playBtn.y = 255;
 			playBtn.addEventListener(TouchEvent.TOUCH, this.onStartButtonClicked);
 			this.addChild(playBtn);

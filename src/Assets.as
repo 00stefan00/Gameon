@@ -103,7 +103,6 @@ package
 		[Embed(source='../img/level_04/hface3.png')]
 		public static const Face7:Class;
 		
-		
 		// ############################
 		// ######### Level_05 #########
 		// ############################
@@ -136,6 +135,27 @@ package
 		public static const SickFace:Class;
 		
 		// ############################
+		// ######### Level_07 #########
+		// ############################
+		
+		// Re-Usable meds from 5th lvl
+		//public static const PillBlue:Class;		
+		//public static const PillRed:Class;
+		//public static const PillGreen:Class;
+		
+		[Embed(source='../img/level_07/randomObj1.png')]
+		public static const RandomObj1:Class;
+		
+		[Embed(source='../img/level_07/randomObj2.png')]
+		public static const RandomObj2:Class;
+		
+		[Embed(source='../img/level_07/randomObj3.png')]
+		public static const RandomObj3:Class;
+		
+		[Embed(source='../img/level_07/benson_catching.png')]
+		public static const Benson:Class;
+		
+		// ############################
 		// ########### menu ###########
 		// ############################
 		
@@ -163,9 +183,9 @@ package
 		[Embed(source='../img/menu/confirm.png')]
 		public static const Confirm:Class;
 		
-		// ############################
+		// ##################################
 		// ########### menu/texts ###########
-		// ############################
+		// ##################################
 		
 		[Embed(source='../img/menu/texts/level00_end.png')]
 		public static const Text00e:Class;
@@ -224,9 +244,9 @@ package
 		[Embed(source='../img/menu/texts/game_over.png')]
 		public static const GameOver:Class;
 		
-		// ############################
+		// ##############################
 		// ######### MAINSCREEN #########
-		// ############################
+		// ##############################
 		
 		[Embed(source='../img/mainscreen/arrow_left.png')]
 		public static const ArrowLeft:Class;

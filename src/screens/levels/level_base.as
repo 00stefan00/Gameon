@@ -28,6 +28,7 @@ package screens.levels
 		private var myTimer:Timer
 		private var gaugeRatio:Number = 0.0025;
 		private var levelName:String;
+		public var noTimerLose:Boolean = false;
 		
 		public function level_base(main:GameScreen)
 		{
@@ -41,14 +42,19 @@ package screens.levels
 			myTimer.addEventListener(TimerEvent.TIMER, timerListener);
 		}
 		
-		public function afterInit():void {
+		public function afterInit():void
+		{
 			var menu:Menu = new Menu(main, getTimer(), "Start");
 			addChild(menu);
 		}
-				
-		private function gameLost():void {
-			var menu:Menu = new Menu(main, getTimer(), "Lose");
-			addChild(menu);
+		
+		private function gameLost():void
+		{
+			if (!noTimerLose)
+			{
+				var menu:Menu = new Menu(main, getTimer(), "Lose");
+				addChild(menu);
+			}
 		}
 		
 		public function setLevelName(name:String):void
