@@ -18,6 +18,9 @@ package
 		[Embed(source="../audio/bgm1.mp3")]
 		public static const BGMusic:Class;
 		
+		[Embed(source="../audio/drum.mp3")]
+		public static const LvlMusic:Class;
+		
 		private static var soundDict:Dictionary = new Dictionary();
 		
 		public static function getSound(name:String):Sound

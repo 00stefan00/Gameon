@@ -54,7 +54,7 @@
 		
 		public function pause():void
 		{
-			paused = true;
+			paused = true
 		}
 		
 		public function unpause():void
