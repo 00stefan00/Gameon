@@ -81,6 +81,16 @@ package
 		// ############################
 		// ######### Level_03 #########
 		// ############################
+		
+		[Embed(source='../img/level_03/doctor.png')]
+		public static const Doctor:Class;
+		
+		[Embed(source='../img/level_03/hippo.png')]
+		public static const Hippo:Class;
+		
+		[Embed(source='../img/level_03/bird.png')]
+		public static const Bird:Class;		
+		
 		[Embed(source='../img/level_03/door.png')]
 		public static const Door:Class;
 		
