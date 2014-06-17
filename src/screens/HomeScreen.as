@@ -89,8 +89,8 @@ package screens
 			{
 				arrow = new Image(Assets.getTexture("ArrowRight"));
 				arrow.name = "arrow_right";
-				arrow.x = 315;
-				arrow.y = 105;
+				arrow.x = 310;
+				arrow.y = 120;
 				this.addChild(arrow);
 				arrow.addEventListener(TouchEvent.TOUCH, onArrowRight)
 			}
@@ -99,8 +99,8 @@ package screens
 			{
 				arrow = new Image(Assets.getTexture("ArrowLeft"));
 				arrow.name = "arrow_left"
-				arrow.x = 1;
-				arrow.y = 105;
+				arrow.x = 5;
+				arrow.y = 120;
 				this.addChild(arrow);
 				arrow.addEventListener(TouchEvent.TOUCH, onArrowLeft)
 			}
@@ -169,22 +169,22 @@ package screens
 			if (number == 0)
 			{
 				miniGame.x = 50;
-				miniGame.y = 30;
+				miniGame.y = 40;
 			}
 			else if (number == 1)
 			{
 				miniGame.x = 190;
-				miniGame.y = 30;
+				miniGame.y = 40;
 			}
 			else if (number == 2)
 			{
 				miniGame.x = 50;
-				miniGame.y = 190;
+				miniGame.y = 180;
 			}
 			else if (number == 3)
 			{
 				miniGame.x = 190;
-				miniGame.y = 190;
+				miniGame.y = 180;
 			}
 			
 			miniGame.addEventListener(TouchEvent.TOUCH, onGamePressed(number));

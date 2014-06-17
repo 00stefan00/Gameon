@@ -166,6 +166,40 @@ package
 		public static const Benson:Class;
 		
 		// ############################
+		// ######### Level_BONUS #########
+		// ############################
+		
+		[Embed(source='../img/level_bonus/fish2.png')]
+		public static const Obj1:Class;
+		
+		[Embed(source='../img/level_bonus/football.png')]
+		public static const Obj2:Class;
+		
+		[Embed(source='../img/level_bonus/movieboard.png')]
+		public static const Obj3:Class;
+		
+		[Embed(source='../img/level_03/hippo.png')]
+		public static const Obj4:Class;
+		
+		[Embed(source='../img/level_03/doctor.png')]
+		public static const Obj5:Class;
+		
+		[Embed(source='../img/level_bonus/hospital1.png')]
+		public static const Obj6:Class;
+		
+		[Embed(source='../img/level_01/bed1.png')]
+		public static const Obj7:Class;
+		
+		[Embed(source='../img/level_01/bed3.png')]
+		public static const Obj8:Class;
+		
+		[Embed(source='../img/level_bonus/sleeping.png')]
+		public static const Obj9:Class;
+		
+		
+		
+		
+		// ############################
 		// ########### menu ###########
 		// ############################
 		
@@ -284,19 +318,19 @@ package
 		[Embed(source='../img/mainscreen/levels/levelbox.png')]
 		public static const Level03:Class;
 		
-		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		[Embed(source='../img/mainscreen/levels/level04.png')]
 		public static const Level04:Class;
 		
-		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		[Embed(source='../img/mainscreen/levels/level05.png')]
 		public static const Level05:Class;
 		
 		[Embed(source='../img/mainscreen/levels/level06.png')]
 		public static const Level06:Class;
 		
-		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		[Embed(source='../img/mainscreen/levels/level07.png')]
 		public static const Level07:Class;
 		
-		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		[Embed(source='../img/mainscreen/levels/bonus.png')]
 		public static const Level08:Class;
 		// All assets listed and put into variables
 		

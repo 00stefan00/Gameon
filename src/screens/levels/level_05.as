@@ -11,6 +11,9 @@ package screens.levels
 	import starling.events.Touch;
 	import flash.geom.Point;
 	
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
+	
 	public class level_05 extends level_base
 	{
 		private var bg:Image;
@@ -19,6 +22,11 @@ package screens.levels
 		private var box_green:Image;
 		private var score:Number;
 		import screens.Menu;
+		
+		private var lvlmusic:Sound;
+		private var correct:Sound;
+		private var wrong:Sound;
+		private var lvlChannel:SoundChannel; 
 		
 		public function level_05(main:GameScreen)
 		{
@@ -38,6 +46,10 @@ package screens.levels
 			score = 0;
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
+			
+			correct = AudioSources.getSound("Correct");
+			wrong = AudioSources.getSound("Wrong");
+			startLevelMusic();
 			
 			box_blue = new Image(Assets.getTexture("BoxBlue"));
 			box_red = new Image(Assets.getTexture("BoxRed"));
@@ -101,11 +113,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
+					correct.play(0, 1);
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
+					wrong.play(0,1);
 				}
 			}
 			else if (detectCollision(pill, box_red))
@@ -114,11 +128,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
+					correct.play(0, 1);
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
+					wrong.play(0,1);
 				}
 			}
 			else if (detectCollision(pill, box_green))
@@ -127,11 +143,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
+					correct.play(0, 1);
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
+					wrong.play(0,1);
 				}
 			}
 			else
@@ -143,6 +161,7 @@ package screens.levels
 				pauseTimer();
 				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30));
 				addChild(menu);
+				lvlChannel.stop();
 			}
 		
 		}
@@ -165,8 +184,17 @@ package screens.levels
 			var y:Number = (Math.random() * 160) + 60;
 			var rotation:Number = (Math.random() * 180);
 			
-			setToCoords(makeResizedImg(pill, 30, 15), x, y);
+			setToCoords(pill, x, y);
 			pill.rotation = rotation;
+		}
+		
+		/**
+		 * SOUNDS
+		 */
+		private function startLevelMusic():void 
+		{
+			lvlmusic = AudioSources.getSound("LvlMusic");
+			lvlChannel = lvlmusic.play(0, 1000);
 		}
 	}
 

@@ -8,6 +8,10 @@
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.events.Event;
+	import screens.Menu;
+	
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
 	
 	public class level_06 extends level_base
 	{
@@ -17,7 +21,11 @@
 		private var collisionTimer:Timer;
 		private var victory:Boolean;
 		private var paused:Boolean = false;
-		import screens.Menu;
+		
+		private var lvlmusic:Sound;
+		private var correct:Sound;
+		private var wrong:Sound;
+		private var lvlChannel:SoundChannel; 
 		
 		public function level_06(main:GameScreen)
 		{
@@ -38,6 +46,10 @@
 			bg = new Image(Assets.getTexture("Background"));
 			bg.addEventListener(TouchEvent.TOUCH, gameStart)
 			addChild(bg);
+			
+			correct = AudioSources.getSound("Correct");
+			wrong = AudioSources.getSound("Wrong");
+			startLevelMusic();
 			
 			for (var i:int = 0; i < sickFaces; i++)
 			{
@@ -103,6 +115,7 @@
 				pauseGame();
 				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(10));
 				addChild(menu);
+				lvlChannel.stop();
 				this.removeEventListener(Event.ENTER_FRAME, onNewFrame)
 			}
 		}
@@ -114,11 +127,13 @@
 				if (sickFacesArray.indexOf(event.currentTarget) > 0)
 				{
 					removeTicks(50);
+					wrong.play(0,1);
 					
 				}
 				else
 				{
 					healthyFacesArray.pop();
+					correct.play(0,1);
 					removeChild(event.currentTarget as Image);
 				}
 			}
@@ -130,6 +145,15 @@
 				continueGame();
 				bg.removeEventListeners();
 			}
+		}
+		
+		/**
+		 * SOUNDS
+		 */
+		private function startLevelMusic():void 
+		{
+			lvlmusic = AudioSources.getSound("LvlMusic");
+			lvlChannel = lvlmusic.play(0, 1000);
 		}
 	
 	}

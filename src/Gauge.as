@@ -5,6 +5,7 @@ package
     import starling.display.Image;
     import starling.display.Sprite;
     import starling.textures.Texture;
+	
     
     public class Gauge extends Sprite
     {

@@ -16,6 +16,9 @@ package screens.levels
 	import starling.events.TouchPhase;
 	import starling.events.Event;
 	
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
+	
 	public class level_00 extends level_base
 	{
 		private var bg:Image;
@@ -32,6 +35,12 @@ package screens.levels
 		private var char2Count:Number = 0;
 		private var char3Count:Number = 0;
 		private var char4Count:Number = 0;
+		
+		private var lvlmusic:Sound;
+		private var correct:Sound;
+		private var wrong:Sound;
+		private var lvlChannel:SoundChannel; 
+
 		
 		public function level_00(main:GameScreen)
 		{
@@ -50,6 +59,9 @@ package screens.levels
 		{
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
+			correct = AudioSources.getSound("Correct");
+			wrong = AudioSources.getSound("Wrong");
+			startLevelMusic();
 			
 			char1 = new Image(Assets.getTexture("Face1"));
 			char2 = new Image(Assets.getTexture("Face2"));
@@ -112,7 +124,8 @@ package screens.levels
 					if (char1Count > (30 * seconds)) {
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 32, 75);
 						charDict[1] = true;
-					}					
+					}				
+					
 				}
 				else if (detectCollision(thermometer, char2))
 				{
@@ -150,6 +163,7 @@ package screens.levels
 					pauseTimer();
 					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30));
 					addChild(menu);
+					lvlChannel.stop();
 					this.removeEventListener(Event.ENTER_FRAME, handleCollision)
 				}
 			}
@@ -160,6 +174,15 @@ package screens.levels
 			return object1.getBounds(object1.parent).intersects(object2.getBounds(object2.parent))
 		}
 	
+		/**
+		 * SOUNDS
+		 */
+		private function startLevelMusic():void 
+		{
+			lvlmusic = AudioSources.getSound("LvlMusic");
+			lvlChannel = lvlmusic.play(0, 1000);
+		}
+		
 	}
 
 }

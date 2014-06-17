@@ -21,6 +21,15 @@ package
 		[Embed(source="../audio/drum.mp3")]
 		public static const LvlMusic:Class;
 		
+		[Embed(source="../audio/correct.mp3")]
+		public static const Correct:Class;
+		
+		[Embed(source="../audio/wrong.mp3")]
+		public static const Wrong:Class;
+		
+		[Embed(source="../audio/timer.mp3")]
+		public static const Timer:Class;
+		
 		private static var soundDict:Dictionary = new Dictionary();
 		
 		public static function getSound(name:String):Sound

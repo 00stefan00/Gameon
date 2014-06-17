@@ -15,6 +15,9 @@ package screens.levels
 	import screens.Menu;
 	import util.Config;
 	
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
+	
 	public class level_07 extends level_base
 	{
 		private var bg:Image;
@@ -23,6 +26,11 @@ package screens.levels
 		private var spawnsDict:Dictionary;
 		private var score:Number = 0;
 		private var spawnReset:Number = 0;
+		
+		private var lvlmusic:Sound;
+		private var correct:Sound;
+		private var wrong:Sound;
+		private var lvlChannel:SoundChannel; 
 		
 		public function level_07(main:GameScreen)
 		{
@@ -42,7 +50,12 @@ package screens.levels
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			
-			benson = makeResizedImg(new Image(Assets.getTexture("Benson")), 80, 132);
+			correct = AudioSources.getSound("Correct");
+			wrong = AudioSources.getSound("Wrong");
+			startLevelMusic();
+			
+			//benson = makeResizedImg(new Image(Assets.getTexture("Benson")), 80, 132);
+			benson = new Image(Assets.getTexture("Benson"));
 			setToCoords(benson, ((480 / 2) - (benson.width / 2)), 235);
 			addChild(benson);
 			benson.addEventListener(TouchEvent.TOUCH, onBensonTouch);
@@ -98,6 +111,7 @@ package screens.levels
 			if (getGaugeRatio() < 0.01) {
 				var menu:Menu = new Menu(main, getTimer(), "Victory", score/Config.MEDS_NEEDED_PER_HEART);
 				addChild(menu);				
+				lvlChannel.stop();
 				this.removeEventListener(EnterFrameEvent.ENTER_FRAME, onFrame);
 			}
 		}
@@ -126,7 +140,7 @@ package screens.levels
 			var img:Image = getRandomItem();
 			var x:Number = (Math.random() * 460) + 10;
 			
-			setToCoords(makeResizedImg(img, 40, 40), x, 1);
+			setToCoords(img, x, 1);
 		}
 		
 		private function getRandomItem():Image
@@ -134,7 +148,7 @@ package screens.levels
 			{
 				var randomValue:Number = Math.floor(Math.random() * 6);
 				var image:Image = new Image(Assets.getTexture("" + itemDict[randomValue]));
-				if (randomValue < 4)
+				if (randomValue < 3)
 				{
 					image.name = "Med"
 				}
@@ -213,6 +227,7 @@ package screens.levels
 				spawnItem();
 				addTicks(15);
 				score++;
+				correct.play(0, 1);
 			}
 			else if (img.name == "RandomItem")
 			{
@@ -221,8 +236,19 @@ package screens.levels
 				
 				spawnItem();
 				removeTicks(50);
+				wrong.play(0, 1);
 			}
 		}
+		
+		/**
+		 * SOUNDS
+		 */
+		private function startLevelMusic():void 
+		{
+			lvlmusic = AudioSources.getSound("LvlMusic");
+			lvlChannel = lvlmusic.play(0, 1000);
+		}
+	
 	
 	}
 }
