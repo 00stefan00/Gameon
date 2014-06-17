@@ -105,14 +105,14 @@ package screens
 		
 			var level:String = main.getCurrentScreenName().split("_")[1];
 			menuText = new Image(Assets.getTexture("Text"+level+"e"));
-			setToCoords(menuText, 40, 110)
+			setToCoords(menuText, (480 / 2) - (menuText.width / 2), 110)
 			main.setLevelScore(new Number(level), score);
 		}
 	
 		private function addIntroText():void {
 			var level:String = main.getCurrentScreenName().split("_")[1];
 			menuText = new Image(Assets.getTexture("Text"+level+"s"));
-			setToCoords(menuText, 40, 110);
+			setToCoords(menuText, (480 / 2) - (menuText.width / 2), 110);
 			
 			redoBtn.dispose();
 			removeChild(redoBtn);

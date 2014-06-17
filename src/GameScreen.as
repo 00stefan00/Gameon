@@ -20,8 +20,7 @@ package
 		private var screenWelcome:Welcome;
 		private var currentScreenName:String;
 		private static var mainMenu:HomeScreen;
-		private static var gameCount:Number = 9 - 1;
-		
+		private static var gameCount:Number = 9 - 1;		
 		private var scoreDict:Dictionary = new Dictionary();
 		
 		public function GameScreen()
@@ -116,6 +115,15 @@ package
 			{
 				scoreDict[level] = score;
 			}
+		}
+		
+		public function getTotalScore():Number
+		{
+			var totalScore:Number = 0;
+			for each(var level:Number in scoreDict) {
+				totalScore + scoreDict[level];
+			}
+			return totalScore;
 		}
 	}
 }
