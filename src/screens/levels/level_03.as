@@ -6,6 +6,8 @@ package screens.levels
 	 * the door level
 	 */
 	import flash.desktop.InteractiveIcon;
+	import flash.events.TimerEvent;
+	import flash.utils.Dictionary;
 	import flash.utils.Timer;
 	import starling.display.Image;
 	import screens.levels.level_base;
@@ -17,281 +19,244 @@ package screens.levels
 	import com.greensock.TweenMax;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
-	
-	
+	import screens.Menu;
+	import flash.utils.Timer;
 	
 	public class level_03 extends level_base
 	{
-		private var bg:Image;
-		private var bird:Image;
-		private var hippo:Image;
-		private var doctor:Image;
-		private var collisionTimer:Timer;
-		private var victory:Boolean;
-		private var paused:Boolean = false;
-		private var session:Number;
-		import screens.Menu;
 		private var lvlmusic:Sound;
-		private var lvlChannel:SoundChannel; 
+		private var lvlChannel:SoundChannel;
 		private var doorsArray:Array;
-		private var animCount:int = 5;
-		private var counter:Number = 0;
-		private var counterPaused:Boolean = false;
-		
-		
+		private var margin:int = 100;
+		private var doorDict:Dictionary;
+		private var doctor:Image;
+		private var doorsCreated:Boolean = false;
+		private var waitingForInput:Boolean = false;
+		private var score:Number = 0;
+		private var victory:Boolean = false;
+		private var img:Image;
 		
 		public function level_03(main:GameScreen)
 		{
 			super(main);
 			initialize();
-			addGauge();
-			addMenuButton();
+			
 			setLevelName("level_03");
 			afterInit();
-		
+			
+			addGauge();
+			addMenuButton();
 		}
-		
 		
 		/**
 		 * Initializes the game by loading the background and the game
 		 */
 		private function initialize():void
 		{
+			addChild(new Image(Assets.getTexture("Background")));
 			
-			bg = new Image(Assets.getTexture("Background"));
 			startLevelMusic();
-			addChild(bg);
-			session = 0;
+			
 			doorsArray = new Array();
-			addEventListener(Event.ENTER_FRAME, pauseTimer);
-			//createBird();
-			//createHippo();
-			createDoctor();
+			doorDict = new Dictionary();
 			
-			addEventListener(Event.ENTER_FRAME, countSeconds);
-			
+			addEventListener(Event.ENTER_FRAME, onFrame);
+		
 		}
 		
-		private function countSeconds() :void {
-			trace ("counter working");
-			var seconds:Number = 3;
-			counter += 1;
-			
-				if (counter > (30 * seconds) && !paused ) 
-				{
+		private function onFrame():void
+		{
+			if (getTimer().running && !doorsCreated)
+			{
 				createDoors();
-				continueTimer();
-				
-				}
+				placeDoctor();
+				pauseTimer();
 			}
 			
-			
-		public function counterPause():void
-		{
-			paused = true
+			if (score == 3 && !victory)
+			{
+				victory = true;
+				this.removeEventListeners()
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
+				addChild(menu);
+			}
 		}
 		
+		private function placeDoctor():void
+		{
+			if (!victory)
+			{
+				for (var i:Number = 0; i < 3; i++)
+				{
+					if (doorDict[i].name == "correct")
+					{
+						doctor = new Image(Assets.getTexture("Doctor"));
+						setToCoords(doctor, doorDict[i].x, doorDict[i].y)
+					}
+				}
+				var counter:Timer = new Timer(5, 75);
+				counter.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
+				counter.start();
+			}
+		}
 		
+		private function placeResult(x:Number, y:Number, doc:Boolean = false):void
+		{
+			var name:String = new String("");
+			if (doc)
+			{
+				name = new String("Doctor")
+			}
+			else
+			{
+				if (Math.floor(Math.random() * 2) == 1)
+				{
+					name = new String("Bird");
+				}
+				else
+				{
+					name = new String("Hippo");
+				}
+			}
+			img = new Image(Assets.getTexture(name));
+			setToCoords(img, x, y);
+		}
 		
-		private function startLevelMusic():void {
+		private function showDoors():void
+		{
+			for each (var door:Image in doorDict)
+			{
+				doctor.dispose();
+				removeChild(doctor);
+				addChild(door);
+			}
+			animateDoors();
+		
+		}
+		
+		private function onTimerComplete(e:TimerEvent):void
+		{
+			showDoors();
+		}
+		
+		private function startLevelMusic():void
+		{
 			lvlmusic = AudioSources.getSound("LvlMusic");
 			lvlChannel = lvlmusic.play(0, 1000);
 		}
 		
-		
-		
-		private function createBird():void
-		{
-			
-			var margin:int = 100;
-			bird = new Image(Assets.getTexture("Bird"));
-			bird.x = 100 * 0 + margin;
-			bird.y = margin;
-			addChild(bird);
-			trace ("bird")
-			
-		}
-		
-		private function createHippo():void
-		{
-			var margin:int = 100;
-			hippo = new Image(Assets.getTexture("Hippo"));
-			hippo.x = 100 * 1 + margin;
-			hippo.y = margin;
-			addChild(hippo);
-			trace ("hippo")
-			
-		}
-		
-		private function createDoctor():void
-		{
-			
-			var margin:int = 100;
-			doctor = new Image(Assets.getTexture("Doctor"));
-			doctor.x = 100 * 2 + margin;
-			doctor.y = margin;
-			addChild(doctor);
-			trace ("doctor")
-			
-		}
-		
-		
 		private function createDoors():void
 		{
-			//removeChild(bird);
-			//removeChild(hippo);
+			for (var i:int = 0; i < 3; i++)
+			{
+				var door:Image = new Image(Assets.getTexture("Door"));
+				door.x = 100 * i + margin;
+				door.y = margin;
+				door.name = "wrong";
+				
+				doorsArray.push(door);
+				doorDict[i] = door;
+				
+				door.addEventListener(TouchEvent.TOUCH, onDoorTouched)
+			}
+			setRandomCorrectDoor();
+			doorsCreated = true;
+		}
+		
+		private function setRandomCorrectDoor():void
+		{
+			doorDict[Math.floor(Math.random() * 3)].name = "correct";
+		}
+		
+		private function onDoorTouched(e:TouchEvent):void
+		{
+			if (e.getTouch(this, TouchPhase.BEGAN) && waitingForInput)
+			{
+				var door:Image = e.currentTarget as Image;
+				if (door.name == "correct")
+				{
+					score++;
+					showResultsAndRestart();
+					placeResult(door.x, door.y, true);
+				}
+				else if (door.name == "wrong")
+				{
+					showResultsAndRestart();
+					placeResult(door.x, door.y);
+				}
+				removeDoors();
+			}
+		}
+		
+		private function showResultsAndRestart():void
+		{
+			pauseTimer();
+			var timer:Timer = new Timer(200, 5)
+			timer.addEventListener(TimerEvent.TIMER_COMPLETE, restart)
+			timer.start();
+		}
+		
+		private function removeDoors():void
+		{
+			for each (var door:Image in doorDict)
+			{
+				removeChild(door);
+			}
+		}
+		
+		private function restart(e:TimerEvent):void
+		{
+			removeChild(img);
 			removeChild(doctor);
-			counterPause();
-			if (session < 3)
-			{
-				
-				var margin:int = 100;
-				for (var i:int = 0; i < 3; i++)
-				{
-					// create door and store in variable
-					trace(session)
-					var door:Door = new Door(Assets.getTexture("Door"));
-					door.x = 100 * i + margin;
-					door.y = margin;
-					door.setCorrectness(false);
-					addChild(door);
-					doorsArray.push(door);
-					door.addEventListener(TouchEvent.TOUCH, choose)
-					
-				}
-				door.setCorrectness(true);
-				switchDoors();				
-			}
-			else
-			{
-				trace("Level ready");
-				checks();
-			}
+			doorsArray = new Array();
+			createDoors();
+			placeDoctor();
 		}
 		
-		//Tells if the door is true or false
-		private function choose(event:TouchEvent):void
+		private function animateDoors():void
 		{
-			if (event.getTouch(this, TouchPhase.BEGAN))
-			{
-				//trace( (event.currentTarget as Door).getCorrectness() );
-				var correctTarget:Boolean;
-				correctTarget = (event.currentTarget as Door).getCorrectness();
-				trace(correctTarget);
-				
-				if (correctTarget == false)
-				{
-					trace("wrong")
-					removeTicks(50);
-				}
-				else
-				{
-					trace("correct door!!")
-					session = session + 1;
-					for (var i:int = 0; i < 3*(session); i++)
-					{
-						var door:Image = doorsArray[i];
-						removeChild(door)
-						removeChild(doorsArray[i]);
-						trace("delete");
-					}
-					if (correctTarget == true) 
-					{
-						
-						var newx = (event.currentTarget as Door).x;
-						createDoctor();
-						doctor.x = newx;
-						paused = false;
-						counter = 0;
-						addEventListener(Event.ENTER_FRAME, countSeconds);
-										
-					} 
-					
-				}
-			}
+			waitingForInput = false;
+			pauseTimer();
+			var timer:Timer = new Timer(600, 8)
+			timer.addEventListener(TimerEvent.TIMER, onTick)
+			timer.addEventListener(TimerEvent.TIMER_COMPLETE, destroy)
+			timer.start();
 		
 		}
 		
-		//ANIMATION
-		
-		private function switchDoors():void
+		private function onTick(e:TimerEvent):void
 		{
-			
-			animCount = 10;
-			//trace("switchDoors works")
-			nextAnim();
-		
+			pickRandomDoorsAndAnimate();
 		}
 		
-		/**
-		 * start animation if the total times is not yet reached
-		 */
-		private function nextAnim():void
+		private function destroy(e:TimerEvent):void
 		{
-			//trace("animcount works")
-			if (animCount-- > 0)
-			{
-				pickRandomDoorsAndAnimate()
-			} 		
+			continueTimer();
+			e.currentTarget.removeEventListener(TimerEvent.TIMER_COMPLETE, destroy);
+			e.currentTarget.removeEventListener(TimerEvent.TIMER, onTick);
+			waitingForInput = true;
 		}
 		
 		private function pickRandomDoorsAndAnimate():void
 		{
-			//trace("random doors works");
 			var randomIndex:int = Math.floor(Math.random() * doorsArray.length);
-			var doorA:Door = doorsArray.splice(randomIndex, 1)[0];
-			
-			
+			var doorA:Image = doorsArray.splice(randomIndex, 1)[0];
 			
 			randomIndex = Math.floor(Math.random() * doorsArray.length);
-			var doorB:Door = doorsArray.splice(randomIndex, 1)[0];
-			
-			
-			
-			
+			var doorB:Image = doorsArray.splice(randomIndex, 1)[0];
 			
 			doorsArray.push(doorA, doorB);
-			//trace("READY TO MOVE")
 			moveDoor(doorA, doorB);
-			
-		
 		}
 		
-		private function moveDoor(doorA:Door, doorB:Door):void
+		private function moveDoor(doorA:Image, doorB:Image):void
 		{
-			//trace("move doors responds")
-		
 			var doorAToDoorBX:Number = doorB.x - doorA.x;
 			var doorBToDoorAX:Number = doorA.x - doorB.x;
 			
-		
-			TweenMax.to(doorA, 0.5, { bezierThrough:[{ x: doorA.x + doorAToDoorBX / 2, y: doorA.y + 100 }, { x: doorB.x, y: doorB.y }], delay: 0.1, onComplete: nextAnim });
-			TweenMax.to(doorB, 0.5, { bezierThrough:[{ x: doorB.x + doorBToDoorAX / 2, y: doorB.y - 100 }, { x: doorA.x, y: doorA.y }], delay: 0.1 });
-			
-			}
-		
-		//END OF THE GAME
-		
-		private function checks():void
-		{
-			checkScore();
+			TweenMax.to(doorA, 0.5, {bezierThrough: [{x: doorA.x + doorAToDoorBX / 2, y: doorA.y + 100}, {x: doorB.x, y: doorB.y}], delay: 0.1});
+			TweenMax.to(doorB, 0.5, {bezierThrough: [{x: doorB.x + doorBToDoorAX / 2, y: doorB.y - 100}, {x: doorA.x, y: doorA.y}], delay: 0.1});
 		}
-		
-		private function checkScore():void
-		{
-			//if (score > 14)
-			//{
-			pauseTimer();
-			removeEventListeners();
-			dispose();
-			var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
-			addChild(menu);
-			lvlChannel.stop();
-		
-			//}
-		}
-		
-		
 	
 	}
 
