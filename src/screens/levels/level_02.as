@@ -15,12 +15,10 @@ package screens.levels
 	public class level_02 extends level_base
 	{
 		private var bg:Image;
-
+		
 		private var funArray:Array;
 		private var boringArray:Array;
 		private var score:Number = 0;
-		
-			
 		
 		public function level_02(main:GameScreen)
 		{
@@ -30,7 +28,7 @@ package screens.levels
 			addMenuButton();
 			setLevelName("level_02");
 			afterInit();
-			
+		
 		}
 		
 		/**
@@ -42,7 +40,7 @@ package screens.levels
 			startLevelMusic();
 			addChild(bg);
 			
-			placeObjects();			
+			placeObjects();
 		}
 		
 		private function placeObjects():void
@@ -53,13 +51,16 @@ package screens.levels
 			
 			for (var i:Number = 0; i < 4; i++)
 			{
-				setToCoords(createRandomObject(), (16 + (i * 116)), 150 );
-				//setToCoords(makeResizedImg(createRandomObject(), 80, 80), (16 + (i * 116)), 150 );
+				setToCoords(createRandomObject(), (16 + (i * 116)), 150);
 			}
 			
+			if (funArray.length < 1) {
+				placeObjects();
+			}
+		
 		}
 		
-		private function removeObjects():void 
+		private function removeObjects():void
 		{
 			for each (var funObj:Image in funArray)
 			{
@@ -71,10 +72,10 @@ package screens.levels
 				boringObj.dispose();
 				removeChild(boringObj);
 			}
-			
+		
 		}
 		
-		private function createRandomObject():Image 
+		private function createRandomObject():Image
 		{
 			var randomValue:Number = Math.ceil(Math.random() * 9);
 			var image:Image = new Image(Assets.getTexture("Obj" + randomValue));
@@ -92,7 +93,7 @@ package screens.levels
 			return image;
 		}
 		
-		private function onObjTouch(e:TouchEvent):void 
+		private function onObjTouch(e:TouchEvent):void
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
@@ -106,32 +107,28 @@ package screens.levels
 					funArray.pop();
 					score++;
 				}
-				
-				if (object.name == "Boring")
+				else if (object.name == "Boring")
 				{
 					playWrongSound();
 					removeTicks(50);
 				}
 				
-				if (funArray.length < 1) {
-						placeObjects();
+				if (funArray.length < 1)
+				{
+					placeObjects();
 				}
 				
 				if (score > 14)
 				{
-				pauseTimer();
-				removeEventListeners();
-				dispose();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
-				addChild(menu);
-				stopLevelMusic();
+					pauseTimer();
+					removeEventListeners();
+					dispose();
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
+					addChild(menu);
+					stopLevelMusic();
 				}
 			}
 		}
-		
-	
-		
-
 	
 	}
 

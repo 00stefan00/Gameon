@@ -59,7 +59,7 @@ package screens.levels
 		{
 			if (!noTimerLose)
 			{
-				var menu:Menu = new Menu(main, getTimer(), "Lose");
+				var menu:Menu = new Menu(main, getTimer(), "Lose", null, lvlChannel);
 				addChild(menu);
 			}
 		}
