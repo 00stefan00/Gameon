@@ -22,8 +22,7 @@
 		private var victory:Boolean;
 		private var paused:Boolean = false;
 		
-		private var lvlmusic:Sound;
-		private var lvlChannel:SoundChannel; 
+
 		
 		public function level_06(main:GameScreen)
 		{
@@ -109,9 +108,9 @@
 			{
 				victory = true;
 				pauseGame();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(10));
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(10), getMusicChannel());
 				addChild(menu);
-				lvlChannel.stop();
+				stopLevelMusic();
 				this.removeEventListener(Event.ENTER_FRAME, onNewFrame)
 			}
 		}
@@ -143,14 +142,7 @@
 			}
 		}
 		
-		/**
-		 * SOUNDS
-		 */
-		private function startLevelMusic():void 
-		{
-			lvlmusic = AudioSources.getSound("LvlMusic");
-			lvlChannel = lvlmusic.play(0, 1000);
-		}
+
 	
 	}
 

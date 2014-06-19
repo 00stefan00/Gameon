@@ -28,8 +28,7 @@ package screens.levels
 		private var bedCount:Number = 0;
 		private var score:Number;
 		
-		private var lvlmusic:Sound;
-		private var lvlChannel:SoundChannel; 
+
 		
 		public function level_01(main:GameScreen)
 		{
@@ -152,9 +151,9 @@ package screens.levels
 				pauseTimer();
 				removeEventListeners();
 				dispose();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
 				addChild(menu);
-				lvlChannel.stop();
+				stopLevelMusic();
 				
 			}
 		}
@@ -192,14 +191,7 @@ package screens.levels
 			return nrImage
 		}
 		
-		/**
-		 * SOUNDS
-		 */
-		private function startLevelMusic():void 
-		{
-			lvlmusic = AudioSources.getSound("LvlMusic");
-			lvlChannel = lvlmusic.play(0, 1000);
-		}
+
 	
 	}
 

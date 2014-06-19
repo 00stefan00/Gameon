@@ -27,8 +27,6 @@ package screens.levels
 		private var score:Number = 0;
 		private var spawnReset:Number = 0;
 		
-		private var lvlmusic:Sound;
-		private var lvlChannel:SoundChannel; 
 		
 		public function level_07(main:GameScreen)
 		{
@@ -105,9 +103,9 @@ package screens.levels
 				checkForCollisions();
 			}
 			if (getGaugeRatio() < 0.01) {
-				var menu:Menu = new Menu(main, getTimer(), "Victory", score/Config.MEDS_NEEDED_PER_HEART);
+				var menu:Menu = new Menu(main, getTimer(), "Victory", score/Config.MEDS_NEEDED_PER_HEART, getMusicChannel());
 				addChild(menu);				
-				lvlChannel.stop();
+				stopLevelMusic();
 				this.removeEventListener(EnterFrameEvent.ENTER_FRAME, onFrame);
 			}
 		}
@@ -235,16 +233,5 @@ package screens.levels
 				playWrongSound();
 			}
 		}
-		
-		/**
-		 * SOUNDS
-		 */
-		private function startLevelMusic():void 
-		{
-			lvlmusic = AudioSources.getSound("LvlMusic");
-			lvlChannel = lvlmusic.play(0, 1000);
-		}
-	
-	
 	}
 }

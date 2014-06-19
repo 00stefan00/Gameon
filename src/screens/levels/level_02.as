@@ -15,8 +15,7 @@ package screens.levels
 	public class level_02 extends level_base
 	{
 		private var bg:Image;
-		private var lvlmusic:Sound;
-		private var lvlChannel:SoundChannel; 
+
 		private var funArray:Array;
 		private var boringArray:Array;
 		private var score:Number = 0;
@@ -43,9 +42,7 @@ package screens.levels
 			startLevelMusic();
 			addChild(bg);
 			
-			placeObjects();
-			
-			
+			placeObjects();			
 		}
 		
 		private function placeObjects():void
@@ -125,23 +122,16 @@ package screens.levels
 				pauseTimer();
 				removeEventListeners();
 				dispose();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
 				addChild(menu);
-				lvlChannel.stop();
+				stopLevelMusic();
 				}
 			}
 		}
 		
 	
 		
-		/**
-		 * SOUNDS
-		 */
-		private function startLevelMusic():void 
-		{
-			lvlmusic = AudioSources.getSound("LvlMusic");
-			lvlChannel = lvlmusic.play(0, 1000);
-		}
+
 	
 	}
 
