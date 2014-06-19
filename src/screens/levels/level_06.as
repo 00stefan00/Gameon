@@ -23,8 +23,6 @@
 		private var paused:Boolean = false;
 		
 		private var lvlmusic:Sound;
-		private var correct:Sound;
-		private var wrong:Sound;
 		private var lvlChannel:SoundChannel; 
 		
 		public function level_06(main:GameScreen)
@@ -47,8 +45,6 @@
 			bg.addEventListener(TouchEvent.TOUCH, gameStart)
 			addChild(bg);
 			
-			correct = AudioSources.getSound("Correct");
-			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
 			
 			for (var i:int = 0; i < sickFaces; i++)
@@ -127,13 +123,13 @@
 				if (sickFacesArray.indexOf(event.currentTarget) > 0)
 				{
 					removeTicks(50);
-					wrong.play(0,1);
+					playWrongSound();
 					
 				}
 				else
 				{
 					healthyFacesArray.pop();
-					correct.play(0,1);
+					playCorrectSound();
 					removeChild(event.currentTarget as Image);
 				}
 			}

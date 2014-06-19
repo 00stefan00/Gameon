@@ -37,8 +37,6 @@ package screens.levels
 		private var char4Count:Number = 0;
 		
 		private var lvlmusic:Sound;
-		private var correct:Sound;
-		private var wrong:Sound;
 		private var lvlChannel:SoundChannel; 
 
 		
@@ -59,8 +57,6 @@ package screens.levels
 		{
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
-			correct = AudioSources.getSound("Correct");
-			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
 			
 			char1 = new Image(Assets.getTexture("Face1"));
@@ -118,35 +114,39 @@ package screens.levels
 			var seconds:Number = 3;
 			if (firstTouched)
 			{
-				if (detectCollision(thermometer, char1))
+				if (detectCollision(thermometer, char1) && !charDict[1])
 				{
 					char1Count += 1;
 					if (char1Count > (30 * seconds)) {
+						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 32, 75);
 						charDict[1] = true;
 					}				
 					
 				}
-				else if (detectCollision(thermometer, char2))
+				else if (detectCollision(thermometer, char2) && !charDict[2])
 				{
 					char2Count += 1;
 					if (char2Count > (30 * seconds)) {
+						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 144, 75);
 						charDict[2] = true;
 					}					
 				}
-				else if (detectCollision(thermometer, char3))
+				else if (detectCollision(thermometer, char3) && !charDict[3])
 				{
 					char3Count += 1;
 					if (char3Count > (30 * seconds)) {
+						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 256, 75);
 						charDict[3] = true;
 					}					
 				}
-				else if (detectCollision(thermometer, char4))
+				else if (detectCollision(thermometer, char4) && !charDict[4])
 				{
 					char4Count += 1;
 					if (char4Count > (30 * seconds)) {
+						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 368, 75);
 						charDict[4] = true;
 					}					

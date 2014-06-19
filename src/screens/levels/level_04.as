@@ -21,8 +21,6 @@ package screens.levels
 		private var score:Number = 0;
 		
 		private var lvlmusic:Sound;
-		private var correct:Sound;
-		private var wrong:Sound;
 		private var lvlChannel:SoundChannel; 
 		
 		public function level_04(main:GameScreen)
@@ -43,8 +41,6 @@ package screens.levels
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			
-			correct = AudioSources.getSound("Correct");
-			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
 			
 			putfaces();
@@ -107,13 +103,13 @@ package screens.levels
 					face.dispose();
 					removeChild(face);
 					sickFaceArray.pop();
-					correct.play(0,1);
+					playCorrectSound();
 					score++;
 				}
 				if (face.name == "Healthy")
 				{
 					removeTicks(50);
-					wrong.play(0,1);
+					playWrongSound();
 				}
 				if (score == 18) {
 					pauseTimer();

@@ -11,6 +11,8 @@ package screens.levels
 	
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
 	
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
@@ -29,6 +31,8 @@ package screens.levels
 		private var gaugeRatio:Number = 0.0025;
 		private var levelName:String;
 		public var noTimerLose:Boolean = false;
+		private var sound:Sound;
+		private var audioChannel:SoundChannel;
 		
 		public function level_base(main:GameScreen)
 		{
@@ -197,6 +201,17 @@ package screens.levels
 				gaugeScore -= gaugeDecrease;
 			}
 			return i;
+		}
+		
+		public function playCorrectSound():void
+		{
+			sound = AudioSources.getSound("Correct");
+			audioChannel = sound.play(0, 1);
+		}
+		public function playWrongSound():void
+		{
+			sound = AudioSources.getSound("Wrong");
+			audioChannel = sound.play(0, 1);
 		}
 	}
 }

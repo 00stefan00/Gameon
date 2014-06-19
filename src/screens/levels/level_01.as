@@ -29,8 +29,6 @@ package screens.levels
 		private var score:Number;
 		
 		private var lvlmusic:Sound;
-		private var correct:Sound;
-		private var wrong:Sound;
 		private var lvlChannel:SoundChannel; 
 		
 		public function level_01(main:GameScreen)
@@ -55,11 +53,7 @@ package screens.levels
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			
-			correct = AudioSources.getSound("Correct");
-			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
-			
-			
 			placeBeds();
 			
 			score = 0;
@@ -97,13 +91,13 @@ package screens.levels
 							removeChild(bedDict[i]);
 							removeChild(nrDict[i]);
 							bedCount--;
-							correct.play(0,1);
+							playCorrectSound();
 							score++;
 						}
 						else
 						{
 							removeTicks(40);
-							wrong.play(0,1);
+							playWrongSound();
 						}
 						
 					}
@@ -126,13 +120,13 @@ package screens.levels
 							removeChild(bedDict[i]);
 							removeChild(nrDict[i]);
 							bedCount--;
-							correct.play(0,1);
+							playCorrectSound();
 							score++;
 						}
 						else
 						{
 							removeTicks(40);
-							wrong.play(0,1);
+							playWrongSound();
 						}
 						
 					}
