@@ -77,6 +77,7 @@ package screens.levels
 				
 				var nrImage:Image = getRandomNr()
 				setToCoords(nrImage, (16 + (i * 116)), 90);
+				nrImage.addEventListener(TouchEvent.TOUCH, touchedNr);
 				nrDict[i] = nrImage;
 			}
 		}
@@ -88,6 +89,35 @@ package screens.levels
 				for (var i:Number = 0; i < 4; i++)
 				{
 					if (bedDict[i] == event.currentTarget)
+					{
+						var nr:Image = nrDict[i];
+						if (checkNr(nr.name))
+						{
+							bedDict[i].dispose();
+							removeChild(bedDict[i]);
+							removeChild(nrDict[i]);
+							bedCount--;
+							correct.play(0,1);
+							score++;
+						}
+						else
+						{
+							removeTicks(40);
+							wrong.play(0,1);
+						}
+						
+					}
+				}
+			}
+		}
+		
+		private function touchedNr(event:TouchEvent):void
+		{
+			if (event.getTouch(this, TouchPhase.BEGAN))
+			{
+				for (var i:Number = 0; i < 4; i++)
+				{
+					if (nrDict[i] == event.currentTarget)
 					{
 						var nr:Image = nrDict[i];
 						if (checkNr(nr.name))
