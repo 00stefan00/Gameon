@@ -24,8 +24,6 @@ package screens.levels
 		import screens.Menu;
 		
 		private var lvlmusic:Sound;
-		private var correct:Sound;
-		private var wrong:Sound;
 		private var lvlChannel:SoundChannel; 
 		
 		public function level_05(main:GameScreen)
@@ -47,8 +45,6 @@ package screens.levels
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			
-			correct = AudioSources.getSound("Correct");
-			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
 			
 			box_blue = new Image(Assets.getTexture("BoxBlue"));
@@ -113,13 +109,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
-					correct.play(0, 1);
+					playCorrectSound();
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
-					wrong.play(0,1);
+					playWrongSound();
 				}
 			}
 			else if (detectCollision(pill, box_red))
@@ -128,13 +124,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
-					correct.play(0, 1);
+					playCorrectSound();
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
-					wrong.play(0,1);
+					playWrongSound();
 				}
 			}
 			else if (detectCollision(pill, box_green))
@@ -143,13 +139,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
-					correct.play(0, 1);
+					playCorrectSound();
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
-					wrong.play(0,1);
+					playWrongSound();
 				}
 			}
 			else

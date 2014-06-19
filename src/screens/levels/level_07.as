@@ -28,8 +28,6 @@ package screens.levels
 		private var spawnReset:Number = 0;
 		
 		private var lvlmusic:Sound;
-		private var correct:Sound;
-		private var wrong:Sound;
 		private var lvlChannel:SoundChannel; 
 		
 		public function level_07(main:GameScreen)
@@ -50,8 +48,6 @@ package screens.levels
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			
-			correct = AudioSources.getSound("Correct");
-			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
 			
 			//benson = makeResizedImg(new Image(Assets.getTexture("Benson")), 80, 132);
@@ -227,7 +223,7 @@ package screens.levels
 				spawnItem();
 				addTicks(15);
 				score++;
-				correct.play(0, 1);
+				playCorrectSound();
 			}
 			else if (img.name == "RandomItem")
 			{
@@ -236,7 +232,7 @@ package screens.levels
 				
 				spawnItem();
 				removeTicks(50);
-				wrong.play(0, 1);
+				playWrongSound();
 			}
 		}
 		

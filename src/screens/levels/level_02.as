@@ -16,8 +16,6 @@ package screens.levels
 	{
 		private var bg:Image;
 		private var lvlmusic:Sound;
-		private var correct:Sound;
-		private var wrong:Sound;
 		private var lvlChannel:SoundChannel; 
 		private var funArray:Array;
 		private var boringArray:Array;
@@ -42,8 +40,6 @@ package screens.levels
 		private function initialize():void
 		{
 			bg = new Image(Assets.getTexture("Background"));
-			correct = AudioSources.getSound("Correct");
-			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
 			addChild(bg);
 			
@@ -108,7 +104,7 @@ package screens.levels
 				if (object.name == "Fun")
 				{
 					object.dispose();
-					correct.play(0,1);
+					playCorrectSound();
 					removeChild(object);
 					funArray.pop();
 					score++;
@@ -116,7 +112,7 @@ package screens.levels
 				
 				if (object.name == "Boring")
 				{
-					wrong.play(0,1);
+					playWrongSound();
 					removeTicks(50);
 				}
 				
