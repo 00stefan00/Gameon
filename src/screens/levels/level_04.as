@@ -20,8 +20,7 @@ package screens.levels
 		private var healthyFaceArray:Array;
 		private var score:Number = 0;
 		
-		private var lvlmusic:Sound;
-		private var lvlChannel:SoundChannel; 
+
 		
 		public function level_04(main:GameScreen)
 		{
@@ -113,9 +112,9 @@ package screens.levels
 				}
 				if (score == 18) {
 					pauseTimer();
-					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50));
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50), getMusicChannel());
 					addChild(menu);
-					lvlChannel.stop();
+					stopLevelMusic();
 				}
 			}
 			
@@ -125,14 +124,7 @@ package screens.levels
 		
 		}
 		
-		/**
-		 * SOUNDS
-		 */
-		private function startLevelMusic():void 
-		{
-			lvlmusic = AudioSources.getSound("LvlMusic");
-			lvlChannel = lvlmusic.play(0, 1000);
-		}
+
 	}
 
 }

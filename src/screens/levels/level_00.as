@@ -36,8 +36,7 @@ package screens.levels
 		private var char3Count:Number = 0;
 		private var char4Count:Number = 0;
 		
-		private var lvlmusic:Sound;
-		private var lvlChannel:SoundChannel; 
+
 
 		
 		public function level_00(main:GameScreen)
@@ -161,9 +160,9 @@ package screens.levels
 				
 				if (charDict[1] && charDict[2] && charDict[3] && charDict[4]) {
 					pauseTimer();
-					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30));
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30), getMusicChannel());
 					addChild(menu);
-					lvlChannel.stop();
+					stopLevelMusic();
 					this.removeEventListener(Event.ENTER_FRAME, handleCollision)
 				}
 			}
@@ -174,14 +173,7 @@ package screens.levels
 			return object1.getBounds(object1.parent).intersects(object2.getBounds(object2.parent))
 		}
 	
-		/**
-		 * SOUNDS
-		 */
-		private function startLevelMusic():void 
-		{
-			lvlmusic = AudioSources.getSound("LvlMusic");
-			lvlChannel = lvlmusic.play(0, 1000);
-		}
+
 		
 	}
 

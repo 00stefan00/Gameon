@@ -34,6 +34,9 @@ package screens.levels
 		private var sound:Sound;
 		private var audioChannel:SoundChannel;
 		
+		private var lvlmusic:Sound;
+		private var lvlChannel:SoundChannel; 
+		
 		public function level_base(main:GameScreen)
 		{
 			super(main);
@@ -48,7 +51,7 @@ package screens.levels
 		
 		public function afterInit():void
 		{
-			var menu:Menu = new Menu(main, getTimer(), "Start");
+			var menu:Menu = new Menu(main, getTimer(), "Start", null, lvlChannel);
 			addChild(menu);
 		}
 		
@@ -161,7 +164,7 @@ package screens.levels
 						pauseTimer();
 					}
 				}
-				var menu:Menu = new Menu(main, myTimer, "playing");
+				var menu:Menu = new Menu(main, myTimer, "playing", null, getMusicChannel() );
 				addChild(menu);
 			}
 		
@@ -212,6 +215,20 @@ package screens.levels
 		{
 			sound = AudioSources.getSound("Wrong");
 			audioChannel = sound.play(0, 1);
+		}
+		
+		public function startLevelMusic():void 
+		{
+			lvlmusic = AudioSources.getSound("LvlMusic");
+			lvlChannel = lvlmusic.play(0, 1000);
+		}
+		
+		public function stopLevelMusic():void {
+			lvlChannel.stop();
+		}
+		
+		public function getMusicChannel():SoundChannel {
+			return lvlChannel;
 		}
 	}
 }

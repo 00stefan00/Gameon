@@ -1,12 +1,11 @@
 package screens
 {
+	import flash.media.SoundChannel;
 	import flash.utils.Timer;
 	import screens.levels.level_base;
 	import starling.display.Sprite;
 	import starling.display.Image;
-	
-	
-	
+	import starling.events.TouchPhase;	
 	import starling.events.TouchEvent;
 	
 	/**
@@ -28,14 +27,16 @@ package screens
 		private var myTimer:Timer;
 		private var gameState:String;
 		private var score:Number;
-		import starling.events.TouchPhase;
+		private var musicChannel:SoundChannel;
 		
-		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = 0)
+		
+		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = 0, musicChannel = null)
 		{
 			super(main);
 			this.myTimer = myTimer;
 			this.gameState = gameState;
 			this.score = score;
+			this.musicChannel = musicChannel;
 			initialize();
 		}
 		
@@ -107,6 +108,7 @@ package screens
 			menuText = new Image(Assets.getTexture("Text"+level+"e"));
 			setToCoords(menuText, (480 / 2) - (menuText.width / 2), 110)
 			main.setLevelScore(new Number(level), score);
+			
 		}
 	
 		private function addIntroText():void {
@@ -150,8 +152,10 @@ package screens
 		
 		private function goHome(e:TouchEvent):void
 		{
-			if (e.getTouch(this, TouchPhase.BEGAN))
+			if (e.getTouch(this, TouchPhase.BEGAN)){
 				main.loadScreen("homescreen");
+				musicChannel.stop();
+			}
 		}
 		
 		/**
@@ -165,8 +169,10 @@ package screens
 		
 		private function redo(e:TouchEvent):void
 		{
-			if (e.getTouch(this, TouchPhase.BEGAN))
+			if (e.getTouch(this, TouchPhase.BEGAN)){
 				main.loadScreen(main.getCurrentScreenName());
+				musicChannel.stop();
+			}
 		}
 		
 		private function startNext(e:TouchEvent):void
@@ -181,6 +187,7 @@ package screens
 					number++;
 					closeMenu();
 					main.loadScreen("level_0" + number);
+					musicChannel.stop();
 				}
 			}
 		}
