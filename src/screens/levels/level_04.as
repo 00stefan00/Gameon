@@ -20,8 +20,6 @@ package screens.levels
 		private var healthyFaceArray:Array;
 		private var score:Number = 0;
 		
-
-		
 		public function level_04(main:GameScreen)
 		{
 			super(main);
@@ -61,7 +59,8 @@ package screens.levels
 			}
 		}
 		
-		private function removeFaces():void {
+		private function removeFaces():void
+		{
 			for each (var healthyFace:Image in healthyFaceArray)
 			{
 				healthyFace.dispose();
@@ -105,26 +104,28 @@ package screens.levels
 					playCorrectSound();
 					score++;
 				}
-				if (face.name == "Healthy")
+				else if (face.name == "Healthy")
 				{
 					removeTicks(50);
 					playWrongSound();
 				}
-				if (score == 18) {
+				
+				if (score == 18)
+				{
 					pauseTimer();
 					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50), getMusicChannel());
 					addChild(menu);
 					stopLevelMusic();
 				}
-			}
-			
-			if (sickFaceArray.length < 1) {
-				putfaces();
+				else if (sickFaceArray.length < 1)
+				{
+					putfaces();
+				}
+				
 			}
 		
 		}
-		
-
+	
 	}
 
 }
