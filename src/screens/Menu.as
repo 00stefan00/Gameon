@@ -5,7 +5,7 @@ package screens
 	import screens.levels.level_base;
 	import starling.display.Sprite;
 	import starling.display.Image;
-	import starling.events.TouchPhase;	
+	import starling.events.TouchPhase;
 	import starling.events.TouchEvent;
 	
 	/**
@@ -28,7 +28,6 @@ package screens
 		private var gameState:String;
 		private var score:Number;
 		private var musicChannel:SoundChannel;
-		
 		
 		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = 0, musicChannel = null)
 		{
@@ -103,17 +102,18 @@ package screens
 				setToCoords(new Image(Assets.getTexture("TinyHeart")), i, 25);
 				numberOfHearts--;
 			}
-		
+			
 			var level:String = main.getCurrentScreenName().split("_")[1];
-			menuText = new Image(Assets.getTexture("Text"+level+"e"));
+			menuText = new Image(Assets.getTexture("Text" + level + "e"));
 			setToCoords(menuText, (480 / 2) - (menuText.width / 2), 110)
 			main.setLevelScore(new Number(level), score);
-			
+		
 		}
-	
-		private function addIntroText():void {
+		
+		private function addIntroText():void
+		{
 			var level:String = main.getCurrentScreenName().split("_")[1];
-			menuText = new Image(Assets.getTexture("Text"+level+"s"));
+			menuText = new Image(Assets.getTexture("Text" + level + "s"));
 			setToCoords(menuText, (480 / 2) - (menuText.width / 2), 110);
 			
 			redoBtn.dispose();
@@ -125,19 +125,18 @@ package screens
 			
 			confirmBtn = new Image(Assets.getTexture("Confirm"));
 			confirmBtn.addEventListener(TouchEvent.TOUCH, goBack);
-			setToCoords(confirmBtn, 55, 225);			
+			setToCoords(confirmBtn, 55, 225);
 		}
 		
-		private function addLoseText():void {
+		private function addLoseText():void
+		{
 			menuText = new Image(Assets.getTexture("GameOver"));
 			setToCoords(menuText, 40, 110);
-
+			
 			closeBtn.dispose();
 			removeChild(closeBtn);
-			
 		
 		}
-		
 		
 		/**
 		 * Places image on coordinates X and Y
@@ -152,10 +151,14 @@ package screens
 		
 		private function goHome(e:TouchEvent):void
 		{
-			if (e.getTouch(this, TouchPhase.BEGAN)){
+			if (e.getTouch(this, TouchPhase.BEGAN))
+			{
 				main.loadScreen("homescreen");
-				musicChannel.stop();
-			}
+				if (musicChannel != null)
+				{
+					musicChannel.stop();
+				}
+	 		}
 		}
 		
 		/**
@@ -169,9 +172,13 @@ package screens
 		
 		private function redo(e:TouchEvent):void
 		{
-			if (e.getTouch(this, TouchPhase.BEGAN)){
+			if (e.getTouch(this, TouchPhase.BEGAN))
+			{
 				main.loadScreen(main.getCurrentScreenName());
-				musicChannel.stop();
+				if (musicChannel != null)
+				{
+					musicChannel.stop();
+				}
 			}
 		}
 		
@@ -187,7 +194,10 @@ package screens
 					number++;
 					closeMenu();
 					main.loadScreen("level_0" + number);
-					musicChannel.stop();
+					if (musicChannel != null)
+					{
+						musicChannel.stop();
+					}
 				}
 			}
 		}
@@ -196,6 +206,15 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
+				if (main.getMuted())
+				{
+					main.unmute();
+				}
+				else
+				{
+					main.mute();
+					musicChannel.stop();
+				}
 			}
 		}
 		
