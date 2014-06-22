@@ -23,9 +23,8 @@ package screens
 		private var firstGameToDisplay:Number = 0;
 		private var miniGame:Image;
 		private var gameDict:Dictionary = new Dictionary();
-		private var heart_sprite:Heart;
 		private var bgmusic:Sound;
-		private var bgChannel:SoundChannel; 
+		private var bgChannel:SoundChannel;
 		
 		public function HomeScreen(main:GameScreen)
 		{
@@ -44,6 +43,7 @@ package screens
 			gameDict[5] = new Image(Assets.getTexture("Level05"));
 			gameDict[6] = new Image(Assets.getTexture("Level06"));
 			gameDict[7] = new Image(Assets.getTexture("Level07"));
+			gameDict[8] = new Image(Assets.getTexture("Level08"));
 		}
 		
 		private function onAddedToStage(event:Event):void
@@ -60,11 +60,6 @@ package screens
 			
 			placeArrows()
 			
-			heart_sprite = new Heart();
-			heart_sprite.x = 100;
-			heart_sprite.y = 100;
-			heart_sprite.play();
-			
 			character = new Image(Assets.getTexture("SickBoy"));
 			character.x = 350
 			character.y = 160
@@ -74,11 +69,11 @@ package screens
 			startBackgroundMusic();
 		}
 		
-		private function startBackgroundMusic():void {
+		private function startBackgroundMusic():void
+		{
 			bgmusic = AudioSources.getSound("BGMusic");
 			bgChannel = bgmusic.play(0, 100);
 		}
-		
 		
 		private function placeArrows():void
 		{
@@ -130,7 +125,7 @@ package screens
 			{
 				removeGames();
 				firstGameToDisplay -= 4;
-				placeArrows();				
+				placeArrows();
 				putGames();
 			}
 		}
@@ -163,32 +158,58 @@ package screens
 		 */
 		private function putGame(number:Number, miniGame:Image):void
 		{
-			if (miniGame == null)
-				return
+			if (number + firstGameToDisplay == 8)
+			{
+				miniGame.y = (this.stage.height / 2) - miniGame.height / 2
+				miniGame.x = (this.stage.height / 3) - miniGame.width / 3
+			}
+			else
+			{
+				if (miniGame == null)
+				{
+					return
+				}
 				
-			if (number == 0)
-			{
-				miniGame.x = 50;
-				miniGame.y = 40;
-			}
-			else if (number == 1)
-			{
-				miniGame.x = 190;
-				miniGame.y = 40;
-			}
-			else if (number == 2)
-			{
-				miniGame.x = 50;
-				miniGame.y = 180;
-			}
-			else if (number == 3)
-			{
-				miniGame.x = 190;
-				miniGame.y = 180;
+				if (number == 0)
+				{
+					miniGame.x = 50;
+					miniGame.y = 40;
+				}
+				else if (number == 1)
+				{
+					miniGame.x = 190;
+					miniGame.y = 40;
+				}
+				else if (number == 2)
+				{
+					miniGame.x = 50;
+					miniGame.y = 180;
+				}
+				else if (number == 3)
+				{
+					miniGame.x = 190;
+					miniGame.y = 180;
+				}
 			}
 			
 			miniGame.addEventListener(TouchEvent.TOUCH, onGamePressed(number));
 			addChild(miniGame);
+			
+			putHearts(number + firstGameToDisplay, miniGame);
+		}
+		
+		private function putHearts(level:Number, img:Image):void
+		{
+			for (var i:Number = 0; i < main.getLevelScore(level); i++)
+			{
+				var heart:Image = new Image(Assets.getTexture("TinyHeart"));
+				heart.height = 15;
+				heart.width = 15;
+				
+				heart.x = img.x + ((img.width / 6) * (i + 1)) - heart.width / 2;
+				heart.y = img.y + img.height - (heart.height * 1.5);
+				addChild(heart);
+			}
 		}
 		
 		/**

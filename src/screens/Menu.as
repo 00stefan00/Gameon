@@ -99,7 +99,7 @@ package screens
 			
 			for (var i:Number = 60; (i < 390 && numberOfHearts > 0); i += 75)
 			{
-				setToCoords(new Image(Assets.getTexture("TinyHeart")), i, 25);
+				setToCoords(new Image(Assets.getTexture("SmallHeart")), i, 25);
 				numberOfHearts--;
 			}
 			
