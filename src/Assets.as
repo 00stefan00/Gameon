@@ -323,6 +323,12 @@ package
 		[Embed(source='../img/mainscreen/boy_sick.png')]
 		public static const SickBoy:Class;
 		
+		[Embed(source='../img/mainscreen/boy_healthy.png')]
+		public static const HealthyBoy:Class;
+		
+		[Embed(source='../img/mainscreen/boy_medium.png')]
+		public static const MediumBoy:Class;
+		
 		[Embed(source='../img/mainscreen/small_hearts.png')]
 		public static const TinyHeart:Class;
 		
