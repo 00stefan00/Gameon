@@ -11,6 +11,8 @@ package
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import flash.utils.Dictionary;
+	import ao.ExternalStorageAO;
+	import util.Config;
 	
 	import screens.HomeScreen;
 	
@@ -27,6 +29,7 @@ package
 		public function GameScreen()
 		{
 			super();
+			loadData();
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
@@ -112,9 +115,34 @@ package
 		
 		public function setLevelScore(level:Number, score:Number):void
 		{
+			if (scoreDict[level] == null) {
+				scoreDict[level] = 0;
+			}
 			if (scoreDict[level] < score)
 			{
 				scoreDict[level] = score;
+				saveData();
+			}			
+		}
+		
+		private function saveData():void {
+			var rawData:String = "";
+			
+			for (var key:Number in scoreDict) {
+				rawData += "" + key + ";" + scoreDict[key] + "?";
+			}
+			ExternalStorageAO.saveFileToDirectory("SaveFile.txt", Config.SAVE_GAME_DIRECTORY, rawData);
+		}
+		
+		private function loadData():void {
+			var rawData:String = ExternalStorageAO.loadFile(Config.SAVE_GAME_DIRECTORY + "SaveFile.txt");
+			
+			var dataArray:Array = rawData.split("?")
+			while (dataArray.length > 0) {
+				var temp:String = dataArray.pop();
+				var tempArray:Array = temp.split(";");
+				var score:String = tempArray.pop();
+				setLevelScore(new Number(tempArray.pop()), new Number(score));
 			}
 		}
 		

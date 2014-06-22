@@ -226,7 +226,7 @@ package
 		// ############################
 		
 		[Embed(source='../img/menu/scaledHeart_victoryScreen.png')]
-		public static const TinyHeart:Class;
+		public static const SmallHeart:Class;
 		
 		[Embed(source='../img/menu/InfoBg.png')]
 		public static const InfoBg:Class;
@@ -322,6 +322,9 @@ package
 		
 		[Embed(source='../img/mainscreen/boy_sick.png')]
 		public static const SickBoy:Class;
+		
+		[Embed(source='../img/mainscreen/small_hearts.png')]
+		public static const TinyHeart:Class;
 		
 		// Levels
 		
