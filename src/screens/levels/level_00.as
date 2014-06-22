@@ -36,9 +36,6 @@ package screens.levels
 		private var char3Count:Number = 0;
 		private var char4Count:Number = 0;
 		
-
-
-		
 		public function level_00(main:GameScreen)
 		{
 			super(main);

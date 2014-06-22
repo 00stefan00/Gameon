@@ -35,7 +35,7 @@ package screens.levels
 		private var audioChannel:SoundChannel;
 		
 		private var lvlmusic:Sound;
-		private var lvlChannel:SoundChannel; 
+		private var lvlChannel:SoundChannel;
 		
 		public function level_base(main:GameScreen)
 		{
@@ -164,7 +164,7 @@ package screens.levels
 						pauseTimer();
 					}
 				}
-				var menu:Menu = new Menu(main, myTimer, "playing", null, getMusicChannel() );
+				var menu:Menu = new Menu(main, myTimer, "playing", null, getMusicChannel());
 				addChild(menu);
 			}
 		
@@ -208,26 +208,41 @@ package screens.levels
 		
 		public function playCorrectSound():void
 		{
-			sound = AudioSources.getSound("Correct");
-			audioChannel = sound.play(0, 1);
+			if (!main.getMuted())
+			{
+				sound = AudioSources.getSound("Correct");
+				audioChannel = sound.play(0, 1);
+			}
 		}
+		
 		public function playWrongSound():void
 		{
-			sound = AudioSources.getSound("Wrong");
-			audioChannel = sound.play(0, 1);
+			if (!main.getMuted())
+			{
+				sound = AudioSources.getSound("Wrong");
+				audioChannel = sound.play(0, 1);
+			}
 		}
 		
-		public function startLevelMusic():void 
+		public function startLevelMusic():void
 		{
-			lvlmusic = AudioSources.getSound("LvlMusic");
-			lvlChannel = lvlmusic.play(0, 1000);
+			if (!main.getMuted())
+			{
+				lvlmusic = AudioSources.getSound("LvlMusic");
+				lvlChannel = lvlmusic.play(0, 1000);
+			}
 		}
 		
-		public function stopLevelMusic():void {
-			lvlChannel.stop();
+		public function stopLevelMusic():void
+		{
+			if (!main.getMuted())
+			{
+				lvlChannel.stop();
+			}
 		}
 		
-		public function getMusicChannel():SoundChannel {
+		public function getMusicChannel():SoundChannel
+		{
 			return lvlChannel;
 		}
 	}

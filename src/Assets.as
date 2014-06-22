@@ -79,6 +79,31 @@ package
 		public static const nr27:Class;
 		
 		// ############################
+		// ######### Level_02 #########
+		// ############################
+		
+		[Embed(source='../img/level_02/Maze.png')]
+		public static const Maze:Class;
+		
+		[Embed(source='../img/level_02/Benson.png')]
+		public static const Benson_Face:Class;
+		
+		[Embed(source='../img/level_02/LineH.png')]
+		public static const LineH:Class;
+		
+		[Embed(source='../img/level_02/LineV.png')]
+		public static const LineV:Class;
+		
+		[Embed(source='../img/level_02/hospitalRZ.png')]
+		public static const Hospital:Class;
+		
+		[Embed(source='../img/level_02/football.png')]
+		public static const Football:Class;
+		
+		[Embed(source='../img/level_02/movieboard.png')]
+		public static const Movieboard:Class;		
+		
+		// ############################
 		// ######### Level_03 #########
 		// ############################
 		
@@ -89,7 +114,7 @@ package
 		public static const Hippo:Class;
 		
 		[Embed(source='../img/level_03/bird.png')]
-		public static const Bird:Class;		
+		public static const Bird:Class;
 		
 		[Embed(source='../img/level_03/door.png')]
 		public static const Door:Class;
@@ -195,9 +220,6 @@ package
 		
 		[Embed(source='../img/level_bonus/sleeping.png')]
 		public static const Obj9:Class;
-		
-		
-		
 		
 		// ############################
 		// ########### menu ###########

@@ -22,6 +22,7 @@ package
 		private static var mainMenu:HomeScreen;
 		private static var gameCount:Number = 9 - 1;		
 		private var scoreDict:Dictionary = new Dictionary();
+		private var muted:Boolean = false;
 		
 		public function GameScreen()
 		{
@@ -124,6 +125,18 @@ package
 				totalScore + scoreDict[level];
 			}
 			return totalScore;
+		}
+		
+		public function getMuted():Boolean {
+			return muted;
+		}
+		
+		public function mute():void {
+			muted = true;
+		}
+		
+		public function unmute():void {
+			muted = false;
 		}
 	}
 }
