@@ -6,6 +6,10 @@ package util
 	 */
 	public class Config 
 	{
+		// Global		
+		public static const GAME_COUNT:int 				= 9;
+		public static const MAX_SCORE_PER_LEVEL:int 	= 5;
+		
 		// ############################
 		// ######### Level_01 #########
 		// ############################

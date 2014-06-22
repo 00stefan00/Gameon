@@ -13,6 +13,7 @@ package screens
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import flash.media.SoundChannel;
+	import util.Config;
 	
 	public class HomeScreen extends BaseScreen
 	{
@@ -25,6 +26,7 @@ package screens
 		private var gameDict:Dictionary = new Dictionary();
 		private var bgmusic:Sound;
 		private var bgChannel:SoundChannel;
+		private var heartArray:Array = new Array();
 		
 		public function HomeScreen(main:GameScreen)
 		{
@@ -60,13 +62,28 @@ package screens
 			
 			placeArrows()
 			
-			character = new Image(Assets.getTexture("SickBoy"));
-			character.x = 350
-			character.y = 160
+			placeBenson();
 			
 			this.addChild(character);
 			
 			startBackgroundMusic();
+		}
+		
+		private function placeBenson():void {	
+			var healthyness:String;
+			if (main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL) > 0.5) {
+				healthyness = "Medium"
+			}
+			else if (main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL) > 0.8) {
+				healthyness = "Healthy"
+			}
+			else {
+				healthyness = "Sick"
+			}
+			
+			character = new Image(Assets.getTexture(healthyness+"Boy"));
+			character.x = stage.width * 0.73;
+			character.y = stage.height * 0.5;
 		}
 		
 		private function startBackgroundMusic():void
@@ -143,10 +160,12 @@ package screens
 		
 		private function removeGames():void
 		{
-			removeChild(gameDict[0 + firstGameToDisplay]);
-			removeChild(gameDict[1 + firstGameToDisplay]);
-			removeChild(gameDict[2 + firstGameToDisplay]);
-			removeChild(gameDict[3 + firstGameToDisplay]);
+			for (var i:Number = 0; i < 4; i++) {
+				var img:Image = gameDict[i + firstGameToDisplay];
+				removeChild(gameDict[i + firstGameToDisplay]);
+			}
+			removeHearts();
+			
 		}
 		
 		/**
@@ -160,8 +179,8 @@ package screens
 		{
 			if (number + firstGameToDisplay == 8)
 			{
-				miniGame.y = (this.stage.height / 2) - miniGame.height / 2
-				miniGame.x = (this.stage.height / 3) - miniGame.width / 3
+				miniGame.y = (bg.height / 2) - (miniGame.height / 2)
+				miniGame.x = (bg.width / 3) - (miniGame.width / 3)
 			}
 			else
 			{
@@ -208,7 +227,17 @@ package screens
 				
 				heart.x = img.x + ((img.width / 6) * (i + 1)) - heart.width / 2;
 				heart.y = img.y + img.height - (heart.height * 1.5);
+				if (level == 8) {
+					heart.y += 30;
+				}
+				heartArray.push(heart);
 				addChild(heart);
+			}
+		}
+		
+		private function removeHearts():void {
+			while (heartArray.length > 0) {
+				removeChild(heartArray.pop());
 			}
 		}
 		

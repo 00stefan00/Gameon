@@ -22,7 +22,6 @@ package
 		private var screenWelcome:Welcome;
 		private var currentScreenName:String;
 		private static var mainMenu:HomeScreen;
-		private static var gameCount:Number = 9 - 1;		
 		private var scoreDict:Dictionary = new Dictionary();
 		private var muted:Boolean = false;
 		
@@ -154,7 +153,7 @@ package
 			}
 			return totalScore;
 		}
-		
+				
 		public function getMuted():Boolean {
 			return muted;
 		}
