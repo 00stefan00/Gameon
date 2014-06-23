@@ -80,9 +80,8 @@ package screens.levels
 			{
 				victory = true;
 				this.removeEventListeners()
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
 				addChild(menu);
-				lvlChannel.stop();
 			}
 		}
 		

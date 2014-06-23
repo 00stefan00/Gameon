@@ -63,18 +63,30 @@ package screens
 			placeArrows()
 			
 			placeBenson();
+			placeHeart()
 			
 			this.addChild(character);
 			
 			startBackgroundMusic();
 		}
+		private function placeHeart():void {
+			var healthyness:Number = Math.round((main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL)*6));
+			if (healthyness > 6) {
+				healthyness = 6;
+			}
+			var value:String = healthyness.toString();
+			var img:Image = new Image(Assets.getTexture("Heart" + value));
+			img.x = stage.width * 0.73;
+			img.y = stage.height * 0.1;
+			addChild(img);
+		}
 		
 		private function placeBenson():void {	
-			var healthyness:String;
+			var healthyness:String = "Sick";
 			if (main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL) > 0.5) {
 				healthyness = "Medium"
 			}
-			else if (main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL) > 0.8) {
+			if (main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL) > 0.8) {
 				healthyness = "Healthy"
 			}
 			else {
@@ -222,8 +234,6 @@ package screens
 			for (var i:Number = 0; i < main.getLevelScore(level); i++)
 			{
 				var heart:Image = new Image(Assets.getTexture("TinyHeart"));
-				heart.height = 15;
-				heart.width = 15;
 				
 				heart.x = img.x + ((img.width / 6) * (i + 1)) - heart.width / 2;
 				heart.y = img.y + img.height - (heart.height * 1.5);
@@ -251,8 +261,7 @@ package screens
 			{
 				if (e.getTouch(e.currentTarget as Image, TouchPhase.BEGAN))
 				{
-					var gameNumber:Number = number + firstGameToDisplay;
-					
+					var gameNumber:Number = number + firstGameToDisplay;					
 					getLevelByNumber(gameNumber);
 				}
 			}

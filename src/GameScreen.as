@@ -148,10 +148,11 @@ package
 		public function getTotalScore():Number
 		{
 			var totalScore:Number = 0;
-			for each(var level:Number in scoreDict) {
-				totalScore + scoreDict[level];
+			for (var level:String in scoreDict) {
+				totalScore += scoreDict[level];
 			}
 			return totalScore;
+			trace(totalScore);
 		}
 				
 		public function getMuted():Boolean {

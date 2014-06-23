@@ -137,8 +137,8 @@ package
 		[Embed(source='../img/level_04/hface2.png')]
 		public static const Face6:Class;
 		
-		//[Embed(source='../img/level_04/hface3.png')]
-		//public static const Face7:Class;
+		[Embed(source='../img/level_04/hface3.png')]
+		public static const Face7:Class;
 		
 		// ############################
 		// ######### Level_05 #########
@@ -315,6 +315,21 @@ package
 		// ##############################
 		// ######### MAINSCREEN #########
 		// ##############################
+		
+		[Embed(source='../img/mainscreen/heart_0.png')]
+		public static const Heart0:Class;
+		[Embed(source='../img/mainscreen/heart_1.png')]
+		public static const Heart1:Class;
+		[Embed(source='../img/mainscreen/heart_2.png')]
+		public static const Heart2:Class;
+		[Embed(source='../img/mainscreen/heart_3.png')]
+		public static const Heart3:Class;
+		[Embed(source='../img/mainscreen/heart_4.png')]
+		public static const Heart4:Class;
+		[Embed(source='../img/mainscreen/heart_5.png')]
+		public static const Heart5:Class;
+		[Embed(source='../img/mainscreen/heart_6.png')]
+		public static const Heart6:Class;
 		
 		[Embed(source='../img/mainscreen/arrow_left.png')]
 		public static const ArrowLeft:Class;

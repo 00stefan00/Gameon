@@ -51,7 +51,8 @@ package screens.levels
 			
 			for (var i:Number = 0; i < 4; i++)
 			{
-				setToCoords(createRandomObject(), (16 + (i * 116)), 150);
+				var img:Image = createRandomObject();
+				setToCoords(img, (16 + (i * 116)), (bg.height/2)-img.height/2);
 			}
 			
 			if (funArray.length < 1) {

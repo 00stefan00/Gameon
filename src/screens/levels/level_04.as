@@ -80,7 +80,7 @@ package screens.levels
 		
 		private function createRandomFace():Image
 		{
-			var randomValue:Number = Math.ceil(Math.random() * 6);
+			var randomValue:Number = Math.ceil(Math.random() * 7);
 			var image:Image = new Image(Assets.getTexture("Face" + randomValue));
 			if (randomValue < 5)
 			{
