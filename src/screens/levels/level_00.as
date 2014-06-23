@@ -35,6 +35,8 @@ package screens.levels
 		private var char2Count:Number = 0;
 		private var char3Count:Number = 0;
 		private var char4Count:Number = 0;
+		private var nr1:Image;
+		private var nr2:Image;
 		
 		public function level_00(main:GameScreen)
 		{
@@ -112,40 +114,67 @@ package screens.levels
 			{
 				if (detectCollision(thermometer, char1) && !charDict[1])
 				{
+					if (char1Count % 5 == 0)
+					{
+						animateCount(char1);
+					}
 					char1Count += 1;
-					if (char1Count > (30 * seconds) && charDict[1] != true) {
+					if (char1Count > (30 * seconds) && charDict[1] != true)
+					{
 						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 32, 75);
 						charDict[1] = true;
-					}				
+						removeNrs();
+					}
 					
 				}
 				else if (detectCollision(thermometer, char2) && !charDict[2])
 				{
+					if (char2Count % 5 == 0)
+					{
+						animateCount(char2);
+					}
 					char2Count += 1;
-					if (char2Count > (30 * seconds) && charDict[2] != true) {
+					if (char2Count > (30 * seconds) && charDict[2] != true)
+					{
 						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 144, 75);
 						charDict[2] = true;
-					}					
+						removeNrs();
+					}
+					
 				}
 				else if (detectCollision(thermometer, char3) && !charDict[3])
 				{
+					if (char3Count % 5 == 0)
+					{
+						animateCount(char3);
+					}
 					char3Count += 1;
-					if (char3Count > (30 * seconds) && charDict[3] != true) {
+					if (char3Count > (30 * seconds) && charDict[3] != true)
+					{
 						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 256, 75);
 						charDict[3] = true;
-					}					
+						removeNrs();
+					}
+					
 				}
 				else if (detectCollision(thermometer, char4) && !charDict[4])
 				{
+					if (char4Count % 5 == 0)
+					{
+						animateCount(char4);
+					}
 					char4Count += 1;
-					if (char4Count > (30 * seconds) && charDict[4] != true) {
+					if (char4Count > (30 * seconds) && charDict[4] != true)
+					{
 						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 368, 75);
 						charDict[4] = true;
-					}					
+						removeNrs();
+					}
+					
 				}
 				else
 				{
@@ -153,9 +182,12 @@ package screens.levels
 					char2Count = 0;
 					char3Count = 0;
 					char4Count = 0;
+					removeNrs();
 				}
 				
-				if (charDict[1] && charDict[2] && charDict[3] && charDict[4]) {
+				if (charDict[1] && charDict[2] && charDict[3] && charDict[4])
+				{
+					removeNrs();
 					pauseTimer();
 					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30), getMusicChannel());
 					addChild(menu);
@@ -164,14 +196,36 @@ package screens.levels
 				}
 			}
 		}
-				
+		
+		private function animateCount(img:Image):void
+		{
+			removeNrs();
+			nr1 = getRandomNr();
+			nr2 = getRandomNr();
+			setToCoords(nr1, img.x, img.y - img.height / 4)
+			setToCoords(nr2, img.x + 10, img.y - img.height / 4)
+		}
+		
+		private function removeNrs():void
+		{
+			if (nr1 != null)
+			{
+				removeChild(nr1);
+				removeChild(nr2);
+			}
+		}
+		
+		private function getRandomNr():Image
+		{
+			var someNum:Number = Math.floor(Math.random() * 10);
+			return new Image(Assets.getTexture("nr_" + someNum));
+		}
+		
 		private function detectCollision(object1:Image, object2:Image):Boolean
 		{
 			return object1.getBounds(object1.parent).intersects(object2.getBounds(object2.parent))
 		}
 	
-
-		
 	}
 
 }

@@ -101,7 +101,7 @@ package
 		public static const Football:Class;
 		
 		[Embed(source='../img/level_02/movieboard.png')]
-		public static const Movieboard:Class;		
+		public static const Movieboard:Class;
 		
 		// ############################
 		// ######### Level_03 #########
@@ -393,6 +393,38 @@ package
 		
 		[Embed(source='../img/gamelogo.png')]
 		public static const Logo:Class;
+		
+		// numbers
+		[Embed(source='../img/numbers/0.png')]
+		public static const nr_0:Class;
+		
+		[Embed(source='../img/numbers/1.png')]
+		public static const nr_1:Class;
+		
+		[Embed(source='../img/numbers/2.png')]
+		public static const nr_2:Class;
+		
+		[Embed(source='../img/numbers/3.png')]
+		public static const nr_3:Class;
+		
+		[Embed(source='../img/numbers/4.png')]
+		public static const nr_4:Class;
+		
+		[Embed(source='../img/numbers/5.png')]
+		public static const nr_5:Class;
+		
+		[Embed(source='../img/numbers/6.png')]
+		public static const nr_6:Class;
+		
+		[Embed(source='../img/numbers/7.png')]
+		public static const nr_7:Class;
+		
+		[Embed(source='../img/numbers/8.png')]
+		public static const nr_8:Class;
+		
+		[Embed(source='../img/numbers/9.png')]
+		public static const nr_9:Class;
+		
 		
 		private static var gameTextures:Dictionary = new Dictionary();
 		
