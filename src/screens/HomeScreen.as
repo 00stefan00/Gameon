@@ -63,45 +63,51 @@ package screens
 			placeArrows()
 			
 			placeBenson();
-			placeHeart()
+			placeHeart();
 			
 			this.addChild(character);
 			
 			startBackgroundMusic();
 		}
-		private function placeHeart():void {
-			var healthyness:Number = Math.round((main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL)*6));
-			if (healthyness > 6) {
+		
+		private function placeHeart():void
+		{
+			var healthyness:Number = Math.round((main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL) * 6));
+			if (healthyness > 6)
+			{
 				healthyness = 6;
 			}
 			var value:String = healthyness.toString();
 			var img:Image = new Image(Assets.getTexture("Heart" + value));
-			img.x = stage.width * 0.73;
+			img.x = character.x + character.width / 2 - img.width / 2;
 			img.y = stage.height * 0.1;
 			addChild(img);
 		}
 		
-		private function placeBenson():void {	
+		private function placeBenson():void
+		{
 			var healthyness:String = "Sick";
-			if (main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL) > 0.5) {
+			if (main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL) > 0.5)
+			{
 				healthyness = "Medium"
 			}
-			if (main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL) > 0.8) {
+			if (main.getTotalScore() / (Config.GAME_COUNT * Config.MAX_SCORE_PER_LEVEL) > 0.8)
+			{
 				healthyness = "Healthy"
 			}
-			else {
-				healthyness = "Sick"
-			}
 			
-			character = new Image(Assets.getTexture(healthyness+"Boy"));
+			character = new Image(Assets.getTexture(healthyness + "Boy"));
 			character.x = stage.width * 0.73;
 			character.y = stage.height * 0.5;
 		}
 		
 		private function startBackgroundMusic():void
 		{
-			bgmusic = AudioSources.getSound("BGMusic");
-			bgChannel = bgmusic.play(0, 100);
+			if (!main.getMuted())
+			{
+				bgmusic = AudioSources.getSound("BGMusic");
+				bgChannel = bgmusic.play(0, 100);
+			}
 		}
 		
 		private function placeArrows():void
@@ -172,12 +178,13 @@ package screens
 		
 		private function removeGames():void
 		{
-			for (var i:Number = 0; i < 4; i++) {
+			for (var i:Number = 0; i < 4; i++)
+			{
 				var img:Image = gameDict[i + firstGameToDisplay];
 				removeChild(gameDict[i + firstGameToDisplay]);
 			}
 			removeHearts();
-			
+		
 		}
 		
 		/**
@@ -237,7 +244,8 @@ package screens
 				
 				heart.x = img.x + ((img.width / 6) * (i + 1)) - heart.width / 2;
 				heart.y = img.y + img.height - (heart.height * 1.5);
-				if (level == 8) {
+				if (level == 8)
+				{
 					heart.y += 30;
 				}
 				heartArray.push(heart);
@@ -245,8 +253,10 @@ package screens
 			}
 		}
 		
-		private function removeHearts():void {
-			while (heartArray.length > 0) {
+		private function removeHearts():void
+		{
+			while (heartArray.length > 0)
+			{
 				removeChild(heartArray.pop());
 			}
 		}
@@ -261,7 +271,7 @@ package screens
 			{
 				if (e.getTouch(e.currentTarget as Image, TouchPhase.BEGAN))
 				{
-					var gameNumber:Number = number + firstGameToDisplay;					
+					var gameNumber:Number = number + firstGameToDisplay;
 					getLevelByNumber(gameNumber);
 				}
 			}
@@ -272,7 +282,10 @@ package screens
 		 */
 		private function getLevelByNumber(gameNumber:Number):void
 		{
-			bgChannel.stop();
+			if (bgChannel != null)
+			{
+				bgChannel.stop();
+			}
 			if (gameNumber < 10)
 				main.loadScreen("level_0" + gameNumber);
 			else

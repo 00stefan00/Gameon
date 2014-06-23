@@ -7,6 +7,7 @@ package screens
 	import starling.display.Image;
 	import starling.events.TouchPhase;
 	import starling.events.TouchEvent;
+	import flash.media.Sound;
 	
 	/**
 	 * ...
@@ -29,7 +30,7 @@ package screens
 		private var score:Number;
 		private var musicChannel:SoundChannel;
 		
-		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = 0, musicChannel:SoundChannel = null)
+		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = -1, musicChannel:SoundChannel = null)
 		{
 			super(main);
 			this.myTimer = myTimer;
@@ -152,12 +153,14 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
+				main.playButtonSound();
+				
 				main.loadScreen("homescreen");
 				if (musicChannel != null)
 				{
 					musicChannel.stop();
 				}
-	 		}
+			}
 		}
 		
 		/**
@@ -165,14 +168,19 @@ package screens
 		 */
 		private function goBack(e:TouchEvent):void
 		{
-			if (e.getTouch(this, TouchPhase.BEGAN))
+			if (e.getTouch(this, TouchPhase.BEGAN)) {
+				main.playButtonSound();
+				
 				closeMenu()
+			}
 		}
 		
 		private function redo(e:TouchEvent):void
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
+				main.playButtonSound();
+				
 				main.loadScreen(main.getCurrentScreenName());
 				if (musicChannel != null)
 				{
@@ -185,18 +193,22 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
+				main.playButtonSound();
+				
 				if (main.getCurrentScreenName() != "level_08")
 				{
 					var level:String = main.getCurrentScreenName() as String;
 					var number:Number = Number(level.charAt(7).toString()) as Number;
 					
-					number++;
-					closeMenu();
-					main.loadScreen("level_0" + number);
 					if (musicChannel != null)
 					{
 						musicChannel.stop();
 					}
+					
+					number++;
+					closeMenu();
+					main.loadScreen("level_0" + number);
+					
 				}
 			}
 		}
@@ -205,6 +217,8 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
+				main.playButtonSound();
+				
 				if (main.getMuted())
 				{
 					main.unmute();
@@ -228,7 +242,6 @@ package screens
 				this.removeChildren();
 				myTimer.start();
 			}
-		}
-	
+		}	
 	}
 }

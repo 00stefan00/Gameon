@@ -69,7 +69,7 @@ package screens.levels
 			setToCoords(makeResizedImg(char3, 80, 80), 256, 110);
 			setToCoords(makeResizedImg(char4, 80, 80), 368, 110);
 			
-			setToCoords(makeResizedImg(thermometer, 30, 85), 20, 210);
+			setToCoords(makeResizedImg(thermometer, 45, 100), 20, 210);
 			
 			this.addEventListener(Event.ENTER_FRAME, handleCollision)
 			collisionTimer = new Timer(1000, 5);

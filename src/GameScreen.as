@@ -13,6 +13,8 @@ package
 	import flash.utils.Dictionary;
 	import ao.ExternalStorageAO;
 	import util.Config;
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
 	
 	import screens.HomeScreen;
 	
@@ -114,30 +116,35 @@ package
 		
 		public function setLevelScore(level:Number, score:Number):void
 		{
-			if (scoreDict[level] == null) {
+			if (scoreDict[level] == null)
+			{
 				scoreDict[level] = 0;
 			}
 			if (scoreDict[level] < score)
 			{
 				scoreDict[level] = score;
 				saveData();
-			}			
+			}
 		}
 		
-		private function saveData():void {
+		private function saveData():void
+		{
 			var rawData:String = "";
 			
-			for (var key:String in scoreDict) {
+			for (var key:String in scoreDict)
+			{
 				rawData += "" + key + ";" + scoreDict[key] + "?";
 			}
 			ExternalStorageAO.saveFileToDirectory("SaveFile.txt", Config.SAVE_GAME_DIRECTORY, rawData);
 		}
 		
-		private function loadData():void {
+		private function loadData():void
+		{
 			var rawData:String = ExternalStorageAO.loadFile(Config.SAVE_GAME_DIRECTORY + "SaveFile.txt");
 			
 			var dataArray:Array = rawData.split("?")
-			while (dataArray.length > 0) {
+			while (dataArray.length > 0)
+			{
 				var temp:String = dataArray.pop();
 				var tempArray:Array = temp.split(";");
 				var score:String = tempArray.pop();
@@ -145,25 +152,35 @@ package
 			}
 		}
 		
+		public function playButtonSound():void
+		{
+			var btnSound:Sound = AudioSources.getSound("Button");
+			var btnChannel:SoundChannel = btnSound.play(1);
+		}
+		
 		public function getTotalScore():Number
 		{
 			var totalScore:Number = 0;
-			for (var level:String in scoreDict) {
+			for (var level:String in scoreDict)
+			{
 				totalScore += scoreDict[level];
 			}
 			return totalScore;
 			trace(totalScore);
 		}
-				
-		public function getMuted():Boolean {
+		
+		public function getMuted():Boolean
+		{
 			return muted;
 		}
 		
-		public function mute():void {
+		public function mute():void
+		{
 			muted = true;
 		}
 		
-		public function unmute():void {
+		public function unmute():void
+		{
 			muted = false;
 		}
 	}

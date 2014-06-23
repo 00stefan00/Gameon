@@ -33,9 +33,10 @@ package screens.levels
 		public var noTimerLose:Boolean = false;
 		private var sound:Sound;
 		private var audioChannel:SoundChannel;
-		
 		private var lvlmusic:Sound;
 		private var lvlChannel:SoundChannel;
+		private var ticking:Sound;
+		private var timerChannel:SoundChannel;
 		
 		public function level_base(main:GameScreen)
 		{
@@ -47,6 +48,7 @@ package screens.levels
 		{
 			myTimer = new Timer(50, 6000);
 			myTimer.addEventListener(TimerEvent.TIMER, timerListener);
+			ticking = AudioSources.getSound("Timer");
 		}
 		
 		public function afterInit():void
@@ -81,6 +83,11 @@ package screens.levels
 		
 		public function pauseTimer():void
 		{
+			if (timerChannel != null)
+			{
+				timerChannel.stop();
+				timerChannel = null;
+			}
 			if (myTimer.running)
 			{
 				myTimer.stop();
@@ -107,6 +114,10 @@ package screens.levels
 		
 		private function timerListener(event:TimerEvent):void
 		{
+			if (timerChannel == null)
+			{
+				timerChannel = ticking.play(1, 10);
+			}
 			if (gauge != null)
 			{
 				gauge.ratio -= gaugeRatio;
@@ -157,6 +168,7 @@ package screens.levels
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
+				main.playButtonSound();
 				if (gauge != null)
 				{
 					if (gauge.ratio > gaugeRatio)

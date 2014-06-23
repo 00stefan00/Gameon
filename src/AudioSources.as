@@ -30,6 +30,9 @@ package
 		[Embed(source="../audio/timer.mp3")]
 		public static const Timer:Class;
 		
+		[Embed(source="../audio/button.mp3")]
+		public static const Button:Class;
+		
 		private static var soundDict:Dictionary = new Dictionary();
 		
 		public static function getSound(name:String):Sound
