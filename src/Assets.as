@@ -265,25 +265,25 @@ package
 		[Embed(source='../img/menu/texts/level01_start.png')]
 		public static const Text01s:Class;
 		
-		[Embed(source='../img/menu/texts/level02_start.png')]
+		[Embed(source='../img/menu/texts/level02_end.png')]
 		public static const Text02e:Class;
 		
 		[Embed(source='../img/menu/texts/level02_start.png')]
 		public static const Text02s:Class;
 		
-		[Embed(source='../img/menu/texts/level03_start.png')]
+		[Embed(source='../img/menu/texts/level03_end.png')]
 		public static const Text03e:Class;
 		
 		[Embed(source='../img/menu/texts/level03_start.png')]
 		public static const Text03s:Class;
 		
-		[Embed(source='../img/menu/texts/level04_start.png')]
+		[Embed(source='../img/menu/texts/level04_end.png')]
 		public static const Text04e:Class;
 		
 		[Embed(source='../img/menu/texts/level04_start.png')]
 		public static const Text04s:Class;
 		
-		[Embed(source='../img/menu/texts/level05_start.png')]
+		[Embed(source='../img/menu/texts/level05_end.png')]
 		public static const Text05e:Class;
 		
 		[Embed(source='../img/menu/texts/level05_start.png')]
@@ -295,13 +295,13 @@ package
 		[Embed(source='../img/menu/texts/level06_start.png')]
 		public static const Text06s:Class;
 		
-		[Embed(source='../img/menu/texts/level07_start.png')]
+		[Embed(source='../img/menu/texts/level07_end.png')]
 		public static const Text07e:Class;
 		
 		[Embed(source='../img/menu/texts/level07_start.png')]
 		public static const Text07s:Class;
 		
-		[Embed(source='../img/menu/texts/level08_start.png')]
+		[Embed(source='../img/menu/texts/level08_end.png')]
 		public static const Text08e:Class;
 		
 		[Embed(source='../img/menu/texts/level08_start.png')]

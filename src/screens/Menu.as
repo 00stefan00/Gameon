@@ -29,7 +29,7 @@ package screens
 		private var score:Number;
 		private var musicChannel:SoundChannel;
 		
-		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = 0, musicChannel = null)
+		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = 0, musicChannel:SoundChannel = null)
 		{
 			super(main);
 			this.myTimer = myTimer;
