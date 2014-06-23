@@ -156,6 +156,8 @@ package screens.levels
 				removeTicks(1);
 			}
 			else if (detectCollision(face, hospital))
+				// makeResizedImg(image, imgage.width*0,7), imgage.height*0,5)
+				
 			{
 				pauseTimer();
 				removeEventListeners();

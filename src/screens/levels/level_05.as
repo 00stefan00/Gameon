@@ -78,6 +78,7 @@ package screens.levels
 						color = "Green"
 					}
 					var pill:Image = new Image(Assets.getTexture("Pill" + color));
+					makeResizedImg(pill, pill.width*0.8, pill.height*0.8);
 					pill.name = color;
 					
 					placePill(pill);

@@ -128,6 +128,8 @@ package
 		// public static const Face2:Class;
 		// public static const Face3:Class;
 		// public static const Face4:Class;
+		[Embed(source='../img/level_04/hospital_transparent.png')]
+		public static const HospitalT:Class;
 		
 		[Embed(source='../img/level_04/hface1.png')]
 		public static const Face5:Class;
@@ -135,8 +137,8 @@ package
 		[Embed(source='../img/level_04/hface2.png')]
 		public static const Face6:Class;
 		
-		[Embed(source='../img/level_04/hface3.png')]
-		public static const Face7:Class;
+		//[Embed(source='../img/level_04/hface3.png')]
+		//public static const Face7:Class;
 		
 		// ############################
 		// ######### Level_05 #########
@@ -203,7 +205,7 @@ package
 		[Embed(source='../img/level_bonus/movieboard.png')]
 		public static const Obj3:Class;
 		
-		[Embed(source='../img/level_03/hippo.png')]
+		[Embed(source='../img/level_bonus/ted.png')]
 		public static const Obj4:Class;
 		
 		[Embed(source='../img/level_03/doctor.png')]
@@ -343,10 +345,10 @@ package
 		[Embed(source='../img/mainscreen/levels/level01.png')]
 		public static const Level01:Class;
 		
-		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		[Embed(source='../img/mainscreen/levels/level02.png')]
 		public static const Level02:Class;
 		
-		[Embed(source='../img/mainscreen/levels/levelbox.png')]
+		[Embed(source='../img/mainscreen/levels/level03.png')]
 		public static const Level03:Class;
 		
 		[Embed(source='../img/mainscreen/levels/level04.png')]

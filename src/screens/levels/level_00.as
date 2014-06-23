@@ -113,9 +113,10 @@ package screens.levels
 				if (detectCollision(thermometer, char1) && !charDict[1])
 				{
 					char1Count += 1;
-					if (char1Count > (30 * seconds)) {
+					if (char1Count > (30 * seconds) && charDict[1] != true) {
 						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 32, 75);
+						correct.play(0,1)
 						charDict[1] = true;
 					}				
 					
@@ -123,27 +124,30 @@ package screens.levels
 				else if (detectCollision(thermometer, char2) && !charDict[2])
 				{
 					char2Count += 1;
-					if (char2Count > (30 * seconds)) {
+					if (char2Count > (30 * seconds) && charDict[2] != true) {
 						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 144, 75);
+						correct.play(0, 1)
 						charDict[2] = true;
 					}					
 				}
 				else if (detectCollision(thermometer, char3) && !charDict[3])
 				{
 					char3Count += 1;
-					if (char3Count > (30 * seconds)) {
+					if (char3Count > (30 * seconds) && charDict[3] != true) {
 						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 256, 75);
+						correct.play(0,1)
 						charDict[3] = true;
 					}					
 				}
 				else if (detectCollision(thermometer, char4) && !charDict[4])
 				{
 					char4Count += 1;
-					if (char4Count > (30 * seconds)) {
+					if (char4Count > (30 * seconds) && charDict[4] != true) {
 						playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 368, 75);
+						correct.play(0,1)
 						charDict[4] = true;
 					}					
 				}

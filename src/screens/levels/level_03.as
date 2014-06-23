@@ -26,6 +26,8 @@ package screens.levels
 	{
 		private var lvlmusic:Sound;
 		private var lvlChannel:SoundChannel;
+		private var correct:Sound;
+		private var wrong:Sound;
 		private var doorsArray:Array;
 		private var margin:int = 100;
 		private var doorDict:Dictionary;
@@ -54,7 +56,8 @@ package screens.levels
 		private function initialize():void
 		{
 			addChild(new Image(Assets.getTexture("Background")));
-			
+			correct = AudioSources.getSound("Correct");
+			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
 			
 			doorsArray = new Array();
@@ -79,6 +82,7 @@ package screens.levels
 				this.removeEventListeners()
 				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
 				addChild(menu);
+				lvlChannel.stop();
 			}
 		}
 		
@@ -146,6 +150,7 @@ package screens.levels
 				var door:Image = new Image(Assets.getTexture("Door"));
 				door.x = 100 * i + margin;
 				door.y = margin;
+				makeResizedImg(door, door.width*0.8, door.height*0.8);
 				door.name = "wrong";
 				
 				doorsArray.push(door);
@@ -169,12 +174,14 @@ package screens.levels
 				var door:Image = e.currentTarget as Image;
 				if (door.name == "correct")
 				{
+					correct.play(0, 1);
 					score++;
 					showResultsAndRestart();
 					placeResult(door.x, door.y, true);
 				}
 				else if (door.name == "wrong")
 				{
+					wrong.play(0, 1);
 					showResultsAndRestart();
 					placeResult(door.x, door.y);
 				}
