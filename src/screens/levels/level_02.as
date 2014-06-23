@@ -61,6 +61,7 @@ package screens.levels
 			for (var i:Number = 0; i < 4; i++)
 			{
 				setToCoords(createRandomObject(), (16 + (i * 116)), 150 );
+				
 				//setToCoords(makeResizedImg(createRandomObject(), 80, 80), (16 + (i * 116)), 150 );
 			}
 			
@@ -94,6 +95,12 @@ package screens.levels
 			{
 				image.name = "Boring"
 				boringArray.push(image);
+				
+				if (randomValue == 5)
+				{
+				makeResizedImg(image, 61, 120)
+					}
+				
 			}
 			image.addEventListener(TouchEvent.TOUCH, onObjTouch);
 			return image;
@@ -123,6 +130,9 @@ package screens.levels
 				if (funArray.length < 1) {
 						placeObjects();
 				}
+				
+				// makeResizedImg(image, imgage.width*0,7), imgage.height*0,5)
+				
 				
 				if (score > 14)
 				{

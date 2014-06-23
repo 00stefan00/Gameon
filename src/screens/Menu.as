@@ -85,7 +85,6 @@ package screens
 			{
 				addIntroText();
 			}
-			
 			if (gameState == "Lose")
 			{
 				addLoseText();

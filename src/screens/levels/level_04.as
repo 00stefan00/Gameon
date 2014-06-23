@@ -16,6 +16,7 @@ package screens.levels
 	public class level_04 extends level_base
 	{
 		private var bg:Image;
+		private var hospital:Image;
 		private var sickFaceArray:Array;
 		private var healthyFaceArray:Array;
 		private var score:Number = 0;
@@ -43,6 +44,10 @@ package screens.levels
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			
+			hospital = new Image(Assets.getTexture("HospitalT"));
+			addChild(hospital);
+			setToCoords(hospital, 300, 40
+			);
 			correct = AudioSources.getSound("Correct");
 			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
@@ -81,7 +86,7 @@ package screens.levels
 		
 		private function createRandomFace():Image
 		{
-			var randomValue:Number = Math.ceil(Math.random() * 7);
+			var randomValue:Number = Math.ceil(Math.random() * 6);
 			var image:Image = new Image(Assets.getTexture("Face" + randomValue));
 			if (randomValue < 5)
 			{
