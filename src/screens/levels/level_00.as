@@ -114,9 +114,9 @@ package screens.levels
 			{
 				if (detectCollision(thermometer, char1) && !charDict[1])
 				{
-					if (char1Count % 5 == 0)
+					if (char1Count % 10 == 0 && char1Count > 3)
 					{
-						animateCount(char1);
+						animateCount(char1, 9-(char1Count/10));
 					}
 					char1Count += 1;
 					if (char1Count > (30 * seconds) && charDict[1] != true)
@@ -130,9 +130,9 @@ package screens.levels
 				}
 				else if (detectCollision(thermometer, char2) && !charDict[2])
 				{
-					if (char2Count % 5 == 0)
+					if (char2Count % 10 == 0 && char2Count > 3)
 					{
-						animateCount(char2);
+						animateCount(char2, 9-(char2Count/10));
 					}
 					char2Count += 1;
 					if (char2Count > (30 * seconds) && charDict[2] != true)
@@ -146,9 +146,9 @@ package screens.levels
 				}
 				else if (detectCollision(thermometer, char3) && !charDict[3])
 				{
-					if (char3Count % 5 == 0)
+					if (char3Count % 10 == 0 && char3Count > 3)
 					{
-						animateCount(char3);
+						animateCount(char3, 9-(char3Count/10));
 					}
 					char3Count += 1;
 					if (char3Count > (30 * seconds) && charDict[3] != true)
@@ -162,9 +162,9 @@ package screens.levels
 				}
 				else if (detectCollision(thermometer, char4) && !charDict[4])
 				{
-					if (char4Count % 5 == 0)
+					if (char4Count % 10 == 0 && char4Count > 3)
 					{
-						animateCount(char4);
+						animateCount(char4, 9-(char4Count/10));
 					}
 					char4Count += 1;
 					if (char4Count > (30 * seconds) && charDict[4] != true)
@@ -189,7 +189,7 @@ package screens.levels
 				{
 					removeNrs();
 					pauseTimer();
-					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30), getMusicChannel());
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50), getMusicChannel());
 					addChild(menu);
 					stopLevelMusic();
 					this.removeEventListener(Event.ENTER_FRAME, handleCollision)
@@ -197,13 +197,11 @@ package screens.levels
 			}
 		}
 		
-		private function animateCount(img:Image):void
+		private function animateCount(img:Image, nr:Number = 0):void
 		{
 			removeNrs();
-			nr1 = getRandomNr();
-			nr2 = getRandomNr();
+			nr1 = new Image(Assets.getTexture("nr_" + nr));
 			setToCoords(nr1, img.x, img.y - img.height / 4)
-			setToCoords(nr2, img.x + 10, img.y - img.height / 4)
 		}
 		
 		private function removeNrs():void
@@ -211,13 +209,12 @@ package screens.levels
 			if (nr1 != null)
 			{
 				removeChild(nr1);
-				removeChild(nr2);
 			}
 		}
 		
-		private function getRandomNr():Image
+		private function getRandomNr(high:Number, low:Number):Image
 		{
-			var someNum:Number = Math.floor(Math.random() * 10);
+			var someNum:Number = (Math.ceil(Math.random() * high-low)+low);
 			return new Image(Assets.getTexture("nr_" + someNum));
 		}
 		
