@@ -144,9 +144,9 @@ package screens.levels
 		
 		private function collided():Boolean
 		{
-			for (var index:Number in dict)
+			for (var index:String in dict)
 			{				
-				if (detectCollision(dict[index], face))
+				if (detectCollision(dict[new Number(index)], face))
 				{
 					return true;
 				}				

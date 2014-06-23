@@ -127,7 +127,7 @@ package
 		private function saveData():void {
 			var rawData:String = "";
 			
-			for (var key:Number in scoreDict) {
+			for (var key:String in scoreDict) {
 				rawData += "" + key + ";" + scoreDict[key] + "?";
 			}
 			ExternalStorageAO.saveFileToDirectory("SaveFile.txt", Config.SAVE_GAME_DIRECTORY, rawData);

@@ -138,13 +138,7 @@ package screens.levels
 		{
 			showDoors();
 		}
-		
-		private function startLevelMusic():void
-		{
-			lvlmusic = AudioSources.getSound("LvlMusic");
-			lvlChannel = lvlmusic.play(0, 1000);
-		}
-		
+				
 		private function createDoors():void
 		{
 			for (var i:int = 0; i < 3; i++)
