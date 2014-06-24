@@ -19,7 +19,7 @@ package
 	import flash.events.NetStatusEvent;
 	import flash.events.SecurityErrorEvent;
 	
-	//[SWF(width="480",height="320",frameRate="60",backgroundColor="#ffffff")]
+	[SWF(width="480",height="320",frameRate="60",backgroundColor="#ffffff")]
 	
 	public class Startup extends Sprite
 	{
@@ -34,12 +34,11 @@ package
 		
 		public function Startup()
 		{
-			onMovieEnd();
 			with (connection)
 			{
-				//addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
-				//addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-				//connect(null);
+				addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+				addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
+				connect(null);
 			}
 			
 		}
