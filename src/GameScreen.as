@@ -30,7 +30,10 @@ package
 		public function GameScreen()
 		{
 			super();
-			loadData();
+			if (Config.SAVES_ENABLED)
+			{
+				loadData();
+			}
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
@@ -123,7 +126,10 @@ package
 			if (scoreDict[level] < score)
 			{
 				scoreDict[level] = score;
-				saveData();
+				if (Config.SAVES_ENABLED)
+				{
+					saveData();
+				}
 			}
 		}
 		

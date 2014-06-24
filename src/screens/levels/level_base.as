@@ -53,7 +53,7 @@ package screens.levels
 		
 		public function afterInit():void
 		{
-			var menu:Menu = new Menu(main, getTimer(), "Start", null, lvlChannel);
+			var menu:Menu = new Menu(main, getTimer(), "Start", -1, lvlChannel);
 			addChild(menu);
 		}
 		
@@ -61,7 +61,7 @@ package screens.levels
 		{
 			if (!noTimerLose)
 			{
-				var menu:Menu = new Menu(main, getTimer(), "Lose", null, lvlChannel);
+				var menu:Menu = new Menu(main, getTimer(), "Lose", -1, lvlChannel);
 				addChild(menu);
 			}
 		}
@@ -176,7 +176,7 @@ package screens.levels
 						pauseTimer();
 					}
 				}
-				var menu:Menu = new Menu(main, myTimer, "playing", null, getMusicChannel());
+				var menu:Menu = new Menu(main, myTimer, "playing", -1, getMusicChannel());
 				addChild(menu);
 			}
 		

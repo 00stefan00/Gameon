@@ -219,7 +219,7 @@ package screens.levels
 				removeChild(img);
 				
 				spawnItem();
-				addTicks(15);
+				addTicks(Config.BONUS_TICKS_ON_MED);
 				score++;
 				playCorrectSound();
 			}
