@@ -24,8 +24,6 @@ package screens
 		private var firstGameToDisplay:Number = 0;
 		private var miniGame:Image;
 		private var gameDict:Dictionary = new Dictionary();
-		private var bgmusic:Sound;
-		private var bgChannel:SoundChannel;
 		private var heartArray:Array = new Array();
 		
 		public function HomeScreen(main:GameScreen)
@@ -67,7 +65,7 @@ package screens
 			
 			this.addChild(character);
 			
-			startBackgroundMusic();
+			main.getSoundManager().playBackgroundMusic();
 		}
 		
 		private function placeHeart():void
@@ -100,16 +98,7 @@ package screens
 			character.x = stage.width * 0.73;
 			character.y = stage.height * 0.5;
 		}
-		
-		private function startBackgroundMusic():void
-		{
-			if (!main.getMuted())
-			{
-				bgmusic = AudioSources.getSound("BGMusic");
-				bgChannel = bgmusic.play(0, 100);
-			}
-		}
-		
+
 		private function placeArrows():void
 		{
 			removeChild(getChildByName("arrow_right"));
@@ -282,10 +271,6 @@ package screens
 		 */
 		private function getLevelByNumber(gameNumber:Number):void
 		{
-			if (bgChannel != null)
-			{
-				bgChannel.stop();
-			}
 			if (gameNumber < 10)
 				main.loadScreen("level_0" + gameNumber);
 			else

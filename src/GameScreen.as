@@ -4,6 +4,7 @@ package
 	 * ...
 	 * @author Stefan
 	 */
+	import flash.media.Sound;
 	import screens.BaseScreen;
 	import screens.levels.*;
 	import screens.Welcome;
@@ -13,8 +14,7 @@ package
 	import flash.utils.Dictionary;
 	import ao.ExternalStorageAO;
 	import util.Config;
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
+	import SoundManager;
 	
 	import screens.HomeScreen;
 	
@@ -26,6 +26,7 @@ package
 		private static var mainMenu:HomeScreen;
 		private var scoreDict:Dictionary = new Dictionary();
 		private var muted:Boolean = false;
+		private var soundManager:SoundManager;
 		
 		public function GameScreen()
 		{
@@ -55,7 +56,8 @@ package
 		 */
 		public function loadScreen(screenName:String):void
 		{
-			currentScreenName = screenName;
+			getSoundManager().stopAllMusic();
+			currentScreenName = screenName;			
 			if (currentScreen != null)
 			{
 				removeChild(currentScreen);
@@ -158,12 +160,6 @@ package
 			}
 		}
 		
-		public function playButtonSound():void
-		{
-			var btnSound:Sound = AudioSources.getSound("Button");
-			var btnChannel:SoundChannel = btnSound.play(1);
-		}
-		
 		public function getTotalScore():Number
 		{
 			var totalScore:Number = 0;
@@ -175,19 +171,13 @@ package
 			trace(totalScore);
 		}
 		
-		public function getMuted():Boolean
+		public function getSoundManager():SoundManager
 		{
-			return muted;
-		}
-		
-		public function mute():void
-		{
-			muted = true;
-		}
-		
-		public function unmute():void
-		{
-			muted = false;
+			if (soundManager == null)
+			{				
+				soundManager = new SoundManager();
+			}
+			return soundManager;
 		}
 	}
 }

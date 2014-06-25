@@ -11,8 +11,7 @@ package screens.levels
 	import starling.events.Touch;
 	import flash.geom.Point;
 	
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
+
 	
 	public class level_05 extends level_base
 	{
@@ -44,7 +43,7 @@ package screens.levels
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			
-			startLevelMusic();
+			
 			
 			box_blue = new Image(Assets.getTexture("BoxBlue"));
 			box_red = new Image(Assets.getTexture("BoxRed"));
@@ -109,13 +108,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
-					playCorrectSound();
+					main.getSoundManager().playCorrectSound();
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
-					playWrongSound();
+					main.getSoundManager().playWrongSound();
 				}
 			}
 			else if (detectCollision(pill, box_red))
@@ -124,13 +123,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
-					playCorrectSound();
+					main.getSoundManager().playCorrectSound();
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
-					playWrongSound();
+					main.getSoundManager().playWrongSound();
 				}
 			}
 			else if (detectCollision(pill, box_green))
@@ -139,13 +138,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
-					playCorrectSound();
+					main.getSoundManager().playCorrectSound();
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
-					playWrongSound();
+					main.getSoundManager().playWrongSound();
 				}
 			}
 			else
@@ -155,9 +154,9 @@ package screens.levels
 			if (score == 15)
 			{
 				pauseTimer();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30), getMusicChannel());
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30));
 				addChild(menu);
-				stopLevelMusic();
+				
 			}
 		
 		}

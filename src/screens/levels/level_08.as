@@ -7,8 +7,7 @@ package screens.levels
 	import starling.display.Image;
 	import screens.levels.level_base;
 	import screens.Menu;
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
+
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	
@@ -37,7 +36,7 @@ package screens.levels
 		private function initialize():void
 		{
 			bg = new Image(Assets.getTexture("Background"));
-			startLevelMusic();
+			
 			addChild(bg);
 			
 			placeObjects();
@@ -103,14 +102,14 @@ package screens.levels
 				if (object.name == "Fun")
 				{
 					object.dispose();
-					playCorrectSound();
+					main.getSoundManager().playCorrectSound();
 					removeChild(object);
 					funArray.pop();
 					score++;
 				}
 				else if (object.name == "Boring")
 				{
-					playWrongSound();
+					main.getSoundManager().playWrongSound();
 					removeTicks(50);
 				}
 				
@@ -124,9 +123,8 @@ package screens.levels
 					pauseTimer();
 					removeEventListeners();
 					dispose();
-					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
 					addChild(menu);
-					stopLevelMusic();
 				}
 			}
 		}

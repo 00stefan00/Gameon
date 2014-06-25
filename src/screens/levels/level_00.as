@@ -16,8 +16,7 @@ package screens.levels
 	import starling.events.TouchPhase;
 	import starling.events.Event;
 	
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
+
 	
 	public class level_00 extends level_base
 	{
@@ -55,7 +54,6 @@ package screens.levels
 		{
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
-			startLevelMusic();
 			
 			char1 = new Image(Assets.getTexture("Face1"));
 			char2 = new Image(Assets.getTexture("Face2"));
@@ -121,7 +119,7 @@ package screens.levels
 					char1Count += 1;
 					if (char1Count > (30 * seconds) && charDict[1] != true)
 					{
-						playCorrectSound();
+						main.getSoundManager().playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 32, 75);
 						charDict[1] = true;
 						removeNrs();
@@ -137,7 +135,7 @@ package screens.levels
 					char2Count += 1;
 					if (char2Count > (30 * seconds) && charDict[2] != true)
 					{
-						playCorrectSound();
+						main.getSoundManager().playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 144, 75);
 						charDict[2] = true;
 						removeNrs();
@@ -153,7 +151,7 @@ package screens.levels
 					char3Count += 1;
 					if (char3Count > (30 * seconds) && charDict[3] != true)
 					{
-						playCorrectSound();
+						main.getSoundManager().playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 256, 75);
 						charDict[3] = true;
 						removeNrs();
@@ -169,7 +167,7 @@ package screens.levels
 					char4Count += 1;
 					if (char4Count > (30 * seconds) && charDict[4] != true)
 					{
-						playCorrectSound();
+						main.getSoundManager().playCorrectSound();
 						setToCoords(makeResizedImg(new Image(Assets.getTexture("Done")), 25, 25), 368, 75);
 						charDict[4] = true;
 						removeNrs();
@@ -189,9 +187,8 @@ package screens.levels
 				{
 					removeNrs();
 					pauseTimer();
-					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50), getMusicChannel());
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50));
 					addChild(menu);
-					stopLevelMusic();
 					this.removeEventListener(Event.ENTER_FRAME, handleCollision)
 				}
 			}

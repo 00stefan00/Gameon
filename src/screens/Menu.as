@@ -30,7 +30,7 @@ package screens
 		private var score:Number;
 		private var musicChannel:SoundChannel;
 		
-		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = -1, musicChannel:SoundChannel = null)
+		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = -1)
 		{
 			super(main);
 			this.myTimer = myTimer;
@@ -153,7 +153,7 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
-				main.playButtonSound();
+				main.getSoundManager().playButtonSound();
 				
 				main.loadScreen("homescreen");
 				if (musicChannel != null)
@@ -169,7 +169,7 @@ package screens
 		private function goBack(e:TouchEvent):void
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN)) {
-				main.playButtonSound();
+				main.getSoundManager().playButtonSound();
 				
 				closeMenu()
 			}
@@ -179,7 +179,7 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
-				main.playButtonSound();
+				main.getSoundManager().playButtonSound();
 				
 				main.loadScreen(main.getCurrentScreenName());
 				if (musicChannel != null)
@@ -193,7 +193,7 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
-				main.playButtonSound();
+				main.getSoundManager().playButtonSound();
 				
 				if (main.getCurrentScreenName() != "level_08")
 				{
@@ -207,8 +207,7 @@ package screens
 					
 					number++;
 					closeMenu();
-					main.loadScreen("level_0" + number);
-					
+					main.loadScreen("level_0" + number);					
 				}
 			}
 		}
@@ -217,23 +216,11 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
-				main.playButtonSound();
-				
-				if (main.getMuted())
-				{
-					main.unmute();
-				}
-				else
-				{
-					main.mute();
-					musicChannel.stop();
-				}
+				main.getSoundManager().playButtonSound();
+				main.getSoundManager().switchMute();
 			}
 		}
 		
-		/**
-		 * Removes menu from the screen
-		 */
 		private function closeMenu():void
 		{
 			if (gameState != "Victory")

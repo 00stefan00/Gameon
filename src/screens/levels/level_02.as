@@ -9,8 +9,7 @@ package screens.levels
 	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import screens.levels.level_base
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
+
 	import screens.Menu;
 	import flash.geom.Point;
 	import starling.display.Sprite;
@@ -63,7 +62,7 @@ package screens.levels
 			setToCoords(football, 375, 230);
 			setToCoords(movieboard, 375, 10);
 			
-			startLevelMusic();
+			
 		}
 		
 		private function addLines():void
@@ -162,9 +161,9 @@ package screens.levels
 				pauseTimer();
 				removeEventListeners();
 				dispose();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
 				addChild(menu);
-				stopLevelMusic();
+				
 			}
 			return false;
 		}

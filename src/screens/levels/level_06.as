@@ -10,8 +10,7 @@
 	import starling.events.Event;
 	import screens.Menu;
 	
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
+
 	
 	public class level_06 extends level_base
 	{
@@ -44,7 +43,7 @@
 			bg.addEventListener(TouchEvent.TOUCH, gameStart)
 			addChild(bg);
 			
-			startLevelMusic();
+			
 			
 			for (var i:int = 0; i < sickFaces; i++)
 			{
@@ -108,9 +107,9 @@
 			{
 				victory = true;
 				pauseGame();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(10), getMusicChannel());
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(10));
 				addChild(menu);
-				stopLevelMusic();
+				
 				this.removeEventListener(Event.ENTER_FRAME, onNewFrame)
 			}
 		}
@@ -122,13 +121,13 @@
 				if (sickFacesArray.indexOf(event.currentTarget) > 0)
 				{
 					removeTicks(50);
-					playWrongSound();
+					main.getSoundManager().playWrongSound();
 					
 				}
 				else
 				{
 					healthyFacesArray.pop();
-					playCorrectSound();
+					main.getSoundManager().playCorrectSound();
 					removeChild(event.currentTarget as Image);
 				}
 			}

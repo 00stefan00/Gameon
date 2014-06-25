@@ -58,7 +58,7 @@ package screens.levels
 			addChild(new Image(Assets.getTexture("Background")));
 			correct = AudioSources.getSound("Correct");
 			wrong = AudioSources.getSound("Wrong");
-			startLevelMusic();
+			
 			
 			doorsArray = new Array();
 			doorDict = new Dictionary();
@@ -80,7 +80,7 @@ package screens.levels
 			{
 				victory = true;
 				this.removeEventListeners()
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
 				addChild(menu);
 			}
 		}

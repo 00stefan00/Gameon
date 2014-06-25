@@ -12,8 +12,7 @@ package screens.levels
 	import starling.events.TouchPhase;
 	import screens.Menu;
 		
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
+
 	
 	public class level_01 extends level_base
 	{
@@ -27,9 +26,7 @@ package screens.levels
 		private var nrDict:Dictionary;
 		private var bedCount:Number = 0;
 		private var score:Number;
-		
-
-		
+				
 		public function level_01(main:GameScreen)
 		{
 			super(main);
@@ -52,7 +49,6 @@ package screens.levels
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			
-			startLevelMusic();
 			placeBeds();
 			
 			score = 0;
@@ -90,13 +86,13 @@ package screens.levels
 							removeChild(bedDict[i]);
 							removeChild(nrDict[i]);
 							bedCount--;
-							playCorrectSound();
+							main.getSoundManager().playCorrectSound();
 							score++;
 						}
 						else
 						{
 							removeTicks(40);
-							playWrongSound();
+							main.getSoundManager().playWrongSound();
 						}
 						
 					}
@@ -119,13 +115,13 @@ package screens.levels
 							removeChild(bedDict[i]);
 							removeChild(nrDict[i]);
 							bedCount--;
-							playCorrectSound();
+							main.getSoundManager().playCorrectSound();
 							score++;
 						}
 						else
 						{
 							removeTicks(40);
-							playWrongSound();
+							main.getSoundManager().playWrongSound();
 						}
 						
 					}
@@ -151,9 +147,9 @@ package screens.levels
 				pauseTimer();
 				removeEventListeners();
 				dispose();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
 				addChild(menu);
-				stopLevelMusic();
+				
 				
 			}
 		}

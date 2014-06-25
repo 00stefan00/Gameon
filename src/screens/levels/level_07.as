@@ -15,8 +15,7 @@ package screens.levels
 	import screens.Menu;
 	import util.Config;
 	
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
+
 	
 	public class level_07 extends level_base
 	{
@@ -46,7 +45,7 @@ package screens.levels
 			bg = new Image(Assets.getTexture("Background"));
 			addChild(bg);
 			
-			startLevelMusic();
+			
 			
 			//benson = makeResizedImg(new Image(Assets.getTexture("Benson")), 80, 132);
 			benson = new Image(Assets.getTexture("Benson"));
@@ -103,9 +102,9 @@ package screens.levels
 				checkForCollisions();
 			}
 			if (getGaugeRatio() < 0.01) {
-				var menu:Menu = new Menu(main, getTimer(), "Victory", score/Config.MEDS_NEEDED_PER_HEART, getMusicChannel());
+				var menu:Menu = new Menu(main, getTimer(), "Victory", score/Config.MEDS_NEEDED_PER_HEART);
 				addChild(menu);				
-				stopLevelMusic();
+				
 				this.removeEventListener(EnterFrameEvent.ENTER_FRAME, onFrame);
 			}
 		}
@@ -221,7 +220,7 @@ package screens.levels
 				spawnItem();
 				addTicks(Config.BONUS_TICKS_ON_MED);
 				score++;
-				playCorrectSound();
+				main.getSoundManager().playCorrectSound();
 			}
 			else if (img.name == "RandomItem")
 			{
@@ -230,7 +229,7 @@ package screens.levels
 				
 				spawnItem();
 				removeTicks(50);
-				playWrongSound();
+				main.getSoundManager().playWrongSound();
 			}
 		}
 	}

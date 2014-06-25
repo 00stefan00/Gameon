@@ -10,8 +10,7 @@ package screens.levels
 	import starling.events.TouchPhase;
 	import screens.Menu;
 	
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
+
 	
 	public class level_04 extends level_base
 	{
@@ -43,7 +42,7 @@ package screens.levels
 			addChild(hospital);
 			setToCoords(hospital, 300, 40
 			);
-			startLevelMusic();
+			
 			
 			putfaces();
 		}
@@ -106,21 +105,20 @@ package screens.levels
 					face.dispose();
 					removeChild(face);
 					sickFaceArray.pop();
-					playCorrectSound();
+					main.getSoundManager().playCorrectSound();
 					score++;
 				}
 				else if (face.name == "Healthy")
 				{
 					removeTicks(50);
-					playWrongSound();
+					main.getSoundManager().playWrongSound();
 				}
 				
 				if (score == 18)
 				{
 					pauseTimer();
-					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50), getMusicChannel());
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50));
 					addChild(menu);
-					stopLevelMusic();
 				}
 				else if (sickFaceArray.length < 1)
 				{
