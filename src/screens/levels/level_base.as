@@ -103,6 +103,7 @@ package screens.levels
 		{
 			if (gauge != null)
 			{
+				main.getSoundManager().playTickingSound();
 				gauge.ratio -= gaugeRatio;
 			}
 			if (gauge.ratio < 0.001)

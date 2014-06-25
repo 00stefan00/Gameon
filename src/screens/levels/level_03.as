@@ -24,10 +24,6 @@ package screens.levels
 	
 	public class level_03 extends level_base
 	{
-		private var lvlmusic:Sound;
-		private var lvlChannel:SoundChannel;
-		private var correct:Sound;
-		private var wrong:Sound;
 		private var doorsArray:Array;
 		private var margin:int = 100;
 		private var doorDict:Dictionary;
@@ -55,10 +51,7 @@ package screens.levels
 		 */
 		private function initialize():void
 		{
-			addChild(new Image(Assets.getTexture("Background")));
-			correct = AudioSources.getSound("Correct");
-			wrong = AudioSources.getSound("Wrong");
-			
+			addChild(new Image(Assets.getTexture("Background")));			
 			
 			doorsArray = new Array();
 			doorDict = new Dictionary();
@@ -173,14 +166,14 @@ package screens.levels
 				var door:Image = e.currentTarget as Image;
 				if (door.name == "correct")
 				{
-					correct.play(0, 1);
+					main.getSoundManager().playCorrectSound();
 					score++;
 					showResultsAndRestart();
 					placeResult(door.x, door.y, true);
 				}
 				else if (door.name == "wrong")
 				{
-					wrong.play(0, 1);
+					main.getSoundManager().playWrongSound();
 					showResultsAndRestart();
 					placeResult(door.x, door.y);
 				}

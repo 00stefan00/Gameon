@@ -153,13 +153,13 @@ package screens.levels
 			if (detectCollision(face, football) || detectCollision(face, movieboard))
 			{
 				removeTicks(1);
+				main.getSoundManager().playWrongSound();
 			}
-			else if (detectCollision(face, hospital))
-				// makeResizedImg(image, imgage.width*0,7), imgage.height*0,5)
-				
+			else if (detectCollision(face, hospital))				
 			{
 				pauseTimer();
 				removeEventListeners();
+				main.getSoundManager().playCorrectSound();
 				dispose();
 				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
 				addChild(menu);

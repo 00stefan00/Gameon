@@ -106,10 +106,18 @@ package
 			}
 		}
 		
+		public function stopTickingSound():void {
+			if (tickingChannel != null) {
+				tickingChannel.stop();
+				tickingChannel = null;
+			}
+		}
+		
 		public function stopAllMusic():void
 		{
 			stopLevelMusic();
 			stopBackgroundMusic();
+			stopTickingSound();
 		}
 		
 		public function getMuted():Boolean

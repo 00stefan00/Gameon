@@ -15,6 +15,8 @@ package
 	import ao.ExternalStorageAO;
 	import util.Config;
 	import SoundManager;
+	import flash.ui.Keyboard;
+	import starling.events.KeyboardEvent
 	
 	import screens.HomeScreen;
 	
@@ -31,10 +33,7 @@ package
 		public function GameScreen()
 		{
 			super();
-			if (Config.SAVES_ENABLED)
-			{
-				loadData();
-			}
+			loadData();
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
@@ -57,7 +56,7 @@ package
 		public function loadScreen(screenName:String):void
 		{
 			getSoundManager().stopAllMusic();
-			currentScreenName = screenName;			
+			currentScreenName = screenName;
 			if (currentScreen != null)
 			{
 				removeChild(currentScreen);
@@ -128,10 +127,6 @@ package
 			if (scoreDict[level] < score)
 			{
 				scoreDict[level] = score;
-				if (Config.SAVES_ENABLED)
-				{
-					saveData();
-				}
 			}
 		}
 		
@@ -143,20 +138,55 @@ package
 			{
 				rawData += "" + key + ";" + scoreDict[key] + "?";
 			}
-			ExternalStorageAO.saveFileToDirectory("SaveFile.txt", Config.SAVE_GAME_DIRECTORY, rawData);
+			try
+			{
+				ExternalStorageAO.saveFileToDirectory(Config.SAVE_GAME_NAME, Config.SAVE_GAME_DIRECTORY, rawData);
+			}
+			catch (e:Error)
+			{
+				trace(e);
+				try
+				{
+					ExternalStorageAO.saveFile(Config.SAVE_GAME_DIRECTORY, rawData);
+				}
+				catch (e:Error)
+				{
+					trace(e);
+				}
+			}
+		
 		}
 		
 		private function loadData():void
 		{
-			var rawData:String = ExternalStorageAO.loadFile(Config.SAVE_GAME_DIRECTORY + "SaveFile.txt");
-			
-			var dataArray:Array = rawData.split("?")
-			while (dataArray.length > 0)
+			var rawData:String;
+			try
 			{
-				var temp:String = dataArray.pop();
-				var tempArray:Array = temp.split(";");
-				var score:String = tempArray.pop();
-				setLevelScore(new Number(tempArray.pop()), new Number(score));
+				rawData = ExternalStorageAO.loadFile(Config.SAVE_GAME_DIRECTORY + Config.SAVE_GAME_NAME);
+			}
+			catch (e:Error)
+			{
+				trace(e);
+				try
+				{
+					rawData = ExternalStorageAO.loadFile(Config.SAVE_GAME_NAME);
+				}
+				catch (e:Error)
+				{
+					trace(e);
+				}
+			}
+			
+			if (rawData != null)
+			{
+				var dataArray:Array = rawData.split("?")
+				while (dataArray.length > 0)
+				{
+					var temp:String = dataArray.pop();
+					var tempArray:Array = temp.split(";");
+					var score:String = tempArray.pop();
+					setLevelScore(new Number(tempArray.pop()), new Number(score));
+				}
 			}
 		}
 		
@@ -168,16 +198,23 @@ package
 				totalScore += scoreDict[level];
 			}
 			return totalScore;
-			trace(totalScore);
 		}
 		
 		public function getSoundManager():SoundManager
 		{
 			if (soundManager == null)
-			{				
+			{
 				soundManager = new SoundManager();
 			}
 			return soundManager;
+		}
+		
+		public function handleBackButton(event:KeyboardEvent):void
+		{
+			if (event.keyCode == Keyboard.BACK || event.keyCode == Keyboard.HOME)
+			{
+				getSoundManager().stopAllMusic();
+			}
 		}
 	}
 }

@@ -9,7 +9,6 @@ package util
 		
 		// Global	
 		public static const DEFAULT_SOUND_SETTING:Boolean 	= false;
-		public static const SAVES_ENABLED:Boolean			= false;
 		public static const GAME_COUNT:int 					= 9;
 		public static const MAX_SCORE_PER_LEVEL:int 		= 5;
 		
@@ -47,6 +46,7 @@ package util
 		
 		// Loading and Saving files
 		public static const SAVE_GAME_DIRECTORY:String 		= "Health_Rush/save_files/";
+		public static const SAVE_GAME_NAME:String			= "SaveFile.txt";
 
 	}
 
