@@ -1,3 +1,4 @@
+import util.Assets;
 package screens.levels
 {
 	/**
@@ -9,6 +10,7 @@ package screens.levels
 	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import screens.levels.level_base
+	import util.Assets;
 
 	import screens.Menu;
 	import flash.geom.Point;

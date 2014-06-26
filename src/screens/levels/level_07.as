@@ -1,3 +1,4 @@
+import util.Assets;
 package screens.levels
 {
 	/**
@@ -25,6 +26,7 @@ package screens.levels
 		private var spawnsDict:Dictionary;
 		private var score:Number = 0;
 		private var spawnReset:Number = 0;
+		import util.Assets;
 		
 		
 		public function level_07(main:GameScreen)

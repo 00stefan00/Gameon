@@ -8,6 +8,7 @@ package screens.levels
 	import Gauge;
 	import screens.BaseScreen;
 	import screens.Menu;
+	import util.Assets;
 	
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;

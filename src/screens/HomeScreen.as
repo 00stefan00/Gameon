@@ -13,6 +13,7 @@ package screens
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import flash.media.SoundChannel;
+	import util.Assets;
 	import util.Config;
 	
 	public class HomeScreen extends BaseScreen

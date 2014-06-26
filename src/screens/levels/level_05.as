@@ -1,3 +1,4 @@
+import util.Assets;
 package screens.levels
 {
 	/**
@@ -10,6 +11,7 @@ package screens.levels
 	import starling.events.TouchPhase;
 	import starling.events.Touch;
 	import flash.geom.Point;
+	import util.Assets;
 	
 
 	

@@ -14,7 +14,7 @@ package
 	import flash.utils.Dictionary;
 	import ao.ExternalStorageAO;
 	import util.Config;
-	import SoundManager;
+	import util.SoundManager;
 	import flash.ui.Keyboard;
 	import starling.events.KeyboardEvent
 	
@@ -22,10 +22,11 @@ package
 	
 	public class GameScreen extends Sprite
 	{
+		private static var mainMenu:HomeScreen;
 		private var currentScreen:BaseScreen;
 		private var screenWelcome:Welcome;
 		private var currentScreenName:String;
-		private static var mainMenu:HomeScreen;
+		
 		private var scoreDict:Dictionary = new Dictionary();
 		private var muted:Boolean = false;
 		private var soundManager:SoundManager;

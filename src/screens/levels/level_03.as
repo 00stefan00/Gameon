@@ -21,6 +21,7 @@ package screens.levels
 	import flash.media.SoundChannel;
 	import screens.Menu;
 	import flash.utils.Timer;
+	import util.Assets;
 	
 	public class level_03 extends level_base
 	{

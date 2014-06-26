@@ -34,17 +34,17 @@ package
 		
 		public function Startup()
 		{
-			onMovieEnd();
 			with (connection)
 			{
-				//addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
-				//addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-				//connect(null);
+				addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+				addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
+				connect(null);
 			}
-			
+		
 		}
 		
-		private function onMovieEnd():void {
+		private function onMovieEnd():void
+		{
 			myStarling = new Starling(GameScreen, stage);
 			myStarling.antiAliasing = 1;
 			myStarling.start();

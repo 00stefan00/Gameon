@@ -10,6 +10,7 @@ package screens.levels
 	import starling.display.Image;
 	import starling.events.Touch;
 	import flash.utils.Dictionary;
+	import util.Assets;
 	
 	import screens.levels.level_base
 	import starling.events.TouchEvent;

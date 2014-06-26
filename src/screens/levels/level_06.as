@@ -1,4 +1,5 @@
-﻿package screens.levels
+﻿import util.Assets;
+package screens.levels
 {
 	// Import classes this script uses
 	import flash.utils.Timer;
@@ -9,6 +10,7 @@
 	import starling.events.TouchPhase;
 	import starling.events.Event;
 	import screens.Menu;
+	import util.Assets;
 	
 
 	

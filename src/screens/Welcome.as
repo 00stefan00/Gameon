@@ -1,3 +1,4 @@
+import util.Assets;
 package screens
 {
 	/**
@@ -14,6 +15,7 @@ package screens
 	import flash.display.Loader;
 	import flash.net.URLRequest;
 	import starling.events.TouchPhase;
+	import util.Assets;
 	
 	public class Welcome extends BaseScreen
 	{

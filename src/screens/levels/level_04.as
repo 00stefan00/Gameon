@@ -1,3 +1,4 @@
+import util.Assets;
 package screens.levels
 {
 	/**
@@ -9,6 +10,7 @@ package screens.levels
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import screens.Menu;
+	import util.Assets;
 	
 
 	

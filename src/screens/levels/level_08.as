@@ -1,3 +1,4 @@
+import util.Assets;
 package screens.levels
 {
 	/**
@@ -10,6 +11,7 @@ package screens.levels
 
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import util.Assets;
 	
 	public class level_08 extends level_base
 	{

@@ -1,4 +1,4 @@
-package
+package util
 {
 	/**
 	 * ...
@@ -8,6 +8,7 @@ package
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import util.Config;
+	import util.AudioSources;
 	
 	public class SoundManager
 	{
