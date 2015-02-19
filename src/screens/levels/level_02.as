@@ -1,3 +1,4 @@
+import util.Assets;
 package screens.levels
 {
 	/**
@@ -6,7 +7,15 @@ package screens.levels
 	 */
 	import flash.geom.Point;
 	import flash.utils.Dictionary;
+<<<<<<< HEAD
 	import screens.levels.level_base;
+=======
+	import starling.display.DisplayObject;
+	import starling.display.Image;
+	import screens.levels.level_base
+	import util.Assets;
+
+>>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	import screens.Menu;
 	import starling.display.Image;
 	import starling.events.Touch;
@@ -54,7 +63,7 @@ package screens.levels
 			setToCoords(football, 375, 230);
 			setToCoords(movieboard, 375, 10);
 			
-			startLevelMusic();
+			
 		}
 		
 		private function addLines():void
@@ -145,17 +154,17 @@ package screens.levels
 			if (detectCollision(face, football) || detectCollision(face, movieboard))
 			{
 				removeTicks(1);
+				main.getSoundManager().playWrongSound();
 			}
-			else if (detectCollision(face, hospital))
-				// makeResizedImg(image, imgage.width*0,7), imgage.height*0,5)
-				
+			else if (detectCollision(face, hospital))				
 			{
 				pauseTimer();
 				removeEventListeners();
+				main.getSoundManager().playCorrectSound();
 				dispose();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
 				addChild(menu);
-				stopLevelMusic();
+				
 			}
 			return false;
 		}

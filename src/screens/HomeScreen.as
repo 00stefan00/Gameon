@@ -12,6 +12,11 @@ package screens
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+<<<<<<< HEAD
+=======
+	import flash.media.SoundChannel;
+	import util.Assets;
+>>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	import util.Config;
 	
 	public class HomeScreen extends BaseScreen
@@ -23,8 +28,6 @@ package screens
 		private var firstGameToDisplay:Number = 0;
 		private var miniGame:Image;
 		private var gameDict:Dictionary = new Dictionary();
-		private var bgmusic:Sound;
-		private var bgChannel:SoundChannel;
 		private var heartArray:Array = new Array();
 		
 		public function HomeScreen(main:GameScreen)
@@ -68,7 +71,7 @@ package screens
 			
 			this.addChild(character);
 			
-			startBackgroundMusic();
+			main.getSoundManager().playBackgroundMusic();
 		}
 		
 		private function placeHeart():void
@@ -106,16 +109,7 @@ package screens
 			character.height *= main.getScreenHeight()/320;
 			character.width *= main.getScreenWidth()/480;
 		}
-		
-		private function startBackgroundMusic():void
-		{
-			if (!main.getMuted())
-			{
-				bgmusic = AudioSources.getSound("BGMusic");
-				bgChannel = bgmusic.play(0, 100);
-			}
-		}
-		
+
 		private function placeArrows():void
 		{
 			removeChild(getChildByName("arrow_right"));
@@ -291,10 +285,6 @@ package screens
 		 */
 		private function getLevelByNumber(gameNumber:Number):void
 		{
-			if (bgChannel != null)
-			{
-				bgChannel.stop();
-			}
 			if (gameNumber < 10)
 				main.loadScreen("level_0" + gameNumber);
 			else

@@ -4,6 +4,7 @@ package screens.levels
 	 * ...
 	 * @author Stefan
 	 */
+<<<<<<< HEAD
 	import flash.events.TimerEvent;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
@@ -11,6 +12,18 @@ package screens.levels
 	import Gauge;
 	import screens.BaseScreen;
 	import screens.Menu;
+=======
+	import adobe.utils.CustomActions;
+	import Gauge;
+	import screens.BaseScreen;
+	import screens.Menu;
+	import util.Assets;
+	
+	import flash.utils.Timer;
+	import flash.events.TimerEvent;
+
+	import starling.display.DisplayObjectContainer;
+>>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	import starling.display.Image;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -26,12 +39,6 @@ package screens.levels
 		private var gaugeRatio:Number = 0.0025;
 		private var levelName:String;
 		public var noTimerLose:Boolean = false;
-		private var sound:Sound;
-		private var audioChannel:SoundChannel;
-		private var lvlmusic:Sound;
-		private var lvlChannel:SoundChannel;
-		private var ticking:Sound;
-		private var timerChannel:SoundChannel;
 		
 		public function level_base(main:GameScreen)
 		{
@@ -43,12 +50,12 @@ package screens.levels
 		{
 			myTimer = new Timer(50, 6000);
 			myTimer.addEventListener(TimerEvent.TIMER, timerListener);
-			ticking = AudioSources.getSound("Timer");
+			main.getSoundManager().startLevelMusic();
 		}
 		
 		public function afterInit():void
 		{
-			var menu:Menu = new Menu(main, getTimer(), "Start", -1, lvlChannel);
+			var menu:Menu = new Menu(main, getTimer(), "Start", -1);
 			addChild(menu);
 		}
 		
@@ -56,7 +63,7 @@ package screens.levels
 		{
 			if (!noTimerLose)
 			{
-				var menu:Menu = new Menu(main, getTimer(), "Lose", -1, lvlChannel);
+				var menu:Menu = new Menu(main, getTimer(), "Lose", -1);
 				addChild(menu);
 			}
 		}
@@ -78,11 +85,6 @@ package screens.levels
 		
 		public function pauseTimer():void
 		{
-			if (timerChannel != null)
-			{
-				timerChannel.stop();
-				timerChannel = null;
-			}
 			if (myTimer.running)
 			{
 				myTimer.stop();
@@ -109,12 +111,9 @@ package screens.levels
 		
 		private function timerListener(event:TimerEvent):void
 		{
-			if (timerChannel == null)
-			{
-				timerChannel = ticking.play(1, 10);
-			}
 			if (gauge != null)
 			{
+				main.getSoundManager().playTickingSound();
 				gauge.ratio -= gaugeRatio;
 			}
 			if (gauge.ratio < 0.001)
@@ -164,7 +163,7 @@ package screens.levels
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
-				main.playButtonSound();
+				main.getSoundManager().playButtonSound();
 				if (gauge != null)
 				{
 					if (gauge.ratio > gaugeRatio)
@@ -172,7 +171,7 @@ package screens.levels
 						pauseTimer();
 					}
 				}
-				var menu:Menu = new Menu(main, myTimer, "playing", -1, getMusicChannel());
+				var menu:Menu = new Menu(main, myTimer, "playing", -1);
 				addChild(menu);
 			}
 		
@@ -212,46 +211,6 @@ package screens.levels
 				gaugeScore -= gaugeDecrease;
 			}
 			return i;
-		}
-		
-		public function playCorrectSound():void
-		{
-			if (!main.getMuted())
-			{
-				sound = AudioSources.getSound("Correct");
-				audioChannel = sound.play(0, 1);
-			}
-		}
-		
-		public function playWrongSound():void
-		{
-			if (!main.getMuted())
-			{
-				sound = AudioSources.getSound("Wrong");
-				audioChannel = sound.play(0, 1);
-			}
-		}
-		
-		public function startLevelMusic():void
-		{
-			if (!main.getMuted())
-			{
-				lvlmusic = AudioSources.getSound("LvlMusic");
-				lvlChannel = lvlmusic.play(0, 1000);
-			}
-		}
-		
-		public function stopLevelMusic():void
-		{
-			if (!main.getMuted())
-			{
-				lvlChannel.stop();
-			}
-		}
-		
-		public function getMusicChannel():SoundChannel
-		{
-			return lvlChannel;
 		}
 	}
 }

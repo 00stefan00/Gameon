@@ -1,3 +1,4 @@
+import util.Assets;
 package screens.levels
 {
 	/**
@@ -11,7 +12,15 @@ package screens.levels
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+<<<<<<< HEAD
 	
+=======
+	import starling.events.Touch;
+	import flash.geom.Point;
+	import util.Assets;
+	
+
+>>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	
 	public class level_05 extends level_base
 	{
@@ -43,7 +52,7 @@ package screens.levels
 			bg = makeResizedImg(bg, 480, 320);
 			addChild(bg);
 			
-			startLevelMusic();
+			
 			
 			box_blue = new Image(Assets.getTexture("BoxBlue"));
 			box_red = new Image(Assets.getTexture("BoxRed"));
@@ -108,13 +117,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
-					playCorrectSound();
+					main.getSoundManager().playCorrectSound();
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
-					playWrongSound();
+					main.getSoundManager().playWrongSound();
 				}
 			}
 			else if (detectCollision(pill, box_red))
@@ -123,13 +132,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
-					playCorrectSound();
+					main.getSoundManager().playCorrectSound();
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
-					playWrongSound();
+					main.getSoundManager().playWrongSound();
 				}
 			}
 			else if (detectCollision(pill, box_green))
@@ -138,13 +147,13 @@ package screens.levels
 				{
 					pill.dispose();
 					removeChild(pill);
-					playCorrectSound();
+					main.getSoundManager().playCorrectSound();
 					score++;
 				}
 				else
 				{
 					removeTicks(1);
-					playWrongSound();
+					main.getSoundManager().playWrongSound();
 				}
 			}
 			else
@@ -154,9 +163,9 @@ package screens.levels
 			if (score == 15)
 			{
 				pauseTimer();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30), getMusicChannel());
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(30));
 				addChild(menu);
-				stopLevelMusic();
+				
 			}
 		
 		}
