@@ -2,17 +2,13 @@ package screens
 {
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 */
 	
 	import starling.display.Button;
 	import starling.display.Image;
-	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
-	import flash.events.ProgressEvent;
-	import flash.display.Loader;
-	import flash.net.URLRequest;
 	import starling.events.TouchPhase;
 	
 	public class Welcome extends BaseScreen
@@ -37,14 +33,17 @@ package screens
 			bg = new Image(Assets.getTexture("Background"));
 			this.addChild(bg);
 			
+			bg.width = main.getScreenWidth();
+			bg.height = main.getScreenHeight();
+			
 			logo = new Image(Assets.getTexture("Logo"));
-			logo.x = ((480 / 2) - (logo.width / 2));
-			logo.y = 25;
+			logo.x = ((main.getScreenWidth() / 2) - (logo.width / 2));
+			logo.y = (main.getScreenHeight()/12.8) ;
 			this.addChild(logo);
 			
 			playBtn = new Button(Assets.getTexture("StartBtn"));
-			playBtn.x = ((480 / 2) - (playBtn.width / 2));
-			playBtn.y = 255;
+			playBtn.x = ((main.getScreenWidth() / 2) - (playBtn.width / 2));
+			playBtn.y = (main.getScreenHeight()/1.25);
 			playBtn.addEventListener(TouchEvent.TOUCH, this.onStartButtonClicked);
 			this.addChild(playBtn);
 		}

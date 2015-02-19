@@ -1,10 +1,10 @@
 package screens 
 {
-	import starling.display.Button;
-	import starling.display.Image;
+	/**
+	 * ...
+	 * @author Stefan
+	 */
 	import starling.display.Sprite;
-	import starling.events.Event;
-	import starling.events.TouchEvent;
 	
 	public class BaseScreen extends Sprite 
 	{

@@ -11,6 +11,7 @@ package util
 		public static const SAVES_ENABLED:Boolean		= false;
 		public static const GAME_COUNT:int 				= 9;
 		public static const MAX_SCORE_PER_LEVEL:int 	= 5;
+		public static const PLAY_VIDEO:Boolean					= false
 		
 		// ############################
 		// ######### Level_01 #########

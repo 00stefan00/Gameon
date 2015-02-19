@@ -4,19 +4,19 @@ package
 	 * ...
 	 * @author Stefan
 	 */
-	import screens.BaseScreen;
-	import screens.levels.*;
-	import screens.Welcome;
-	import screens.HomeScreen;
-	import starling.display.Sprite;
-	import starling.events.Event;
-	import flash.utils.Dictionary;
 	import ao.ExternalStorageAO;
-	import util.Config;
+	import flash.display.Screen;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
-	
+	import flash.utils.Dictionary;
+	import screens.BaseScreen;
 	import screens.HomeScreen;
+	import screens.levels.*;
+	import screens.Welcome;
+	import starling.display.Sprite;
+	import starling.events.Event;
+	import util.Config;
+	
 	
 	public class GameScreen extends Sprite
 	{
@@ -26,6 +26,8 @@ package
 		private static var mainMenu:HomeScreen;
 		private var scoreDict:Dictionary = new Dictionary();
 		private var muted:Boolean = false;
+		private var screenWidth:Number;
+		private var screenHeight:Number;
 		
 		public function GameScreen()
 		{
@@ -34,6 +36,9 @@ package
 			{
 				loadData();
 			}
+			
+			screenWidth = Screen.mainScreen.visibleBounds.width;
+			screenHeight = Screen.mainScreen.visibleBounds.height;
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
@@ -48,6 +53,16 @@ package
 		public function getCurrentScreenName():String
 		{
 			return currentScreenName;
+		}
+		
+		public function getScreenWidth():Number
+		{
+			return screenWidth;
+		}
+		
+		public function getScreenHeight():Number
+		{
+			return screenHeight;
 		}
 		
 		/**

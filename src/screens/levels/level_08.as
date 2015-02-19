@@ -2,7 +2,7 @@ package screens.levels
 {
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 */
 	import starling.display.Image;
 	import screens.levels.level_base;
@@ -37,6 +37,7 @@ package screens.levels
 		private function initialize():void
 		{
 			bg = new Image(Assets.getTexture("Background"));
+			bg = makeResizedImg(bg, 480, 320);
 			startLevelMusic();
 			addChild(bg);
 			

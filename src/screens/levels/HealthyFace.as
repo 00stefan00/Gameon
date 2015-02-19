@@ -1,8 +1,14 @@
 ﻿package screens.levels
 {
-	// Import all the classes this script uses
-	import starling.events.Event;
+	/**
+	 * ...
+	 * @author Kati
+	 */
+	
+	 // Import all the classes this script uses
+	import flash.display.Screen;
 	import starling.display.Image;
+	import starling.events.Event;
 	import starling.textures.Texture;
 	
 	public class HealthyFace extends Image
@@ -12,6 +18,8 @@
 		private var vy:int = 0;
 		private var isCorrect:Boolean;
 		private var paused:Boolean = false;
+		private var screenWidth:int = Screen.mainScreen.visibleBounds.width;
+		private var screenHeight:int = Screen.mainScreen.visibleBounds.height;
 		
 		// place the constructor here. It is usually the topmost function but below variables
 		
@@ -41,9 +49,9 @@
 			{
 				this.x = this.x + vx;
 				this.y = this.y + vy;
-				if (this.x > 480 + 30)
+				if (this.x > screenWidth + 30)
 					relocateX();
-				if (this.y > 320 + 30)
+				if (this.y > screenHeight + 30)
 					relocateY();
 				if (this.x < 0 - 30)
 					relocateX();
@@ -64,13 +72,13 @@
 		
 		public function relocateX():void
 		{
-			this.x = Math.random() * 480;
+			this.x = Math.random() * screenWidth;
 			setVxVy();
 		}
 		
 		public function relocateY():void
 		{
-			this.y = Math.random() * 320;
+			this.y = Math.random() * screenHeight;
 			setVxVy();
 		}
 		

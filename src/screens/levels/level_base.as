@@ -2,25 +2,20 @@ package screens.levels
 {
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 */
-	import adobe.utils.CustomActions;
-	import Gauge;
-	import screens.BaseScreen;
-	import screens.Menu;
-	
-	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
-	
-	import starling.display.DisplayObjectContainer;
+	import flash.utils.Timer;
+	import Gauge;
+	import screens.BaseScreen;
+	import screens.Menu;
 	import starling.display.Image;
-	import starling.display.Sprite;
-	import starling.events.Event;
 	import starling.events.TouchEvent;
-	import starling.textures.Texture;
 	import starling.events.TouchPhase;
+	
+	
 	
 	public class level_base extends BaseScreen
 	{
@@ -134,6 +129,7 @@ package screens.levels
 			gauge = new Gauge(Assets.getTexture("Gauge"));
 			gauge.ratio = 1;
 			addChild(gauge);
+			gauge.width *= (main.getScreenWidth() / 480);
 		}
 		
 		public function startGauge():void
@@ -193,16 +189,16 @@ package screens.levels
 		 */
 		public function setToCoords(img:Image, x:Number, y:Number):void
 		{
-			img.x = x;
-			img.y = y;
+			img.x = x*(main.getScreenWidth()/480);
+			img.y = y * (main.getScreenHeight() / 320);
 			
 			addChild(img);
 		}
 		
 		public function makeResizedImg(img:Image, width:Number, height:Number):Image
 		{
-			img.width = width;
-			img.height = height;
+			img.width = width*(main.getScreenWidth()/480);
+			img.height = height * (main.getScreenHeight()/320);
 			
 			return img;
 		}

@@ -1,5 +1,9 @@
 package
 {
+	/**
+	 * ...
+	 * @author Stefan
+	 */
 	import flash.geom.Point;
 	
 	import starling.display.Image;

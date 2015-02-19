@@ -2,7 +2,7 @@ package screens.levels
 {
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 */
 	import starling.display.Image;
 	import screens.levels.level_base;
@@ -50,6 +50,7 @@ package screens.levels
 			nrDict = new Dictionary();
 			
 			bg = new Image(Assets.getTexture("Background"));
+			bg = makeResizedImg(bg, 480, 320);
 			addChild(bg);
 			
 			startLevelMusic();
@@ -65,11 +66,11 @@ package screens.levels
 			{
 				var bedImage:Image = getRandomBed()
 				bedImage.addEventListener(TouchEvent.TOUCH, touchedBed);
-				setToCoords(bedImage, (16 + (i * 116)), 150);
+				setToCoords(makeResizedImg(bedImage, 100, 67), (16 + (i * 116)), 150);
 				bedDict[i] = bedImage;
 				
 				var nrImage:Image = getRandomNr()
-				setToCoords(nrImage, (16 + (i * 116)), 90);
+				setToCoords(makeResizedImg(nrImage, 58, 42), (16 + (i * 116)), 90);
 				nrImage.addEventListener(TouchEvent.TOUCH, touchedNr);
 				nrDict[i] = nrImage;
 			}

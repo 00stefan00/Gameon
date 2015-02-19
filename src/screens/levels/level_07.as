@@ -2,21 +2,19 @@ package screens.levels
 {
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 */
+	import flash.geom.Point;
 	import flash.utils.Dictionary;
+	import screens.levels.level_base;
+	import screens.Menu;
 	import starling.display.Image;
-	import screens.levels.level_base
 	import starling.events.EnterFrameEvent;
+	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-	import starling.events.Touch;
-	import flash.geom.Point;
-	import screens.Menu;
 	import util.Config;
 	
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
 	
 	public class level_07 extends level_base
 	{
@@ -44,16 +42,17 @@ package screens.levels
 		private function initialize():void
 		{
 			bg = new Image(Assets.getTexture("Background"));
+			bg = makeResizedImg(bg, 480, 320);
 			addChild(bg);
 			
 			startLevelMusic();
 			
 			//benson = makeResizedImg(new Image(Assets.getTexture("Benson")), 80, 132);
 			benson = new Image(Assets.getTexture("Benson"));
-			setToCoords(benson, ((480 / 2) - (benson.width / 2)), 235);
+			setToCoords(makeResizedImg(benson, 88, 145), ((480 / 2) - (benson.width / 2)), 235);
 			addChild(benson);
 			benson.addEventListener(TouchEvent.TOUCH, onBensonTouch);
-			
+
 			this.addEventListener(EnterFrameEvent.ENTER_FRAME, onFrame)
 			
 			initDict();
@@ -92,7 +91,7 @@ package screens.levels
 				{
 					img.y++;
 					img.y++;
-					if (img.y > 320)
+					if (img.y > main.getScreenWidth())
 					{
 						removeChild(img)
 						removeFromDict(img);

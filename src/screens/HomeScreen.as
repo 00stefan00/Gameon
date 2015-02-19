@@ -5,14 +5,13 @@ package screens
 	 * @author Stefan
 	 */
 	import flash.media.Sound;
-	import screens.levels.*;
+	import flash.media.SoundChannel;
 	import flash.utils.Dictionary;
+	import screens.levels.*;
 	import starling.display.Image;
-	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-	import flash.media.SoundChannel;
 	import util.Config;
 	
 	public class HomeScreen extends BaseScreen
@@ -56,6 +55,8 @@ package screens
 		private function drawScreen():void
 		{ //place background on screen
 			bg = new Image(Assets.getTexture("Background"));
+			bg.width = bg.width*(main.getScreenWidth()/480);
+			bg.height = bg.height*(main.getScreenHeight()/320);
 			this.addChild(bg);
 			
 			putGames();
@@ -79,8 +80,11 @@ package screens
 			}
 			var value:String = healthyness.toString();
 			var img:Image = new Image(Assets.getTexture("Heart" + value));
-			img.x = character.x + character.width / 2 - img.width / 2;
+			// img.x = character.x + character.width / 2 - img.width / 2;
+			img.x = stage.width * 0.68
 			img.y = stage.height * 0.1;
+			img.height *= main.getScreenHeight()/320;
+			img.width *= main.getScreenWidth()/480;
 			addChild(img);
 		}
 		
@@ -99,6 +103,8 @@ package screens
 			character = new Image(Assets.getTexture(healthyness + "Boy"));
 			character.x = stage.width * 0.73;
 			character.y = stage.height * 0.5;
+			character.height *= main.getScreenHeight()/320;
+			character.width *= main.getScreenWidth()/480;
 		}
 		
 		private function startBackgroundMusic():void
@@ -119,8 +125,8 @@ package screens
 			{
 				arrow = new Image(Assets.getTexture("ArrowRight"));
 				arrow.name = "arrow_right";
-				arrow.x = 310;
-				arrow.y = 120;
+				arrow.x = main.getScreenWidth()/1.54;
+				arrow.y = main.getScreenHeight()/2.66;
 				this.addChild(arrow);
 				arrow.addEventListener(TouchEvent.TOUCH, onArrowRight)
 			}
@@ -129,8 +135,8 @@ package screens
 			{
 				arrow = new Image(Assets.getTexture("ArrowLeft"));
 				arrow.name = "arrow_left"
-				arrow.x = 5;
-				arrow.y = 120;
+				arrow.x = main.getScreenWidth()/96;
+				arrow.y = main.getScreenHeight()/2.66;
 				this.addChild(arrow);
 				arrow.addEventListener(TouchEvent.TOUCH, onArrowLeft)
 			}
@@ -198,35 +204,38 @@ package screens
 		{
 			if (number + firstGameToDisplay == 8)
 			{
-				miniGame.y = (bg.height / 2) - (miniGame.height / 2)
-				miniGame.x = (bg.width / 3) - (miniGame.width / 3)
+				miniGame.y = (bg.height / 2) - (miniGame.height / 2);
+				miniGame.x = (bg.width / 3) - (miniGame.width / 3);
+				miniGame.height *= main.getScreenHeight()/320;
+				miniGame.width *= main.getScreenWidth()/480;
 			}
 			else
 			{
 				if (miniGame == null)
 				{
-					return
+					return;
 				}
-				
+				miniGame.height = 111 * (main.getScreenHeight() / 320);
+				miniGame.width = 111 * (main.getScreenWidth() / 480);
 				if (number == 0)
 				{
-					miniGame.x = 50;
-					miniGame.y = 40;
+					miniGame.x = bg.width/(480/50);
+					miniGame.y = bg.height/(320/40);
 				}
 				else if (number == 1)
 				{
-					miniGame.x = 190;
-					miniGame.y = 40;
+					miniGame.x = bg.width/(480/190);
+					miniGame.y = bg.height/(320/40);
 				}
 				else if (number == 2)
 				{
-					miniGame.x = 50;
-					miniGame.y = 180;
+					miniGame.x = bg.width/(480/50);
+					miniGame.y = bg.height/(320/180);
 				}
 				else if (number == 3)
 				{
-					miniGame.x = 190;
-					miniGame.y = 180;
+					miniGame.x = bg.width/(480/190);
+					miniGame.y = bg.height/(320/180);
 				}
 			}
 			

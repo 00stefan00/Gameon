@@ -48,7 +48,7 @@
 	
 	<initialWindow>
 		<title>Mini-games</title>
-		<content>MINIGames.swf</content>
+		<content>Minigames.swf</content>
 		<visible>true</visible>
 		<fullScreen>true</fullScreen>
 		<autoOrients>false</autoOrients>

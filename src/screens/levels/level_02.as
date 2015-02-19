@@ -2,25 +2,16 @@ package screens.levels
 {
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 */
-	import flash.display.BitmapData;
-	import flash.utils.Dictionary;
-	import starling.display.DisplayObject;
-	import starling.display.Image;
-	import screens.levels.level_base
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
-	import screens.Menu;
 	import flash.geom.Point;
-	import starling.display.Sprite;
-	import starling.events.TouchPhase;
+	import flash.utils.Dictionary;
+	import screens.levels.level_base;
+	import screens.Menu;
+	import starling.display.Image;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
-	import starling.events.Event;
-	import starling.display.Sprite;
-	import flash.display.Bitmap;
-	import flash.display.LoaderInfo;
+	import starling.events.TouchPhase;
 	
 	public class level_02 extends level_base
 	{
@@ -47,7 +38,7 @@ package screens.levels
 		 */
 		private function initialize():void
 		{
-			setToCoords(new Image(Assets.getTexture("Background")), 0, 0);
+			setToCoords(makeResizedImg(new Image(Assets.getTexture("Background")), 480, 320), 0, 0);
 			addLines();
 			
 			face = new Image(Assets.getTexture("Benson_Face"));

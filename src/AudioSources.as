@@ -6,12 +6,9 @@ package
 	 * @author Stefan
 	 */
 	
-	import flash.display.Bitmap;
 	import flash.media.Sound;
 	import flash.utils.Dictionary;
 	
-	import starling.textures.Texture;
-	import starling.textures.TextureAtlas;
 	
 	public class AudioSources
 	{

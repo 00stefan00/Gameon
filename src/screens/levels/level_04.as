@@ -2,16 +2,14 @@ package screens.levels
 {
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 */
+	import screens.levels.level_base;
+	import screens.Menu;
 	import starling.display.Image;
-	import screens.levels.level_base
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-	import screens.Menu;
 	
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
 	
 	public class level_04 extends level_base
 	{
@@ -37,6 +35,7 @@ package screens.levels
 		private function initialize():void
 		{
 			bg = new Image(Assets.getTexture("Background"));
+			bg = makeResizedImg(bg, 480, 320);
 			addChild(bg);
 			
 			hospital = new Image(Assets.getTexture("HospitalT"));

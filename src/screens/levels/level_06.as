@@ -1,17 +1,20 @@
 ﻿package screens.levels
 {
+	/**
+	 * ...
+	 * @author Kati & Stefan
+	 */
+		
 	// Import classes this script uses
 	import flash.utils.Timer;
 	import screens.levels.level_base;
+	import screens.Menu;
 	import starling.display.Image;
 	import starling.events.EnterFrameEvent;
+	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-	import starling.events.Event;
-	import screens.Menu;
 	
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
 	
 	public class level_06 extends level_base
 	{
@@ -21,9 +24,7 @@
 		private var collisionTimer:Timer;
 		private var victory:Boolean;
 		private var paused:Boolean = false;
-		
-
-		
+			
 		public function level_06(main:GameScreen)
 		{
 			super(main);
@@ -41,6 +42,7 @@
 			healthyFacesArray = new Array();
 			
 			bg = new Image(Assets.getTexture("Background"));
+			bg = makeResizedImg(bg, 480, 320);
 			bg.addEventListener(TouchEvent.TOUCH, gameStart)
 			addChild(bg);
 			
@@ -56,6 +58,8 @@
 				
 				sickFace.x = Math.random() * 480;
 				sickFace.y = Math.random() * 320;
+				sickFace.width *= main.getScreenWidth() / 480
+				sickFace.height *= main.getScreenHeight()/320
 			}
 			
 			for (var j:int = 0; j < healthyFaces; j++)
@@ -68,6 +72,8 @@
 				
 				healthyFace.x = Math.random() * 480;
 				healthyFace.y = Math.random() * 320;
+				healthyFace.width *= main.getScreenWidth() / 480
+				healthyFace.height *= main.getScreenHeight()/320
 			}
 			
 			pauseGame();

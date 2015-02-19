@@ -2,25 +2,21 @@ package screens.levels
 {
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 * the door level
 	 */
-	import flash.desktop.InteractiveIcon;
-	import flash.events.TimerEvent;
-	import flash.utils.Dictionary;
-	import flash.utils.Timer;
-	import starling.display.Image;
-	import screens.levels.level_base;
-	import starling.events.EnterFrameEvent;
-	import starling.events.TouchEvent;
-	import starling.events.Touch;
-	import starling.events.TouchPhase;
-	import starling.events.Event;
 	import com.greensock.TweenMax;
+	import flash.events.TimerEvent;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
-	import screens.Menu;
+	import flash.utils.Dictionary;
 	import flash.utils.Timer;
+	import screens.levels.level_base;
+	import screens.Menu;
+	import starling.display.Image;
+	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	
 	public class level_03 extends level_base
 	{
@@ -55,7 +51,7 @@ package screens.levels
 		 */
 		private function initialize():void
 		{
-			addChild(new Image(Assets.getTexture("Background")));
+			addChild(makeResizedImg(new Image(Assets.getTexture("Background")), 480, 320));
 			correct = AudioSources.getSound("Correct");
 			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
@@ -94,7 +90,9 @@ package screens.levels
 					if (doorDict[i].name == "correct")
 					{
 						doctor = new Image(Assets.getTexture("Doctor"));
-						setToCoords(doctor, doorDict[i].x, doorDict[i].y)
+						doctor.x = (doorDict[i].x)+((doorDict[i].width/2) - doctor.width/2)
+						doctor.y = (doorDict[i].y)+((doorDict[i].height/2) - doctor.height/2)
+						addChild(doctor)
 					}
 				}
 				var counter:Timer = new Timer(5, 75);
@@ -122,7 +120,9 @@ package screens.levels
 				}
 			}
 			img = new Image(Assets.getTexture(name));
-			setToCoords(img, x, y);
+			img.x = x;
+			img.y = y;
+			addChild(img);
 		}
 		
 		private function showDoors():void
@@ -147,8 +147,9 @@ package screens.levels
 			for (var i:int = 0; i < 3; i++)
 			{
 				var door:Image = new Image(Assets.getTexture("Door"));
-				door.x = 100 * i + margin;
-				door.y = margin;
+				door.x = (100 * i + margin)*(main.getScreenWidth()/480);
+				door.y = (margin)*(main.getScreenHeight()/320);
+				
 				makeResizedImg(door, door.width*0.8, door.height*0.8);
 				door.name = "wrong";
 				
@@ -171,18 +172,21 @@ package screens.levels
 			if (e.getTouch(this, TouchPhase.BEGAN) && waitingForInput)
 			{
 				var door:Image = e.currentTarget as Image;
+				var rX:int = (door.x)+((door.width/2) - doctor.width/2)
+				var rY:int = (door.y) + ((door.height / 2) - doctor.height / 2)
+				
 				if (door.name == "correct")
 				{
 					correct.play(0, 1);
 					score++;
-					showResultsAndRestart();
-					placeResult(door.x, door.y, true);
+					showResultsAndRestart();					
+					placeResult(rX, rY, true);
 				}
 				else if (door.name == "wrong")
 				{
 					wrong.play(0, 1);
 					showResultsAndRestart();
-					placeResult(door.x, door.y);
+					placeResult(rX, rY);
 				}
 				removeDoors();
 			}

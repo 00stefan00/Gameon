@@ -2,16 +2,13 @@ package screens
 {
 	import flash.media.SoundChannel;
 	import flash.utils.Timer;
-	import screens.levels.level_base;
-	import starling.display.Sprite;
 	import starling.display.Image;
-	import starling.events.TouchPhase;
 	import starling.events.TouchEvent;
-	import flash.media.Sound;
+	import starling.events.TouchPhase;
 	
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 */
 	public class Menu extends BaseScreen
 	{
@@ -143,8 +140,11 @@ package screens
 		 */
 		private function setToCoords(img:Image, x:Number, y:Number):void
 		{
-			img.x = x;
-			img.y = y;
+			img.height *= main.getScreenHeight()/320;
+			img.width *= main.getScreenWidth()/480;
+			
+			img.x = x*(main.getScreenWidth()/480);
+			img.y = y*(main.getScreenHeight()/320);
 			
 			addChild(img);
 		}

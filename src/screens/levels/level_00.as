@@ -2,7 +2,7 @@ package screens.levels
 {
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 */
 	import flash.utils.Timer;
 	import flash.geom.Point;
@@ -54,6 +54,7 @@ package screens.levels
 		private function initialize():void
 		{
 			bg = new Image(Assets.getTexture("Background"));
+			bg = makeResizedImg(bg, 480, 320);
 			addChild(bg);
 			startLevelMusic();
 			

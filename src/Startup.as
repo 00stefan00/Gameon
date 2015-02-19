@@ -5,27 +5,23 @@ package
 	 * @author Stefan
 	 */
 	import flash.display.Sprite;
-	import flash.utils.Dictionary;
-	import starling.events.Event;
-	import starling.core.Starling;
-	import flash.display.Loader;
-	import flash.net.URLRequest;
-	import flash.events.ProgressEvent;
-	import flash.filesystem.File;
-	import flash.net.NetConnection;
-	import flash.net.NetStream;
 	import flash.events.AsyncErrorEvent;
-	import flash.media.Video;
 	import flash.events.NetStatusEvent;
 	import flash.events.SecurityErrorEvent;
+	import flash.media.Video;
+	import flash.net.NetConnection;
+	import flash.net.NetStream;
+	import starling.core.Starling;
+	import util.Config;
 	
-	[SWF(width="480",height="320",frameRate="60",backgroundColor="#ffffff")]
+	[SWF(width="1920",height="1080",frameRate="60",backgroundColor="#ffffff")]
 	
 	public class Startup extends Sprite
 	{
 		private var myStarling:Starling;
 		private var nc:NetConnection;
 		private var ns:NetStream;
+		private var playVideo:Boolean = Config.PLAY_VIDEO;
 		
 		private const path:String = "intro_animation.flv";
 		private const connection:NetConnection = new NetConnection();
@@ -69,22 +65,27 @@ package
 		
 		private function connectStream():void
 		{
-			stream = new NetStream(connection);
-			stream.client = {onMetaData: function(obj:Object):void
+			if(playVideo){
+				stream = new NetStream(connection);
+				stream.client = {onMetaData: function(obj:Object):void
+					{
+					}}
+				stream.receiveAudio(true);
+			
+			
+				with (stream)
 				{
-				}}
-			stream.receiveAudio(true);
-			
-			with (stream)
-			{
-				addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
-				addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
+					addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+					addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
+				}
+				
+				video.attachNetStream(stream);
+				stream.play(path);
+				
+				addChild(video);
+			} else {
+				onMovieEnd();
 			}
-			
-			video.attachNetStream(stream);
-			stream.play(path);
-			
-			addChild(video);
 		}
 		
 		private function securityErrorHandler(event:SecurityErrorEvent):void

@@ -2,17 +2,16 @@ package screens.levels
 {
 	/**
 	 * ...
-	 * @author ...
+	 * @author Stefan
 	 */
-	import starling.display.Image;
+	import flash.geom.Point;
 	import screens.levels.level_base;
+	import screens.Menu;
+	import starling.display.Image;
+	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-	import starling.events.Touch;
-	import flash.geom.Point;
 	
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
 	
 	public class level_05 extends level_base
 	{
@@ -21,7 +20,6 @@ package screens.levels
 		private var box_red:Image;
 		private var box_green:Image;
 		private var score:Number;
-		import screens.Menu;
 		
 
 		
@@ -42,6 +40,7 @@ package screens.levels
 		{
 			score = 0;
 			bg = new Image(Assets.getTexture("Background"));
+			bg = makeResizedImg(bg, 480, 320);
 			addChild(bg);
 			
 			startLevelMusic();
