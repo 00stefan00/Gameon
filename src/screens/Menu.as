@@ -4,12 +4,7 @@ package screens
 	import flash.utils.Timer;
 	import starling.display.Image;
 	import starling.events.TouchEvent;
-<<<<<<< HEAD
 	import starling.events.TouchPhase;
-=======
-	import flash.media.Sound;
-	import util.Assets;
->>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	
 	/**
 	 * ...
@@ -32,7 +27,7 @@ package screens
 		private var score:Number;
 		private var musicChannel:SoundChannel;
 		
-		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = -1)
+		public function Menu(main:GameScreen, myTimer:Timer, gameState:String, score:Number = -1, musicChannel:SoundChannel = null)
 		{
 			super(main);
 			this.myTimer = myTimer;
@@ -158,7 +153,7 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
-				main.getSoundManager().playButtonSound();
+				main.playButtonSound();
 				
 				main.loadScreen("homescreen");
 				if (musicChannel != null)
@@ -174,7 +169,7 @@ package screens
 		private function goBack(e:TouchEvent):void
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN)) {
-				main.getSoundManager().playButtonSound();
+				main.playButtonSound();
 				
 				closeMenu()
 			}
@@ -184,7 +179,7 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
-				main.getSoundManager().playButtonSound();
+				main.playButtonSound();
 				
 				main.loadScreen(main.getCurrentScreenName());
 				if (musicChannel != null)
@@ -198,7 +193,7 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
-				main.getSoundManager().playButtonSound();
+				main.playButtonSound();
 				
 				if (main.getCurrentScreenName() != "level_08")
 				{
@@ -212,7 +207,8 @@ package screens
 					
 					number++;
 					closeMenu();
-					main.loadScreen("level_0" + number);					
+					main.loadScreen("level_0" + number);
+					
 				}
 			}
 		}
@@ -221,11 +217,23 @@ package screens
 		{
 			if (e.getTouch(this, TouchPhase.BEGAN))
 			{
-				main.getSoundManager().playButtonSound();
-				main.getSoundManager().switchMute();
+				main.playButtonSound();
+				
+				if (main.getMuted())
+				{
+					main.unmute();
+				}
+				else
+				{
+					main.mute();
+					musicChannel.stop();
+				}
 			}
 		}
 		
+		/**
+		 * Removes menu from the screen
+		 */
 		private function closeMenu():void
 		{
 			if (gameState != "Victory")

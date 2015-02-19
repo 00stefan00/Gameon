@@ -1,5 +1,4 @@
-﻿import util.Assets;
-package screens.levels
+﻿package screens.levels
 {
 	/**
 	 * ...
@@ -15,15 +14,7 @@ package screens.levels
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-<<<<<<< HEAD
 	
-=======
-	import starling.events.Event;
-	import screens.Menu;
-	import util.Assets;
-	
-
->>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	
 	public class level_06 extends level_base
 	{
@@ -55,7 +46,7 @@ package screens.levels
 			bg.addEventListener(TouchEvent.TOUCH, gameStart)
 			addChild(bg);
 			
-			
+			startLevelMusic();
 			
 			for (var i:int = 0; i < sickFaces; i++)
 			{
@@ -123,9 +114,9 @@ package screens.levels
 			{
 				victory = true;
 				pauseGame();
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(10));
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(10), getMusicChannel());
 				addChild(menu);
-				
+				stopLevelMusic();
 				this.removeEventListener(Event.ENTER_FRAME, onNewFrame)
 			}
 		}
@@ -137,13 +128,13 @@ package screens.levels
 				if (sickFacesArray.indexOf(event.currentTarget) > 0)
 				{
 					removeTicks(50);
-					main.getSoundManager().playWrongSound();
+					playWrongSound();
 					
 				}
 				else
 				{
 					healthyFacesArray.pop();
-					main.getSoundManager().playCorrectSound();
+					playCorrectSound();
 					removeChild(event.currentTarget as Image);
 				}
 			}

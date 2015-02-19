@@ -4,15 +4,11 @@ package
 	 * ...
 	 * @author Stefan
 	 */
-<<<<<<< HEAD
 	import ao.ExternalStorageAO;
 	import flash.display.Screen;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import flash.utils.Dictionary;
-=======
-	import flash.media.Sound;
->>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	import screens.BaseScreen;
 	import screens.HomeScreen;
 	import screens.levels.*;
@@ -20,34 +16,22 @@ package
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import util.Config;
-<<<<<<< HEAD
-=======
-	import util.SoundManager;
-	import flash.ui.Keyboard;
-	import starling.events.KeyboardEvent
->>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	
 	
 	public class GameScreen extends Sprite
 	{
-		private static var mainMenu:HomeScreen;
 		private var currentScreen:BaseScreen;
 		private var screenWelcome:Welcome;
 		private var currentScreenName:String;
-		
+		private static var mainMenu:HomeScreen;
 		private var scoreDict:Dictionary = new Dictionary();
 		private var muted:Boolean = false;
-<<<<<<< HEAD
 		private var screenWidth:Number;
 		private var screenHeight:Number;
-=======
-		private var soundManager:SoundManager;
->>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 		
 		public function GameScreen()
 		{
 			super();
-<<<<<<< HEAD
 			if (Config.SAVES_ENABLED)
 			{
 				loadData();
@@ -55,9 +39,6 @@ package
 			
 			screenWidth = Screen.mainScreen.visibleBounds.width;
 			screenHeight = Screen.mainScreen.visibleBounds.height;
-=======
-			loadData();
->>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
@@ -89,7 +70,6 @@ package
 		 */
 		public function loadScreen(screenName:String):void
 		{
-			getSoundManager().stopAllMusic();
 			currentScreenName = screenName;
 			if (currentScreen != null)
 			{
@@ -161,6 +141,10 @@ package
 			if (scoreDict[level] < score)
 			{
 				scoreDict[level] = score;
+				if (Config.SAVES_ENABLED)
+				{
+					saveData();
+				}
 			}
 		}
 		
@@ -172,56 +156,27 @@ package
 			{
 				rawData += "" + key + ";" + scoreDict[key] + "?";
 			}
-			try
-			{
-				ExternalStorageAO.saveFileToDirectory(Config.SAVE_GAME_NAME, Config.SAVE_GAME_DIRECTORY, rawData);
-			}
-			catch (e:Error)
-			{
-				trace(e);
-				try
-				{
-					ExternalStorageAO.saveFile(Config.SAVE_GAME_DIRECTORY, rawData);
-				}
-				catch (e:Error)
-				{
-					trace(e);
-				}
-			}
-		
+			ExternalStorageAO.saveFileToDirectory("SaveFile.txt", Config.SAVE_GAME_DIRECTORY, rawData);
 		}
 		
 		private function loadData():void
 		{
-			var rawData:String;
-			try
-			{
-				rawData = ExternalStorageAO.loadFile(Config.SAVE_GAME_DIRECTORY + Config.SAVE_GAME_NAME);
-			}
-			catch (e:Error)
-			{
-				trace(e);
-				try
-				{
-					rawData = ExternalStorageAO.loadFile(Config.SAVE_GAME_NAME);
-				}
-				catch (e:Error)
-				{
-					trace(e);
-				}
-			}
+			var rawData:String = ExternalStorageAO.loadFile(Config.SAVE_GAME_DIRECTORY + "SaveFile.txt");
 			
-			if (rawData != null)
+			var dataArray:Array = rawData.split("?")
+			while (dataArray.length > 0)
 			{
-				var dataArray:Array = rawData.split("?")
-				while (dataArray.length > 0)
-				{
-					var temp:String = dataArray.pop();
-					var tempArray:Array = temp.split(";");
-					var score:String = tempArray.pop();
-					setLevelScore(new Number(tempArray.pop()), new Number(score));
-				}
+				var temp:String = dataArray.pop();
+				var tempArray:Array = temp.split(";");
+				var score:String = tempArray.pop();
+				setLevelScore(new Number(tempArray.pop()), new Number(score));
 			}
+		}
+		
+		public function playButtonSound():void
+		{
+			var btnSound:Sound = AudioSources.getSound("Button");
+			var btnChannel:SoundChannel = btnSound.play(1);
 		}
 		
 		public function getTotalScore():Number
@@ -232,23 +187,22 @@ package
 				totalScore += scoreDict[level];
 			}
 			return totalScore;
+			trace(totalScore);
 		}
 		
-		public function getSoundManager():SoundManager
+		public function getMuted():Boolean
 		{
-			if (soundManager == null)
-			{
-				soundManager = new SoundManager();
-			}
-			return soundManager;
+			return muted;
 		}
 		
-		public function handleBackButton(event:KeyboardEvent):void
+		public function mute():void
 		{
-			if (event.keyCode == Keyboard.BACK || event.keyCode == Keyboard.HOME)
-			{
-				getSoundManager().stopAllMusic();
-			}
+			muted = true;
+		}
+		
+		public function unmute():void
+		{
+			muted = false;
 		}
 	}
 }

@@ -1,4 +1,3 @@
-import util.Assets;
 package screens.levels
 {
 	/**
@@ -10,14 +9,7 @@ package screens.levels
 	import starling.display.Image;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-<<<<<<< HEAD
 	
-=======
-	import screens.Menu;
-	import util.Assets;
-	
-
->>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	
 	public class level_04 extends level_base
 	{
@@ -50,7 +42,7 @@ package screens.levels
 			addChild(hospital);
 			setToCoords(hospital, 300, 40
 			);
-			
+			startLevelMusic();
 			
 			putfaces();
 		}
@@ -113,20 +105,21 @@ package screens.levels
 					face.dispose();
 					removeChild(face);
 					sickFaceArray.pop();
-					main.getSoundManager().playCorrectSound();
+					playCorrectSound();
 					score++;
 				}
 				else if (face.name == "Healthy")
 				{
 					removeTicks(50);
-					main.getSoundManager().playWrongSound();
+					playWrongSound();
 				}
 				
 				if (score == 18)
 				{
 					pauseTimer();
-					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50));
+					var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(50), getMusicChannel());
 					addChild(menu);
+					stopLevelMusic();
 				}
 				else if (sickFaceArray.length < 1)
 				{

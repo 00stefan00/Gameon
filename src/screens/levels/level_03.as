@@ -17,19 +17,13 @@ package screens.levels
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-<<<<<<< HEAD
-=======
-	import starling.events.Event;
-	import com.greensock.TweenMax;
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
-	import screens.Menu;
-	import flash.utils.Timer;
-	import util.Assets;
->>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	
 	public class level_03 extends level_base
 	{
+		private var lvlmusic:Sound;
+		private var lvlChannel:SoundChannel;
+		private var correct:Sound;
+		private var wrong:Sound;
 		private var doorsArray:Array;
 		private var margin:int = 100;
 		private var doorDict:Dictionary;
@@ -57,14 +51,10 @@ package screens.levels
 		 */
 		private function initialize():void
 		{
-<<<<<<< HEAD
 			addChild(makeResizedImg(new Image(Assets.getTexture("Background")), 480, 320));
 			correct = AudioSources.getSound("Correct");
 			wrong = AudioSources.getSound("Wrong");
 			startLevelMusic();
-=======
-			addChild(new Image(Assets.getTexture("Background")));			
->>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 			
 			doorsArray = new Array();
 			doorDict = new Dictionary();
@@ -86,7 +76,7 @@ package screens.levels
 			{
 				victory = true;
 				this.removeEventListeners()
-				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25));
+				var menu:Menu = new Menu(main, getTimer(), "Victory", calculateScore(25), getMusicChannel());
 				addChild(menu);
 			}
 		}
@@ -187,14 +177,14 @@ package screens.levels
 				
 				if (door.name == "correct")
 				{
-					main.getSoundManager().playCorrectSound();
+					correct.play(0, 1);
 					score++;
 					showResultsAndRestart();					
 					placeResult(rX, rY, true);
 				}
 				else if (door.name == "wrong")
 				{
-					main.getSoundManager().playWrongSound();
+					wrong.play(0, 1);
 					showResultsAndRestart();
 					placeResult(rX, rY);
 				}

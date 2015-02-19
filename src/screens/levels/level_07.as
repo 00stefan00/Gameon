@@ -1,4 +1,3 @@
-import util.Assets;
 package screens.levels
 {
 	/**
@@ -16,10 +15,6 @@ package screens.levels
 	import starling.events.TouchPhase;
 	import util.Config;
 	
-<<<<<<< HEAD
-=======
-
->>>>>>> 4fa70792600f5e5898654599ebfccc53ab57eaa4
 	
 	public class level_07 extends level_base
 	{
@@ -29,7 +24,6 @@ package screens.levels
 		private var spawnsDict:Dictionary;
 		private var score:Number = 0;
 		private var spawnReset:Number = 0;
-		import util.Assets;
 		
 		
 		public function level_07(main:GameScreen)
@@ -51,7 +45,7 @@ package screens.levels
 			bg = makeResizedImg(bg, 480, 320);
 			addChild(bg);
 			
-			
+			startLevelMusic();
 			
 			//benson = makeResizedImg(new Image(Assets.getTexture("Benson")), 80, 132);
 			benson = new Image(Assets.getTexture("Benson"));
@@ -108,9 +102,9 @@ package screens.levels
 				checkForCollisions();
 			}
 			if (getGaugeRatio() < 0.01) {
-				var menu:Menu = new Menu(main, getTimer(), "Victory", score/Config.MEDS_NEEDED_PER_HEART);
+				var menu:Menu = new Menu(main, getTimer(), "Victory", score/Config.MEDS_NEEDED_PER_HEART, getMusicChannel());
 				addChild(menu);				
-				
+				stopLevelMusic();
 				this.removeEventListener(EnterFrameEvent.ENTER_FRAME, onFrame);
 			}
 		}
@@ -226,7 +220,7 @@ package screens.levels
 				spawnItem();
 				addTicks(Config.BONUS_TICKS_ON_MED);
 				score++;
-				main.getSoundManager().playCorrectSound();
+				playCorrectSound();
 			}
 			else if (img.name == "RandomItem")
 			{
@@ -235,7 +229,7 @@ package screens.levels
 				
 				spawnItem();
 				removeTicks(50);
-				main.getSoundManager().playWrongSound();
+				playWrongSound();
 			}
 		}
 	}

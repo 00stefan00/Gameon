@@ -11,11 +11,11 @@ package ao
 	 */
 	public class ExternalStorageAO 
 	{
-		public static function saveFile(filePath:String, data:String):void {
+		public static function saveFile(filePath:String, settings:String):void {
 			var myFile:File = File.documentsDirectory.resolvePath(filePath);
 			var fs:FileStream = new FileStream();
 			fs.open(myFile, FileMode.WRITE);
-			fs.writeUTFBytes(data);
+			fs.writeUTFBytes(settings);
 			fs.close();
 		}
 

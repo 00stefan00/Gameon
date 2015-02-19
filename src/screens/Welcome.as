@@ -1,4 +1,3 @@
-import util.Assets;
 package screens
 {
 	/**
@@ -11,7 +10,6 @@ package screens
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-	import util.Assets;
 	
 	public class Welcome extends BaseScreen
 	{

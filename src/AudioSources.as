@@ -1,5 +1,4 @@
-import util.AudioSources;
-package util
+package
 {
 	
 	/**
@@ -13,22 +12,22 @@ package util
 	
 	public class AudioSources
 	{
-		[Embed(source="../../audio/bgm1.mp3")]
+		[Embed(source="../audio/bgm1.mp3")]
 		public static const BGMusic:Class;
 		
-		[Embed(source="../../audio/drum.mp3")]
+		[Embed(source="../audio/drum.mp3")]
 		public static const LvlMusic:Class;
 		
-		[Embed(source="../../audio/correct.mp3")]
+		[Embed(source="../audio/correct.mp3")]
 		public static const Correct:Class;
 		
-		[Embed(source="../../audio/wrong.mp3")]
+		[Embed(source="../audio/wrong.mp3")]
 		public static const Wrong:Class;
 		
-		[Embed(source="../../audio/timer.mp3")]
+		[Embed(source="../audio/timer.mp3")]
 		public static const Timer:Class;
 		
-		[Embed(source="../../audio/button.mp3")]
+		[Embed(source="../audio/button.mp3")]
 		public static const Button:Class;
 		
 		private static var soundDict:Dictionary = new Dictionary();
